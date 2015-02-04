@@ -1,0 +1,40 @@
+<!--<div class="row">-->
+<!--<div class="content clearfix">-->
+
+<%= bootstrap_form_for(@user, :html => {
+        class: 'form-horizontal float-middle'
+}) do |f| %>
+
+    <div class="col-xs-12">
+      <%= f.email_field :email, :placeholder => "Email" %>
+    </div>
+    <div class="col-xs-12">
+      <%= f.password_field :password, :placeholder => "Password" %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.text_field :first_name, :placeholder => "First name" %>
+    </div>
+    <div class="col-xs-6">
+      <%= f.text_field :last_name, :placeholder => "Last name" %>
+    </div>
+    <div class="col-xs-12">
+      <%= f.telephone_field :phone_number, :placeholder => "Phone" %>
+    </div>
+    <div class="col-xs-5">
+      <%= f.text_field :address, :placeholder => "Address" %>
+    </div>
+    <div class="col-xs-3">
+      <%= f.text_field :city, :placeholder => "City" %>
+    </div>
+    <div class="col-xs-2">
+      <%= f.text_field :state, :placeholder => "State" %>
+    </div>
+    <div class="col-xs-2">
+      <%= f.text_field :zip, :placeholder => "Zip" %>
+    </div>
+    <div class="col-xs-12 no-padding">
+      <%= f.submit "Sign Up", :class => "btn btn-primary" %>
+    </div>
+<% end %>
+<!--</div>-->
+<!--</div>-->

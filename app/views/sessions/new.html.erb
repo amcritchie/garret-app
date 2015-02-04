@@ -1,0 +1,27 @@
+<article class="one_fourth">&nbsp</article>
+
+<article class="one_half">
+  <div id="messageDock">
+    <div class="flashSuccess"><h5><%= flash[:success] %></h5></div>
+    <div class="flashError"><h5><%= flash[:error] %></h5></div>
+  </div>
+
+  <%= form_for @user, url: login_path do |f| %>
+      <ul>
+        <li>
+          <%= f.label :username, 'Email / Username' %>
+          <%= f.text_field :username %>
+        </li>
+        <li>
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+        </li>
+        <li>
+          <%= f.submit "Sign In" %>
+        </li>
+      </ul>
+  <% end %>
+  <%= link_to "Register", new_user_path %>
+</article>
+
+<article class="one_fourth">&nbsp</article>

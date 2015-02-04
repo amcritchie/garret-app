@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="span12">
+    <% if session[:user_id] == nil %>
+        <%= render 'loggedOut' %>
+    <% else %>
+        <%= render 'loggedIn' %>
+    <% end %>
+
+  </div>
+</div>
