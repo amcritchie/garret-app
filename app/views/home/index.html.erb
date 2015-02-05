@@ -3,8 +3,11 @@
     <% if session[:user_id] == nil %>
         <%= render 'loggedOut' %>
     <% else %>
-        <%= render 'loggedIn' %>
+        <% if current_user.admin %>
+            <%= render 'admin' %>
+        <% else %>
+            <%= render 'loggedIn' %>
+        <% end %>
     <% end %>
-
   </div>
 </div>
