@@ -82,6 +82,12 @@
                         <td>Address</td>
                         <td><%= restaurant.address + ' ' + restaurant.city + ', ' + restaurant.state + ' ' + restaurant.zip %></td>
                       </tr>
+                      <tr>
+                        <td>New Evaluation</td>
+                        <td>
+                          <%= link_to('New Evaluation', "#login", :data => {toggle: 'modal', target: "#new-evaluation-modal"}) %>
+                        </td>
+                      </tr>
                       </tbody>
                     </table>
                   </div>
