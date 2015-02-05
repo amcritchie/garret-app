@@ -33,7 +33,7 @@ class UsersController < ApplicationController
     @user.address = @user.address.downcase
     @user.city = @user.city.downcase
     @user.state = @user.state.downcase
-    @user.admin = false
+    @user['admin'] = false
 
     if @user.save
       session[:user_id] = @user.id
