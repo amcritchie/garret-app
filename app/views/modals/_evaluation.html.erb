@@ -5,56 +5,50 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade bs-modal-sm" id="new-restaurant-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-modal-sm" id="new-evaluation-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <br>
 
       <div class="bs-example bs-example-tabs">
         <ul id="myTab" class="nav nav-tabs">
-          <li class="active"><a href="#signin" data-toggle="tab">New Restaurant</a></li>
+          <li class="active"><a href="#signin" data-toggle="tab">Sign In</a></li>
+          <li class=""><a href="#signup" data-toggle="tab">Register</a></li>
+          <li class=""><a href="#why" data-toggle="tab">Why?</a></li>
         </ul>
       </div>
       <div class="modal-body">
         <div id="myTabContent" class="tab-content">
+
+          
 
           <div class="tab-pane fade active in" id="signin">
             <%= form_for :restaurant, as: :post, url: new_restaurant_path(:restaurant), html: { class: 'restaurantForm'} do |f| %>
                 <fieldset>
                   <!-- Sign In Form -->
                   <!-- Text input-->
+
                   <div class="control-group col-xs-12">
-                    <label class="control-label" for="name">Restaurant Name:</label>
                     <div class="controls">
-                      <%= f.text_field :name, :class => "form-control", :placeholder => "Restaurant Name" %>
+                      <%= f.check_box :phone_number, :class => "form-control width-20 inline-block", :placeholder => "Question 1" %>
+                      <label class="control-label" for="phone">Question 1</label>
                     </div>
                   </div>
 
                   <div class="control-group col-xs-12">
-                    <label class="control-label" for="phone">Phone:</label>
                     <div class="controls">
-                      <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555)555-5555" %>
+                      <%= f.check_box :phone_number, :class => "form-control width-20 inline-block", :placeholder => "Question 1" %>
+                      <label class="control-label" for="phone">Question 2</label>
                     </div>
                   </div>
 
-                  <!-- Password input-->
-                  <div class="control-group">
-                    <div class="controls col-xs-12">
-                      <label class="control-label" for="address">Address:</label>
-                    </div>
-                    <div class="controls col-xs-5">
-                      <%= f.text_field :address, :class => "form-control", :placeholder => "Address" %>
-                    </div>
-                    <div class="controls col-xs-3">
-                      <%= f.text_field :city, :class => "form-control", :placeholder => "City" %>
-                    </div>
-                    <div class="controls col-xs-2">
-                      <%= f.text_field :state, :class => "form-control", :placeholder => "State" %>
-                    </div>
-                    <div class="controls col-xs-2">
-                      <%= f.text_field :zip, :class => "form-control", :placeholder => "Zip" %>
+                  <div class="control-group col-xs-12">
+                    <div class="controls">
+                      <%= f.check_box :phone_number, :class => "form-control width-20 inline-block", :placeholder => "Question 1" %>
+                      <label class="control-label" for="phone">Question 3</label>
                     </div>
                   </div>
+
 
                   <!-- Button -->
                   <div class="control-group col-xs-12">
@@ -122,28 +116,49 @@
                   <div class="control-group col-xs-12">
                     <label class="control-label" for="phone">Phone:</label>
                     <div class="controls">
-                      <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555)555-5555" %>
+                      <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "Question 1" %>
+                    </div>
+                  </div>
+
+                  <div class="control-group col-xs-12">
+                    <label class="control-label" for="phone">Phone:</label>
+                    <div class="controls">
+                      <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "Question 1" %>
+                    </div>
+                  </div>
+
+                  <div class="control-group col-xs-12">
+                    <label class="control-label" for="phone">Phone:</label>
+                    <div class="controls">
+                      <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "Question 1" %>
+                    </div>
+                  </div>
+
+                  <div class="control-group col-xs-12">
+                    <label class="control-label" for="phone">Phone:</label>
+                    <div class="controls">
+                      <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "Question 1" %>
                     </div>
                   </div>
 
                   <!-- Password input-->
-                  <div class="control-group">
-                    <div class="controls col-xs-12">
-                      <label class="control-label" for="address">Address:</label>
-                    </div>
-                    <div class="controls col-xs-5">
-                      <%= f.text_field :address, :class => "form-control", :placeholder => "Address" %>
-                    </div>
-                    <div class="controls col-xs-3">
-                      <%= f.text_field :city, :class => "form-control", :placeholder => "City" %>
-                    </div>
-                    <div class="controls col-xs-2">
-                      <%= f.text_field :state, :class => "form-control", :placeholder => "State" %>
-                    </div>
-                    <div class="controls col-xs-2">
-                      <%= f.text_field :zip, :class => "form-control", :placeholder => "Zip" %>
-                    </div>
-                  </div>
+                  <!--<div class="control-group">-->
+                    <!--<div class="controls col-xs-12">-->
+                      <!--<label class="control-label" for="address">Address:</label>-->
+                    <!--</div>-->
+                    <!--<div class="controls col-xs-5">-->
+                      <!--<%= f.text_field :address, :class => "form-control", :placeholder => "Address" %>-->
+                    <!--</div>-->
+                    <!--<div class="controls col-xs-3">-->
+                      <!--<%= f.text_field :city, :class => "form-control", :placeholder => "City" %>-->
+                    <!--</div>-->
+                    <!--<div class="controls col-xs-2">-->
+                      <!--<%= f.text_field :state, :class => "form-control", :placeholder => "State" %>-->
+                    <!--</div>-->
+                    <!--<div class="controls col-xs-2">-->
+                      <!--<%= f.text_field :zip, :class => "form-control", :placeholder => "Zip" %>-->
+                    <!--</div>-->
+                  <!--</div>-->
 
                   <!-- Button -->
                   <div class="control-group col-xs-12">

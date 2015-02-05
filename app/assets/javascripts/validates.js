@@ -1,5 +1,22 @@
 var Validate = {
 
+    restaurant: function (info) {
+        var errors = {};
+        console.log(info);
+        console.log(info.name);
+        console.log(info.phone);
+        if (Validate.presence(info.name)) {
+            errors['name'] = Validate.presence(info.name);
+        }
+        if (Validate.presence(info.phone)) {
+            errors['phone'] = Validate.presence(info.phone);
+        }
+        if (Validate.presence(info.address)) {
+            errors['address'] = Validate.presence(info.address);
+        }
+        return errors
+    },
+
     signUp: function (info) {
         var errors = {};
         if (Validate.email(info.email)) {
@@ -41,10 +58,10 @@ var Validate = {
             type: "POST",
             url: "/unique_email.json",
             data: {email: email},
-            success: function(response) {
+            success: function (response) {
                 deferred.resolve(response);
             },
-            error: function(response) {
+            error: function (response) {
                 deferred.reject(response);
             }
         });

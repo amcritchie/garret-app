@@ -1,10 +1,10 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+class RestaurantsController < ApplicationController
+  # before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @restaurant = Restaurant.all
   end
 
   # GET /users/1
@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    @restaurant = Restaurant.new
   end
 
   # GET /users/1/edit
@@ -24,19 +24,22 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    p '-=+=-'*50
+    p restaurant_params
+    p '-=+=-'*50
 
-    @user.account = params[:account]
-    @user.email = @user.email.downcase
-    @user.first_name = @user.first_name.downcase
-    @user.last_name = @user.last_name.downcase
-    @user.address = @user.address.downcase
-    @user.city = @user.city.downcase
-    @user.state = @user.state.downcase
-    @user.admin = false
+    @restaurant = Restaurant.new(restaurant_params)
+    p '-=+=-'*50
 
-    if @user.save
-      session[:user_id] = @user.id
+
+    @restaurant.name = @restaurant.name.downcase
+    @restaurant.user_id = current_user.id
+    @restaurant.address = @restaurant.address.downcase
+    @restaurant.city = @restaurant.city.downcase
+    @restaurant.state = @restaurant.state.downcase
+    @restaurant.zip = @restaurant.zip.downcase
+
+    if @restaurant.save
       redirect_to root_path
     else
       render :new
@@ -82,13 +85,13 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:username, :password, :first_name, :last_name, :email, :phone_number, :address, :city, :state, :zip )
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def restaurant_params
+    params.require(:restaurant).permit(:name, :phone_number, :address, :city, :state, :zip )
+  end
 end

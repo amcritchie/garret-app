@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users do
+    # resources :restaurants
+    # post 'restaurants/new' => 'restaurants#create'
+  end
+
+  resources :restaurants
+  post 'restaurants/new' => 'restaurants#create'
+
+  # post 'restaurants/new' => 'restaurants#create'
 
   root 'home#index'
 
