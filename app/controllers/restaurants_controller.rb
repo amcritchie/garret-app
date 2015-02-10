@@ -24,12 +24,8 @@ class RestaurantsController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    p '-=+=-'*50
-    p restaurant_params
-    p '-=+=-'*50
 
     @restaurant = Restaurant.new(restaurant_params)
-    p '-=+=-'*50
 
 
     @restaurant.name = @restaurant.name.downcase

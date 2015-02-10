@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :restaurants
   post 'restaurants/new' => 'restaurants#create'
 
+  post 'questions/new' => 'questions#create'
+
   # post 'restaurants/new' => 'restaurants#create'
 
   root 'home#index'

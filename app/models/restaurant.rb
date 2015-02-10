@@ -1,7 +1,6 @@
 class Restaurant < ActiveRecord::Base
   belongs_to :user
   # has_secure_password
-  p ' 00' * 60
   #
   # validates_presence_of :name
   # validates_uniqueness_of :email

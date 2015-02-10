@@ -26,13 +26,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    @user.account = params[:account]
+    # @user.account = params[:account]
     @user.email = @user.email.downcase
     @user.first_name = @user.first_name.downcase
     @user.last_name = @user.last_name.downcase
     @user.address = @user.address.downcase
     @user.city = @user.city.downcase
     @user.state = @user.state.downcase
+    @user['status'] = 'pending'
+    @user['account'] = 'evaluator'
     @user['admin'] = false
 
     if @user.save

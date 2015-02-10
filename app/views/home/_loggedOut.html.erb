@@ -15,7 +15,8 @@
   PageMaker including versions of Lorem Ipsum.
 </h4>
 <br><br>
-<h4>Sign In</h4>
-
-<a class="btn btn-info" type="button" href=<%= new_user_path %>>Reviewer</a>
-<a class="btn btn-info" type="button" href=<%= login_path %>>Restaurant</a>
+<h4>
+<%= link_to('Become an evaluator', "#signup", :class => 'btn-info btn',:data => {toggle: 'modal', target: ".bs-modal-sm"}) %>
+</h4>
+<!--<a class="btn btn-info" type="button" href=<%= new_user_path %>>Reviewer</a>-->
+<!--<a class="btn btn-info" type="button" href=<%= login_path %>>Restaurant</a>-->

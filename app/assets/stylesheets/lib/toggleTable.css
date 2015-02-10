@@ -12,6 +12,18 @@
     height: 100%;
 }
 
+.question-dropdown{
+    padding: 0;
+    margin: 0;
+}
+.question-table{
+    margin: 0;
+}
+
+.align-center{
+    text-align: center;
+}
+
 .dropdown-user:hover {
     cursor: pointer;
 }
