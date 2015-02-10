@@ -1,227 +1,79 @@
 <!-- Modal -->
 <div class="modal fade bs-modal-sm questions-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-md">
-<div class="modal-content">
-<br>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <br>
 
-<div class="bs-example bs-example-tabs">
-  <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a href="#signin" data-toggle="tab">All questions</a></li>
-    <li class=""><a href="#signup" data-toggle="tab">Bar</a></li>
-    <li class=""><a href="#why" data-toggle="tab">Service</a></li>
-  </ul>
-</div>
-<div class="modal-body">
-<div id="myTabContent" class="tab-content">
-
-
-<div class="tab-pane fade active in" id="signin">
-  <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class: 'newQuestionForm'} do |f| %>
-
-      <div class="col-xs-12 control-group">
-
-        <div class="controls col-xs-2">
-          <%= f.submit "Add +", :class => "btn btn-primary login" %>
-        </div>
-
-        <div class="col-xs-10 controls">
-          <%= f.text_field :body, :class => "form-control", :placeholder => "New question" %>
-        </div>
+      <div class="bs-example bs-example-tabs">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="active"><a href="#signin" data-toggle="tab">All questions</a></li>
+        </ul>
       </div>
-  <% end %>
-  <br>
-  <br>
-  <br>
-  <!--<br>-->
+      <div class="modal-body">
+        <div id="myTabContent" class="tab-content">
 
-  <% @all_questions.each do |user| %>
+          <div class="tab-pane fade active in" id="signin">
 
-      <div class="user-row col-xs-12">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 dropdown-user question-dropdown align-center" data-for=".<%= user.id %>">
-          <i class="glyphicon glyphicon-chevron-down text-muted"></i>
-        </div>
-        <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-          <strong><%= user.body %></strong>
-        </div>
+            <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class: 'newQuestionForm', data: {standard: 'fineDining'}} do |f| %>
 
-      </div>
+                <div class="col-xs-12 control-group">
 
-      <div class="row user-infos <%= user.id %>">
-        <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title">Question information</h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
+                  <div class="controls col-xs-2 hidden">
+                    <%= f.text_field :standards, :class => "form-control hidden", :placeholder => "fine", :value => 'fine_dining' %>
+                  </div>
 
-                <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
-                  <strong><%= user.body %></strong><br>
-                  <dl>
-                    <dt>Warnings</dt>
-                    <dd>0</dd>
-                  </dl>
+                  <div class="controls col-xs-2">
+                    <%= f.submit "Add +", :class => "btn btn-primary login addQuestion" %>
+                  </div>
+
+                  <div class="col-xs-7 controls">
+                    <%= f.text_field :body, :class => "form-control", :placeholder => "New question" %>
+                  </div>
+
+                  <div class="col-xs-3 controls">
+                    <%= f.select :sub_class, ["Low", "Medium", "High"] %>
+                  </div>
                 </div>
-                <div class=" col-md-11 col-lg-11 hidden-xs hidden-sm">
-                  <table class="table question-table table-user-information">
-                    <tbody>
 
-                    <tr>
-                      <td>Warnings</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <%= form_for :user, as: :post, url: login_path(:user), html: {class: 'loginForm'} do |f| %>
-                            <fieldset>
-                              <div class="control-group col-xs-10">
-                                <div class="controls">
-                                  <%= f.text_field :email, :class => "form-control", :placeholder => "Change Question" %>
-                                </div>
-                              </div>
+            <% end %>
+            <br><br><br>
 
-                              <div class="control-group col-xs-2">
-                                <div class="controls">
-                                  <%= f.submit "Update", :class => "btn btn-primary login" %>
-                                </div>
-                              </div>
-                            </fieldset>
-                        <% end %>
-                      </td>
-                    </tr>
+            <% @all_questions.each do |question| %>
 
-                    </tbody>
-                  </table>
+                <div class="user-row col-xs-12" data-question-id="<%= question.id %>">
+
+                  <div class="col-xs-2 question-dropdown align-center">
+                    <button class="btn btn-sm btn-danger"
+                            type="button" data-toggle="tooltip"
+                            data-original-title="Remove this question">
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                    <button class="btn btn-sm btn-warning"
+                            type="button" data-toggle="tooltip"
+                            data-original-title="Edit this question">
+                      <i class="glyphicon glyphicon-edit"></i>
+                    </button>
+                  </div>
+
+                  <div class="col-xs-7 col-sm-7 col-md-7 col-lg-8">
+                    <strong><%= question.body %></strong>
+                  </div>
+
+                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
+                    <strong><%= question.sub_class %></strong>
+                  </div>
+
                 </div>
-              </div>
-            </div>
-            <div class="panel-footer">
-              <button class="btn btn-sm btn-primary" type="button"
-                      data-toggle="tooltip"
-                      data-original-title="Send message to user"><i class="glyphicon glyphicon-envelope"></i></button>
-                                <span class="pull-right">
-                                    <button class="btn btn-sm btn-warning" type="button"
-                                            data-toggle="tooltip"
-                                            data-original-title="Edit this question">
-                                      <i class="glyphicon glyphicon-edit"></i>
-                                    </button>
-                                    <button class="btn btn-sm btn-danger" type="button"
-                                            data-toggle="tooltip"
-                                            data-original-title="Remove this question">
-                                      <i class="glyphicon glyphicon-remove"></i>
-                                    </button>
-                                </span>
-            </div>
+            <% end %>
           </div>
+
         </div>
       </div>
-
-  <% end %>
-
-
-</div>
-
-<div class="tab-pane fade" id="signup">
-  <%= form_for :user, as: :post, url: users_path(:user), html: {class: 'signUpForm'} do |f| %>
-      <!--<form class="form-horizontal">-->
-      <fieldset>
-        <!-- Sign Up Form -->
-        <!--<div class="control-group col-xs-12">-->
-        <!--<div class="controls">-->
-        <!--<label class="control-label" for="account">Applying to be:</label>-->
-        <!--</div>-->
-        <!--<div class="controls">-->
-        <!--<label class="radio inline col-xs-4" for="humancheck-0">-->
-        <!--<input type="radio" name="account" value="evaluator" checked="checked">I'm an-->
-        <!--Evaluator</label>-->
-
-        <!--<div class="col-xs-8 inline">-->
-        <!--<label class="radio inline" for="humancheck-1">-->
-        <!--<input type="radio" name="account" value="restaurant">I'm a Restaurant-->
-        <!--</label>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
-
-        <!-- Text input-->
-        <div class="control-group col-xs-12">
-          <label class="control-label" for="email">Email:</label>
-
-          <div class="controls">
-            <%= f.email_field :email, :class => "form-control", :placeholder => "email@gmail.com" %>
-          </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="control-group col-xs-12">
-          <label class="control-label" for="password">Password:</label>
-
-          <div class="controls">
-            <%= f.password_field :password, :class => "form-control", :placeholder => "**********" %>
-          </div>
-        </div>
-
-        <!-- Password input-->
-        <div class="control-group">
-          <div class="controls col-xs-12">
-            <label class="control-label" for="name">Name:</label>
-          </div>
-
-          <div class="controls col-xs-6">
-            <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
-          </div>
-          <div class="controls col-xs-6">
-            <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12">
-          <label class="control-label" for="phone">Phone:</label>
-
-          <div class="controls">
-            <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555)555-5555" %>
-          </div>
-        </div>
-
-        <!-- Password input-->
-        <div class="control-group">
-          <div class="controls col-xs-12">
-            <label class="control-label" for="address">Address:</label>
-          </div>
-          <div class="controls col-xs-5">
-            <%= f.text_field :address, :class => "form-control", :placeholder => "Address" %>
-          </div>
-          <div class="controls col-xs-3">
-            <%= f.text_field :city, :class => "form-control", :placeholder => "City" %>
-          </div>
-          <div class="controls col-xs-2">
-            <%= f.text_field :state, :class => "form-control", :placeholder => "State" %>
-          </div>
-          <div class="controls col-xs-2">
-            <%= f.text_field :zip, :class => "form-control", :placeholder => "Zip" %>
-          </div>
-        </div>
-
-        <!-- Button -->
-        <div class="control-group col-xs-12">
-          <label class="control-label" for="confirmsignup"></label>
-
-          <div class="controls">
-            <%= f.submit "Register", :class => "btn btn-primary signUp" %>
-            <!--<button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>-->
-          </div>
-        </div>
-      </fieldset>
-      <!--</form>-->
-  <% end %>
-</div>
-</div>
-</div>
-<div class="modal-footer" style="border: 0">
-  <center>
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  </center>
-</div>
-</div>
-</div>
+      <div class="modal-footer" style="border: 0">
+        <center>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </center>
+      </div>
+    </div>
+  </div>
 </div>

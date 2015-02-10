@@ -28,10 +28,33 @@ $(document).ready(function () {
 
     Register.login();
     Register.signUp();
-    Register.restaurant()
+    Register.restaurant();
+    Register.addQuestion();
 });
 
 var Register = {
+    addQuestion: function() {
+        $('.newQuestionForm').submit(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            var loginButton = $(this);
+            var fields = $(this).children().children().children();
+            var body = $(this).children().children().children('#question_body').val();
+            var standard = $(this).data('standard');
+            var sub_class = $(this).children().children().children('#question_sub_class').val();
+            var info = {
+                email: fields.children('#user_email').val(),
+                password: fields.children('#user_password').val()
+            };
+            $('.modalError').remove();
+                if (body.length == 0) {
+                    FlashMessage.formError($(this), 'Please add a fill in question body' );
+                } else {
+                    $('.newQuestionForm').unbind('submit').submit();
+                }
+        });
+    },
     restaurant: function() {
         $('.restaurantForm').submit(function (e) {
             e.preventDefault();

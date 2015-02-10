@@ -10,6 +10,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body, :class, :sub_class )
+    params.require(:question).permit(:body, :standards, :sub_class )
   end
 end

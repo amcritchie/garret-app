@@ -8,6 +8,14 @@ var FlashMessage = {
             $('.flashError').fadeOut();
         }, 2000);
     },
+    formError: function(place, error){
+        clearTimeout(FlashMessage.timer);
+        $('.flashError').remove();
+        var flash = place.prepend('<div class="flashError">'+error+'</div><br>');
+        FlashMessage.timer = setTimeout(function(){
+            $('.flashError').fadeOut();
+        }, 2000);
+    },
     signUpErrors: function (errors) {
         $('.modalError').remove();
         $.each(errors, function(key, value){
