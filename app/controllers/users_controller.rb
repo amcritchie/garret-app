@@ -60,9 +60,6 @@ class UsersController < ApplicationController
   end
 
   def unique_email
-    p '=_='*40
-    p params[:email]
-
     @user = User.find_by(email: params[:email].downcase)
     respond_to do |format|
       if @user

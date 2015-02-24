@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'restaurants/new' => 'restaurants#create'
 
   post 'questions/new' => 'questions#create'
+  post 'questions/destroy' => 'questions#destroy'
 
   # post 'restaurants/new' => 'restaurants#create'
 

@@ -5,7 +5,7 @@ class HomeController < ApplicationController
     @restaurant = Restaurant.new
     @all_restaurants = Restaurant.all
     @all_questions = Question.all
-    @all_questions = Question.where(standards: 'fast_casual')
+    @all_questions = Question.all
     @questions = {
         fine_dining: Question.where(standards: 'fine_dining'),
         fast_casual: Question.where(standards: 'fast_casual')

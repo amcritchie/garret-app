@@ -40,9 +40,11 @@ var Register = {
 
             var loginButton = $(this);
             var fields = $(this).children().children().children();
-            var body = $(this).children().children().children('#question_body').val();
+//            var body = $(this).children().children().children('#question_body').val();
+            var body = $(this).parent().children('th').children('#question_body').val();
+            var department = $(this).parent().children('th').children('#question_department').val();
+            var key = $(this).parent().children('th').children('#question_key').val();
             var standard = $(this).data('standard');
-            var sub_class = $(this).children().children().children('#question_sub_class').val();
             var info = {
                 email: fields.children('#user_email').val(),
                 password: fields.children('#user_password').val()
@@ -143,6 +145,16 @@ $(document).ready(function() {
     var panels = $('.user-infos');
     var panelsButton = $('.dropdown-user');
     panels.hide();
+
+
+    $('.deleteQuestion').on('click', function(){
+        $.ajax({
+            type: "POST",
+            url: "/questions/destroy",
+            data: {id: $(this).data('question-id')}
+        });
+        $(this).parent().parent().remove();
+    });
 
     //Click dropdown
     panelsButton.click(function() {

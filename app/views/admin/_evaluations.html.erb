@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade bs-modal-sm <%=locals[:standard]  %>-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-modal-sm <%= locals[:standard] %>-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <br>
@@ -11,60 +11,63 @@
       </div>
       <div class="modal-body">
         <div id="myTabContent" class="tab-content">
-
           <div class="tab-pane fade active in" id="signin">
 
-            <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class: 'newQuestionForm', data: {standard: 'fineDining'}} do |f| %>
+            <fieldset>
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th class="col-xs-2"></th>
+                  <th class="col-xs-7">Question</th>
+                  <th class="col-xs-2">Department</th>
+                  <th class="col-xs-1">Key</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class: 'newQuestionForm', data: {standard: 'fineDining'}} do |f| %>
+                      <div class="user-row">
 
-                <div class="col-xs-12 control-group">
+                      <th><%= f.submit "Add +", :class => "btn btn-primary login addQuestion" %></th>
+                        <th><%= f.text_field :body, :class => "form-control", :placeholder => "New question" %></th>
+                        <th><%= f.select :department, ["Telephone", "Reception", "Bar", "Table Service"] %></th>
+                        <th><%= f.select :key, ["Service", "Hospitality", "Atmosphere", "Food"] %></th>
+                      </div>
 
-                  <div class="controls col-xs-2 hidden">
-                    <%= f.text_field :standards, :class => "form-control hidden", :placeholder => "fine", :value => locals[:standard] %>
-                  </div>
-
-                  <div class="controls col-xs-2">
-                    <%= f.submit "Add +", :class => "btn btn-primary login addQuestion" %>
-                  </div>
-
-                  <div class="col-xs-7 controls">
-                    <%= f.text_field :body, :class => "form-control", :placeholder => "New question" %>
-                  </div>
-
-                  <div class="col-xs-3 controls">
-                    <%= f.select :sub_class, ["Low", "Medium", "High"] %>
-                  </div>
-                </div>
-
-            <% end %>
-            <br><br><br>
-
-            <% @questions[locals[:standard].to_sym].each do |question| %>
-
-                <div class="user-row col-xs-12" data-question-id="<%= question.id %>">
-
-                  <div class="col-xs-2 question-dropdown align-center">
-                    <button class="btn btn-sm btn-danger"
-                            type="button" data-toggle="tooltip"
-                            data-original-title="Remove this question">
-                      <i class="glyphicon glyphicon-remove"></i>
-                    </button>
-                    <button class="btn btn-sm btn-warning"
-                            type="button" data-toggle="tooltip"
-                            data-original-title="Edit this question">
-                      <i class="glyphicon glyphicon-edit"></i>
-                    </button>
-                  </div>
-
-                  <div class="col-xs-7 col-sm-7 col-md-7 col-lg-8">
-                    <strong><%= question.body %></strong>
-                  </div>
-
-                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-2">
-                    <strong><%= question.sub_class %></strong>
-                  </div>
-
-                </div>
-            <% end %>
+                <% end %>
+                </tr>
+                <% @all_questions.each do |question| %>
+                    <tr>
+                      <div class="user-row" data-question-id="<%= question.id %>">
+                        <th>
+                          <button class="btn btn-sm btn-danger deleteQuestion"
+                                  type="button" data-toggle="tooltip"
+                                  data-original-title="Remove this question"
+                                  data-question-id="<%= question.id %>">
+                            <i class="glyphicon glyphicon-remove"></i>
+                          </button>
+                          <button class="btn btn-sm btn-warning"
+                                  type="button" data-toggle="tooltip"
+                                  data-original-title="Edit this question"
+                                  data-question-id="<%= question.id %>">
+                            <i class="glyphicon glyphicon-edit"></i>
+                          </button>
+                        </th>
+                        <th>
+                          <strong><%= question.body %></strong>
+                        </th>
+                        <th>
+                          <strong><%= question.department %></strong>
+                        </th>
+                        <th>
+                          <strong><%= question.key %></strong>
+                        </th>
+                      </div>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </fieldset>
           </div>
 
         </div>

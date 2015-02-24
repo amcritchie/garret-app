@@ -9,7 +9,13 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    @question = Question.find(params[:id].to_i)
+    @question.destroy
+    render nothing: true
+  end
+
   def question_params
-    params.require(:question).permit(:body, :standards, :sub_class )
+    params.require(:question).permit(:body, :standards, :department, :key )
   end
 end
