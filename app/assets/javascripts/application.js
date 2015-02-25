@@ -156,6 +156,26 @@ $(document).ready(function() {
         $(this).parent().parent().remove();
     });
 
+    $('.addDepartments').on('click', function(){
+        $.ajax({
+            type: "POST",
+            url: "/departments",
+            data: {name: $('#Departments_body').val()}
+        });
+    });
+
+    $('.deleteDepartments').on('click', function(){
+        debugger;
+        $.ajax({
+            type: "DELETE",
+            url: "/departments/"+$(this).data('departments-id')
+//            data: {id: $(this).data('question-id')}
+        });
+        $(this).parent().parent().remove();
+    });
+
+
+
     //Click dropdown
     panelsButton.click(function() {
         //get data-for attribute

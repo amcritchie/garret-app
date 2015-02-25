@@ -6,6 +6,8 @@ class HomeController < ApplicationController
     @all_restaurants = Restaurant.all
     @all_questions = Question.all
     @all_questions = Question.all
+    @keys = Key.all
+    @departments = Department.all
     @questions = {
         fine_dining: Question.where(standards: 'fine_dining'),
         fast_casual: Question.where(standards: 'fast_casual')

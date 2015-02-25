@@ -1,0 +1,74 @@
+<!-- Modal -->
+<div class="modal fade bs-modal-sm <%= locals[:type] %>-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <br>
+
+      <div class="bs-example bs-example-tabs">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="active"><a href="#signin" data-toggle="tab">All questions</a></li>
+        </ul>
+      </div>
+      <div class="modal-body">
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane fade active in" id="signin">
+
+            <fieldset>
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th class="col-xs-2"></th>
+                  <th class="col-xs-10"><%= locals[:type].capitalize %></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                      <div class="user-row">
+
+                        <th>
+                          <input class="btn btn-primary login add<%= locals[:type].capitalize %>" name="commit" type="submit" value="Add +">
+                        </th>
+                        <th>
+                          <input class="form-control" id="<%= locals[:type].capitalize %>_body" name="<%= locals[:type] %>[body]" placeholder="New <%= locals[:type].capitalize %>" type="text">
+                        </th>
+                      </div>
+
+                </tr>
+                <% locals[:list].each do |question| %>
+                    <tr>
+                      <div class="user-row" data-<%= locals[:type] %>-id="<%= question.id %>">
+                        <th>
+                          <button class="btn btn-sm btn-danger delete<%= locals[:type].capitalize %>"
+                                  type="button" data-toggle="tooltip"
+                                  data-original-title="Remove this question"
+                                  data-<%= locals[:type] %>-id="<%= question.id %>">
+                            <i class="glyphicon glyphicon-remove"></i>
+                          </button>
+                          <button class="btn btn-sm btn-warning"
+                                  type="button" data-toggle="tooltip"
+                                  data-original-title="Edit this question"
+                                  data-<%= locals[:type] %>-id="<%= question.id %>">
+                            <i class="glyphicon glyphicon-edit"></i>
+                          </button>
+                        </th>
+                        <th>
+                          <strong><%= question.name %></strong>
+                        </th>
+                      </div>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </fieldset>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer" style="border: 0">
+        <center>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>

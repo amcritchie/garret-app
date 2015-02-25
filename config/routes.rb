@@ -10,6 +10,10 @@ Rails.application.routes.draw do
   post 'questions/new' => 'questions#create'
   post 'questions/destroy' => 'questions#destroy'
 
+  resources :departments, only: [:create, :destroy, :index]
+  resources :keys, only: [:create, :destroy, :index]
+
+
   # post 'restaurants/new' => 'restaurants#create'
 
   root 'home#index'
