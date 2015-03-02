@@ -28,6 +28,28 @@ class EvaluationApplicationsController < ApplicationController
     redirect_to root_path
   end
 
+  def get_score
+    @application = EvaluationApplication.find(params[:id])
+    respond_to do |format|
+      if @application
+        format.json { render json: {score: @application.score} }
+      else
+        format.json { render json: {error: "Application not found."} }
+      end
+    end
+  end
+
+  def update_score
+
+
+
+    @application = EvaluationApplication.find(params[:id])
+    @application.update(
+        score: params[:score]
+    )
+    render nothing: true
+  end
+
   def create
     @application = EvaluationApplication.new(
         name: params[:name]

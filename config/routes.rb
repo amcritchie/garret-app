@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   post 'application/approve' => 'evaluation_applications#approve'
   post 'application/deny' => 'evaluation_applications#deny'
 
+  post 'application/get_score' => 'evaluation_applications#get_score'
+  post 'application/update_score' => 'evaluation_applications#update_score'
+
   # post 'restaurants/new' => 'restaurants#create'
 
   root 'home#index'

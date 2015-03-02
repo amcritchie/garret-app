@@ -143,24 +143,24 @@ var Register = {
     }
 };
 var List = {
-    listeners: function(cap,reg){
-        $('.add'+cap).on('click', function () {
-            var bodyVal = $('#body'+cap).val();
+    listeners: function (cap, reg) {
+        $('.add' + cap).on('click', function () {
+            var bodyVal = $('#body' + cap).val();
             $.ajax({
                 type: "POST",
-                url: "/"+reg,
+                url: "/" + reg,
                 data: {name: bodyVal}
             });
-            $('#list'+cap).append(
+            $('#list' + cap).append(
                     '<tr> <div class="user-row" data-department-id="<%= question.id %>">' +
-                    '<th></th> <th><strong>'+bodyVal+'</strong> </th> </div> </tr>'
+                    '<th></th> <th><strong>' + bodyVal + '</strong> </th> </div> </tr>'
             );
         });
 
-        $('.delete'+cap).on('click', function () {
+        $('.delete' + cap).on('click', function () {
             $.ajax({
                 type: "DELETE",
-                url: "/"+reg+"/" + $(this).data(reg+'-id')
+                url: "/" + reg + "/" + $(this).data(reg + '-id')
             });
             $(this).parent().parent().remove();
         });
@@ -182,10 +182,10 @@ $(document).ready(function () {
         $(this).parent().parent().remove();
     });
 
-    List.listeners("Keys","keys");
-    List.listeners("Departments","departments");
+    List.listeners("Keys", "keys");
+    List.listeners("Departments", "departments");
 
-    $('.applyToEvaluation').on('click', function(){
+    $('.applyToEvaluation').on('click', function () {
         var evaluationID = $(this).data('evaluation-id');
 //       debugger;
         $.ajax({
@@ -196,7 +196,7 @@ $(document).ready(function () {
         $(this).addClass('btn-danger').html('Pending').off('click');
     });
 
-    $('.approveApplication').on('click', function(){
+    $('.approveApplication').on('click', function () {
         var id = $(this).data('application-id');
 //       debugger;
         $.ajax({
@@ -211,7 +211,7 @@ $(document).ready(function () {
         a.prepend('fdfdfd');
     });
 
-    $('.denyApplication').on('click', function(){
+    $('.denyApplication').on('click', function () {
         var id = $(this).data('application-id');
 //       debugger;
         $.ajax({
@@ -248,4 +248,18 @@ $(document).ready(function () {
         e.preventDefault();
 //        alert("This is a demo.\n :-)");
     });
+
+    $('.startEvaluation').on('click', function () {
+        Evaluation.applicationId = $(this).data('application-id');
+        Evaluation.open();
+    });
+
+    $('.questionCheckbox').on('click', function () {
+        var checked = $(this).prop('checked');
+        var id = $(this).data('question-id');
+        $('input[data-question-id=' + id + ']').prop('checked', checked);
+        Evaluation.save();
+    });
+
 });
+

@@ -7,23 +7,73 @@
 
       <div class="bs-example bs-example-tabs">
         <ul id="myTab" class="nav nav-tabs">
-          <li class="active"><a href="#standards" data-toggle="tab">Questions</a></li>
-          <li class=""><a href="#newEvaluation" data-toggle="tab">New Evaluation</a></li>
-
+          <li class="active"><a href="#standards" data-toggle="tab">All</a></li>
+          <% @departments.each do |department| %>
+              <% if Question.where(department: department.name).count > 0 %>
+                  <li class=""><a href="#<%= department.name %>" data-toggle="tab"><%= department.name.capitalize %></a>
+                  </li>
+              <% end %>
+          <% end %>
         </ul>
       </div>
+
+
       <div class="modal-body">
         <div id="myTabContent" class="tab-content">
+
+          <% @departments.each do |department| %>
+              <% if Question.where(department: department.name).count > 0 %>
+                  <% department_questions = [] %>
+                  <% @all_questions.each do |question| %>
+                      <% if question.department == department.name %>
+                        <% department_questions.push(question) %>
+                      <% end %>
+                  <% end %>
+
+
+                  <div class="tab-pane fade" id=<%= department.name %>>
+                    <fieldset>
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th class="col-xs-8">Question</th>
+                          <th class="col-xs-4">Pass</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% department_questions.each do |question| %>
+                            <tr>
+                              <div class="user-row" data-question-id="<%= question.id %>">
+                                <th>
+                                  <strong><%= question.body %></strong>
+                                </th>
+                                <th>
+                                  <strong><input class="questionCheckbox" type="checkbox" data-question-id=<%= question.id %>></strong>
+                                </th>
+                              </div>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </fieldset>
+                  </div>
+
+
+              <% end %>
+          <% end %>
+
+
+
 
           <div class="tab-pane fade active in" id="standards">
             <fieldset>
               <table class="table table-striped">
                 <thead>
                 <tr>
-                  <th class="col-xs-7">Question</th>
-                  <th class="col-xs-2">class</th>
-                  <th class="col-xs-2">sub class</th>
-                  <th class="col-xs-1">points</th>
+                  <th class="col-xs-8">Question</th>
+                  <!--<th class="col-xs-2">class</th>-->
+                  <!--<th class="col-xs-2">sub class</th>-->
+                  <th class="col-xs-4">Pass</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -34,13 +84,20 @@
                           <strong><%= question.body %></strong>
                         </th>
                         <th>
-                          <strong><%= question.department %></strong>
-                        </th>
-                        <th>
-                          <strong><%= question.key %></strong>
-                        </th>
-                        <th>
-                          <strong>12</strong>
+                          <strong>
+                            <div class="switch">
+                              <!--<input type="radio" class="switch-input" name="view" value="week" id="week" checked>-->
+                              <!--<label for="week" class="switch-label switch-label-off">Week</label>-->
+                              <input type="radio" class="switch-input questionCheckbox" name="view" value="2" id="month" data-question-id=<%= question.id %>>
+                              <label for="month" class="switch-label switch-label-month">Pass</label>
+                              <input type="radio" class="switch-input questionCheckbox" name="view" value="1" id="year" data-question-id=<%= question.id %>>
+                              <label for="year" class="switch-label switch-label-year">na</label>
+                              <input type="radio" class="switch-input questionCheckbox" name="view" value="0" id="decade" data-question-id=<%= question.id %>>
+                              <label for="decade" class="switch-label switch-label-decade">Fail</label>
+                              <span class="switch-selection"></span>
+                            </div>
+                            <!--<input class="questionCheckbox questionCheckboxAll" type="checkbox" data-question-id=<%= question.id %>>-->
+                          </strong>
                         </th>
                       </div>
                     </tr>
@@ -49,49 +106,6 @@
               </table>
             </fieldset>
           </div>
-          <div class="tab-pane fade" id="newEvaluation">
-
-            <fieldset>
-              <!-- Sign In Form -->
-              <!-- Text input-->
-              <%= form_for @evaluation, html: {class:
-                                                       'newEvaluationForm'} do |f| %>
-
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="restaurant-name">Restaurant:</label>
-
-                    <div class="controls">
-                      <%= f.select :restaurant_id, @all_restaurants.map(&:name) %>
-
-
-                    </div>
-                  </div>
-
-                  <!-- Text input-->
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="passwordinput">Standards:</label>
-
-                    <div class="controls">
-                      <%= f.text_field :standards, :class => "form-control", :placeholder => "Standards" %>
-                    </div>
-                  </div>
-
-                  <!-- Button -->
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="signin"></label>
-
-                    <div class="controls">
-                      <%= f.submit "Submit", :class => "btn btn-primary login" %>
-                    </div>
-                  </div>
-                  </fieldset>
-              <% end %>
-              <br>
-              <br>
-              <br>
-              <!--<br>-->
-
-              </div>
         </div>
       </div>
       <div class="modal-footer" style="border: 0">
