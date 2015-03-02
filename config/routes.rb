@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   resources :departments, only: [:create, :destroy, :index]
   resources :keys, only: [:create, :destroy, :index]
 
+  resources :evaluations
+
+  post 'evaluations/apply' => 'evaluation_applications#apply'
+  post 'application/approve' => 'evaluation_applications#approve'
+  post 'application/deny' => 'evaluation_applications#deny'
 
   # post 'restaurants/new' => 'restaurants#create'
 

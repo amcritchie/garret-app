@@ -33,7 +33,7 @@ $(document).ready(function () {
 });
 
 var Register = {
-    addQuestion: function() {
+    addQuestion: function () {
         $('.newQuestionForm').submit(function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -50,14 +50,14 @@ var Register = {
                 password: fields.children('#user_password').val()
             };
             $('.modalError').remove();
-                if (body.length == 0) {
-                    FlashMessage.formError($(this), 'Please add a fill in question body' );
-                } else {
-                    $('.newQuestionForm').unbind('submit').submit();
-                }
+            if (body.length == 0) {
+                FlashMessage.formError($(this), 'Please add a fill in question body');
+            } else {
+                $('.newQuestionForm').unbind('submit').submit();
+            }
         });
     },
-    restaurant: function() {
+    restaurant: function () {
         $('.restaurantForm').submit(function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -86,7 +86,7 @@ var Register = {
 //            debugger;
         });
     },
-    login: function(){
+    login: function () {
         $('.loginForm').submit(function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -106,7 +106,7 @@ var Register = {
             });
         });
     },
-    signUp: function() {
+    signUp: function () {
         $('.signUpForm').submit(function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -130,7 +130,9 @@ var Register = {
             $('.modalError').remove();
             var errors = Validate.signUp(info);
             $.when(Validate.uniqueEmail(info['email'])).done(function (response) {
-                if (response.error){ errors.email = response.error }
+                if (response.error) {
+                    errors.email = response.error
+                }
                 if ($.isEmptyObject(errors)) {
                     $('.signUpForm').unbind('submit').submit();
                 } else {
@@ -140,14 +142,38 @@ var Register = {
         });
     }
 };
+var List = {
+    listeners: function(cap,reg){
+        $('.add'+cap).on('click', function () {
+            var bodyVal = $('#body'+cap).val();
+            $.ajax({
+                type: "POST",
+                url: "/"+reg,
+                data: {name: bodyVal}
+            });
+            $('#list'+cap).append(
+                    '<tr> <div class="user-row" data-department-id="<%= question.id %>">' +
+                    '<th></th> <th><strong>'+bodyVal+'</strong> </th> </div> </tr>'
+            );
+        });
 
-$(document).ready(function() {
+        $('.delete'+cap).on('click', function () {
+            $.ajax({
+                type: "DELETE",
+                url: "/"+reg+"/" + $(this).data(reg+'-id')
+            });
+            $(this).parent().parent().remove();
+        });
+    }
+};
+
+$(document).ready(function () {
     var panels = $('.user-infos');
     var panelsButton = $('.dropdown-user');
     panels.hide();
 
 
-    $('.deleteQuestion').on('click', function(){
+    $('.deleteQuestion').on('click', function () {
         $.ajax({
             type: "POST",
             url: "/questions/destroy",
@@ -156,42 +182,60 @@ $(document).ready(function() {
         $(this).parent().parent().remove();
     });
 
-    $('.addDepartments').on('click', function(){
+    List.listeners("Keys","keys");
+    List.listeners("Departments","departments");
+
+    $('.applyToEvaluation').on('click', function(){
+        var evaluationID = $(this).data('evaluation-id');
+//       debugger;
         $.ajax({
             type: "POST",
-            url: "/departments",
-            data: {name: $('#Departments_body').val()}
+            url: "evaluations/apply",
+            data: {evaluation_id: evaluationID}
         });
+        $(this).addClass('btn-danger').html('Pending').off('click');
     });
 
-    $('.deleteDepartments').on('click', function(){
-        debugger;
+    $('.approveApplication').on('click', function(){
+        var id = $(this).data('application-id');
+//       debugger;
         $.ajax({
-            type: "DELETE",
-            url: "/departments/"+$(this).data('departments-id')
-//            data: {id: $(this).data('question-id')}
+            type: "POST",
+            url: "application/approve",
+            data: {id: id}
         });
-        $(this).parent().parent().remove();
+//        $(this).addClass('btn-danger').html('Pending').off('click');
+//        $(this).addClass('btn-danger').html('Pending').off('click');
+        var a = $(this).parent();
+        $(this).parent().children('button').remove();
+        a.prepend('fdfdfd');
     });
 
-
+    $('.denyApplication').on('click', function(){
+        var id = $(this).data('application-id');
+//       debugger;
+        $.ajax({
+            type: "POST",
+            url: "application/deny",
+            data: {id: id}
+        });
+        $(this).addClass('btn-danger').html('Pending').off('click');
+    });
 
     //Click dropdown
-    panelsButton.click(function() {
+    panelsButton.click(function () {
         //get data-for attribute
         var dataFor = $(this).attr('data-for');
         var idFor = $(dataFor);
 
         //current button
         var currentButton = $(this);
-        idFor.slideToggle(400, function() {
+        idFor.slideToggle(400, function () {
             //Completed slidetoggle
-            if(idFor.is(':visible'))
-            {
+            if (idFor.is(':visible')) {
                 currentButton.html('<i class="glyphicon glyphicon-chevron-up text-muted"></i>');
             }
-            else
-            {
+            else {
                 currentButton.html('<i class="glyphicon glyphicon-chevron-down text-muted"></i>');
             }
         })
@@ -200,7 +244,7 @@ $(document).ready(function() {
 
     $('[data-toggle="tooltip"]').tooltip();
 
-    $('button').click(function(e) {
+    $('button').click(function (e) {
         e.preventDefault();
 //        alert("This is a demo.\n :-)");
     });

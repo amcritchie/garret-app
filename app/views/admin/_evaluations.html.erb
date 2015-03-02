@@ -30,8 +30,8 @@
 
                       <th><%= f.submit "Add +", :class => "btn btn-primary login addQuestion" %></th>
                         <th><%= f.text_field :body, :class => "form-control", :placeholder => "New question" %></th>
-                        <th><%= f.select :department, ["Telephone", "Reception", "Bar", "Table Service"] %></th>
-                        <th><%= f.select :key, ["Service", "Hospitality", "Atmosphere", "Food"] %></th>
+                        <th><%= f.select :department, @departments.map(&:name) %></th>
+                        <th><%= f.select :key, @keys.map(&:name) %></th>
                       </div>
 
                 <% end %>
@@ -45,12 +45,6 @@
                                   data-original-title="Remove this question"
                                   data-question-id="<%= question.id %>">
                             <i class="glyphicon glyphicon-remove"></i>
-                          </button>
-                          <button class="btn btn-sm btn-warning"
-                                  type="button" data-toggle="tooltip"
-                                  data-original-title="Edit this question"
-                                  data-question-id="<%= question.id %>">
-                            <i class="glyphicon glyphicon-edit"></i>
                           </button>
                         </th>
                         <th>

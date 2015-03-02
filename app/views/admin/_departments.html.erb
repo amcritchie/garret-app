@@ -21,17 +21,17 @@
                   <th class="col-xs-10"><%= locals[:type].capitalize %></th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="departmentsList">
                 <tr>
-                      <div class="user-row">
+                  <div class="user-row">
 
-                        <th>
-                          <input class="btn btn-primary login add<%= locals[:type].capitalize %>" name="commit" type="submit" value="Add +">
-                        </th>
-                        <th>
-                          <input class="form-control" id="<%= locals[:type].capitalize %>_body" name="<%= locals[:type] %>[body]" placeholder="New <%= locals[:type].capitalize %>" type="text">
-                        </th>
-                      </div>
+                    <th>
+                      <input class="btn btn-primary login add<%= locals[:type].capitalize %>" name="commit" type="submit" value="Add +">
+                    </th>
+                    <th>
+                      <input class="form-control" id="<%= locals[:type].capitalize %>_body" name="<%= locals[:type] %>[body]" placeholder="New <%= locals[:type].capitalize %>" type="text">
+                    </th>
+                  </div>
 
                 </tr>
                 <% locals[:list].each do |question| %>
@@ -43,12 +43,6 @@
                                   data-original-title="Remove this question"
                                   data-<%= locals[:type] %>-id="<%= question.id %>">
                             <i class="glyphicon glyphicon-remove"></i>
-                          </button>
-                          <button class="btn btn-sm btn-warning"
-                                  type="button" data-toggle="tooltip"
-                                  data-original-title="Edit this question"
-                                  data-<%= locals[:type] %>-id="<%= question.id %>">
-                            <i class="glyphicon glyphicon-edit"></i>
                           </button>
                         </th>
                         <th>

@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade bs-modal-sm <%= locals[:type] %>-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <br>
+      <fieldset>
+        <table class="table table-striped">
+          <thead>
+          <h3 class="col-xs-12"><%= locals[:type].capitalize %></h3>
+
+          <tr>
+            <th class="col-xs-2"></th>
+            <th class="col-xs-10"></th>
+          </tr>
+          </thead>
+          <tbody id="list<%= locals[:type].capitalize %>">
+          <tr>
+            <div class="user-row">
+              <th><input class="btn btn-primary login add<%=locals[:type].capitalize%>" name="commit" type="submit" value="Add +"></th>
+              <th><input class="form-control" id="body<%= locals[:type].capitalize %>" name="<%= locals[:type] %>[body]" placeholder="New <%= locals[:type].capitalize %>" type="text"></th>
+            </div>
+          </tr>
+          <% locals[:list].each do |question| %>
+              <tr>
+                <div class="user-row" data-<%= locals[:type] %>-id="<%= question.id %>">
+                  <th>
+                    <button class="btn btn-md btn-danger delete<%= locals[:type].capitalize %>"
+                            type="button" data-toggle="tooltip"
+                            data-original-title="Remove this question"
+                            data-<%= locals[:type] %>-id="<%= question.id %>">
+                      <i class="glyphicon glyphicon-remove"></i>
+                    </button>
+                  </th>
+                  <th>
+                    <strong><%= question.name %></strong>
+                  </th>
+                </div>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </fieldset>
+
+      <div class="modal-footer" style="border: 0">
+        <center>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>

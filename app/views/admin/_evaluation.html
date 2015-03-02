@@ -21,15 +21,16 @@
                         <fieldset>
                             <!-- Sign In Form -->
                             <!-- Text input-->
-                            <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class:
-                            'newQuestionForm'} do |f| %>
+                            <%= form_for @evaluation, html: {class:
+                            'newEvaluationForm'} do |f| %>
 
                             <div class="control-group col-xs-12">
                                 <label class="control-label" for="restaurant-name">Restaurant:</label>
 
                                 <div class="controls">
-                                    <%= f.text_field :restaurant_name, :class => "form-control", :placeholder =>
-                                    "Restaurant Name" %>
+                                    <%= f.select :restaurant_id, @all_restaurants.map(&:name) %>
+
+
                                 </div>
                             </div>
 
@@ -38,7 +39,7 @@
                                 <label class="control-label" for="passwordinput">Standards:</label>
 
                                 <div class="controls">
-                                    <%= f.text_field :password, :class => "form-control", :placeholder => "Standards" %>
+                                    <%= f.text_field :standards, :class => "form-control", :placeholder => "Standards" %>
                                 </div>
                             </div>
 

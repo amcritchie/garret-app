@@ -1,7 +1,6 @@
-class Restaurant < ActiveRecord::Base
+class EvaluationApplication < ActiveRecord::Base
+  belongs_to :evaluation
   belongs_to :user
-  has_many :evaluations
-
   # has_secure_password
   #
   # validates_presence_of :name

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :restaurants
+  has_many :evaluation_applications
 
   validates_presence_of :email, :password_digest
   validates_uniqueness_of :email
