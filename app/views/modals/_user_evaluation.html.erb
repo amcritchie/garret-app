@@ -4,7 +4,6 @@
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <br>
-
       <div class="bs-example bs-example-tabs">
         <ul id="myTab" class="nav nav-tabs">
           <li class="active"><a href="#standards" data-toggle="tab">All</a></li>
@@ -16,11 +15,8 @@
           <% end %>
         </ul>
       </div>
-
-
       <div class="modal-body">
         <div id="myTabContent" class="tab-content">
-
           <% @departments.each do |department| %>
               <% if Question.where(department: department.name).count > 0 %>
                   <% department_questions = [] %>
@@ -29,8 +25,6 @@
                         <% department_questions.push(question) %>
                       <% end %>
                   <% end %>
-
-
                   <div class="tab-pane fade" id=<%= department.name %>>
                     <fieldset>
                       <table class="table table-striped">
@@ -48,7 +42,34 @@
                                   <strong><%= question.body %></strong>
                                 </th>
                                 <th>
-                                  <strong><input class="questionCheckbox" type="checkbox" data-question-id=<%= question.id %>></strong>
+                                  <strong>
+
+                                    <div class="btn-group questionCheckbox" data-toggle="buttons" data-question-id=<%= question.id %>>>
+                                      <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
+                                        <input class="questionFail questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
+                                        Fail </label>
+                                      <label class="btn btn-default questionLabel questionNil active" data-question-id=<%= question.id %>>
+                                        <input type="radio" name="inputWalls" id="inputWalls" value="nil">
+                                        <span class="glyphicon glyphicon-print"></span>
+                                      </label>
+                                      <label class="btn btn-default questionLabel questionCheckbox questionPassed" data-question-id=<%= question.id %>>
+                                        <input class="questionPass questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
+                                        Pass </label>
+                                    </div>
+
+
+                                    <!--<div class="btn-group questionCheckboxAll" data-toggle="buttons" data-question-id=<%= question.id %>>>-->
+                                      <!--<label class="btn btn-default questionCheckbox" data-question-id=<%= question.id %>>-->
+                                        <!--<input class="questionFail questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>-->
+                                        <!--Fail </label>-->
+                                      <!--<label class="btn btn-default active">-->
+                                        <!--<input type="radio" name="inputWalls" id="inputWalls" value="nil">-->
+                                        <!--_ </label>-->
+                                      <!--<label class="btn btn-default questionCheckbox" data-question-id=<%= question.id %>>-->
+                                        <!--<input class="questionPass questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">-->
+                                        <!--Pass </label>-->
+                                    <!--</div>-->
+                                  </strong>
                                 </th>
                               </div>
                             </tr>
@@ -57,22 +78,14 @@
                       </table>
                     </fieldset>
                   </div>
-
-
               <% end %>
           <% end %>
-
-
-
-
           <div class="tab-pane fade active in" id="standards">
             <fieldset>
               <table class="table table-striped">
                 <thead>
                 <tr>
                   <th class="col-xs-8">Question</th>
-                  <!--<th class="col-xs-2">class</th>-->
-                  <!--<th class="col-xs-2">sub class</th>-->
                   <th class="col-xs-4">Pass</th>
                 </tr>
                 </thead>
@@ -85,18 +98,19 @@
                         </th>
                         <th>
                           <strong>
-                            <div class="switch">
-                              <!--<input type="radio" class="switch-input" name="view" value="week" id="week" checked>-->
-                              <!--<label for="week" class="switch-label switch-label-off">Week</label>-->
-                              <input type="radio" class="switch-input questionCheckbox" name="view" value="2" id="month" data-question-id=<%= question.id %>>
-                              <label for="month" class="switch-label switch-label-month">Pass</label>
-                              <input type="radio" class="switch-input questionCheckbox" name="view" value="1" id="year" data-question-id=<%= question.id %>>
-                              <label for="year" class="switch-label switch-label-year">na</label>
-                              <input type="radio" class="switch-input questionCheckbox" name="view" value="0" id="decade" data-question-id=<%= question.id %>>
-                              <label for="decade" class="switch-label switch-label-decade">Fail</label>
-                              <span class="switch-selection"></span>
+
+                            <div class="btn-group questionCheckboxAll" data-toggle="buttons" data-question-id=<%= question.id %>>>
+                              <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
+                                <input class="questionFail questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
+                                Fail </label>
+                              <label class="btn btn-default questionLabel questionNil active" data-question-id=<%= question.id %>>
+                                <input type="radio" name="inputWalls" id="inputWalls" value="nil">
+                                <span class="glyphicon glyphicon-option-horizontal"></span>
+                              </label>
+                              <label class="btn btn-default questionLabel questionCheckbox questionPassed" data-question-id=<%= question.id %>>
+                                <input class="questionPass questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
+                                Pass </label>
                             </div>
-                            <!--<input class="questionCheckbox questionCheckboxAll" type="checkbox" data-question-id=<%= question.id %>>-->
                           </strong>
                         </th>
                       </div>
@@ -109,7 +123,7 @@
         </div>
       </div>
       <div class="modal-footer" style="border: 0">
-        <center>
+        <center class="user-evaluation-center">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </center>
       </div>

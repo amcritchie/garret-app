@@ -254,12 +254,7 @@ $(document).ready(function () {
         Evaluation.open();
     });
 
-    $('.questionCheckbox').on('click', function () {
-        var checked = $(this).prop('checked');
-        var id = $(this).data('question-id');
-        $('input[data-question-id=' + id + ']').prop('checked', checked);
-        Evaluation.save();
-    });
+
 
 });
 

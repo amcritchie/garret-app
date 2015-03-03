@@ -30,6 +30,9 @@ class EvaluationApplicationsController < ApplicationController
 
   def get_score
     @application = EvaluationApplication.find(params[:id])
+    p '--1' * 100
+    p @application
+    p '--1' * 100
     respond_to do |format|
       if @application
         format.json { render json: {score: @application.score} }
