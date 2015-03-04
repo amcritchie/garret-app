@@ -24,13 +24,21 @@
                             <%= form_for @evaluation, html: {class:
                             'newEvaluationForm'} do |f| %>
 
+
+                            <div class="control-group col-xs-12">
+                                <label class="control-label" for="restaurant-name">Name:</label>
+
+                                <div class="controls">
+                                    <%= f.text_field :name, :class => "form-control", :placeholder => "Standards" %>
+                                </div>
+                            </div>
+
+
                             <div class="control-group col-xs-12">
                                 <label class="control-label" for="restaurant-name">Restaurant:</label>
 
                                 <div class="controls">
                                     <%= f.select :restaurant_id, @all_restaurants.map(&:name) %>
-
-
                                 </div>
                             </div>
 
@@ -39,7 +47,7 @@
                                 <label class="control-label" for="passwordinput">Standards:</label>
 
                                 <div class="controls">
-                                    <%= f.text_field :standards, :class => "form-control", :placeholder => "Standards" %>
+                                    <%= f.select :standard_id, @standards.map(&:name) %>
                                 </div>
                             </div>
 

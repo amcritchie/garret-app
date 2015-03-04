@@ -28,6 +28,12 @@ class EvaluationApplicationsController < ApplicationController
     redirect_to root_path
   end
 
+  def submit
+    @application = EvaluationApplication.find(params[:id])
+    @application.update(status: 'submitted')
+    redirect_to root_path
+  end
+
   def get_score
     @application = EvaluationApplication.find(params[:id])
     p '--1' * 100

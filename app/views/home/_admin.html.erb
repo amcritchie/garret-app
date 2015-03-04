@@ -3,13 +3,13 @@
   <%= current_user.first_name.capitalize %>
 </h1>
 <br>
-<br>
 
-<br>
 <br>
 <%= render 'admin/evaluations', locals: {standard: 'fine_dining'}%>
 <%= render 'admin/evaluations', locals: {standard: 'fast_casual'}%>
 <%= render 'admin/evaluation', locals: {standard: 'fast_casual'} %>
+
+<%= render 'admin/standards' %>
 
 
 <%= render 'modals/list', locals: {type: 'departments', list: @departments} %>
@@ -17,66 +17,26 @@
 <%= render 'modals/restaurant' %>
 
 
-<%= link_to('Departments', "#login", :data => {toggle: 'modal', target: ".departments-modal"}) %><br>
-<%= link_to('Keys', "#login", :data => {toggle: 'modal', target: ".keys-modal"}) %><br>
-<%= link_to('New Restaurant', "#login", :data => {toggle: 'modal', target: "#new-restaurant-modal"}) %><br><br>
+<%= link_to('Departments', "#login", :data => {toggle: 'modal', target: ".departments-modal"}) %> -
+<%= link_to('Keys', "#login", :data => {toggle: 'modal', target: ".keys-modal"}) %><br><br>
 
-<%= link_to('Fine Dining', "#login", :data => {toggle: 'modal', target: ".fine_dining-modal"}) %><br>
-<%= link_to('Fast Casual', "#login", :data => {toggle: 'modal', target: ".fast_casual-modal"}) %><br>
+<%= link_to('New Standards', "#login", :data => {toggle: 'modal', target: ".standards-modal"}) %> -
+
+<%= link_to('New Restaurant', "#login", :data => {toggle: 'modal', target: "#new-restaurant-modal"}) %> -
+<%= link_to('New Evaluation', "#login", :data => {toggle: 'modal', target: ".eval-modal"}) %><br><br>
+<%= link_to('Questions', "#login", :data => {toggle: 'modal', target: ".fine_dining-modal"}) %><br><br>
 
 
-<%= link_to('New Evaluation', "#login", :data => {toggle: 'modal', target: ".eval-modal"}) %>
 
-<br><br>
-<h4>Pending applications</h4>
+<h4>Pending Applications</h4>
+<%= render 'admin/application_table', locals: {evaluations: @all_pending_evaluations}%>
 
-<ul class="list-group">
-  <% @all_pending_evaluations.each do |application| %>
-      <li class="list-group-item">
-        <%= application.evaluation.restaurant.name %> - <%= application.user.email %> -
-        <button class="btn btn-success approveApplication" data-application-id="<%= application.id %>">Approve</button>
-        <button class="btn btn-danger denyApplication" data-application-id="<%= application.id %>">Deny</button>
-      </li>
-  <% end %>
-</ul>
-<br>
-<br>
+<h4>Completed Evaluations</h4>
+<%= render 'admin/application_table', locals: {evaluations: @completed_evaluations}%>
+
 <h4>Open Evaluations</h4>
+<%= render 'admin/tables/evaluations', locals: {evaluations: @open_evaluationss}%>
 
-<ul class="list-group">
-  <% @open_evaluations.each do |application| %>
-      <li class="list-group-item">
-        <%= application.evaluation.restaurant.name %> - <%= application.user.email %> -
-        <button class="btn btn-success approveApplication" data-application-id="<%= application.id %>">Approve</button>
-        <button class="btn btn-danger denyApplication" data-application-id="<%= application.id %>">Deny</button>
-      </li>
-  <% end %>
-</ul><br>
-<br>
-<h4>Denied Evaluations</h4>
-
-<ul class="list-group">
-  <% @denied_evaluations.each do |application| %>
-      <li class="list-group-item">
-        <%= application.evaluation.restaurant.name %> - <%= application.user.email %> -
-        <button class="btn btn-success approveApplication" data-application-id="<%= application.id %>">Approve</button>
-        <button class="btn btn-danger denyApplication" data-application-id="<%= application.id %>">Deny</button>
-      </li>
-  <% end %>
-</ul>
-<br><br>
-
-<h4>Open evaluations</h4>
-
-<ul class="list-group">
-  <% @evaluations.each do |evaluation| %>
-      <li class="list-group-item">
-        <%= evaluation.restaurant.name%> | <%= evaluation.standards %> | <%= evaluation.status %>
-      </li>
-<% end %>
-</ul>
-<br>
-<br>
 
 
 
@@ -85,3 +45,8 @@
       <%= render 'admin/users' %>
     </div>
 </div>
+
+
+
+<%= link_to('Fine Dining', "#login", :data => {toggle: 'modal', target: ".fine_dining-modal"}) %><br>
+<%= link_to('Fast Casual', "#login", :data => {toggle: 'modal', target: ".fast_casual-modal"}) %><br>

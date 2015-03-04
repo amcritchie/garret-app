@@ -8,6 +8,8 @@ class CreateRestaurantsTable < ActiveRecord::Migration
       t.string :city
       t.string :state
       t.string :zip
+
+      t.timestamps
     end
   end
 end

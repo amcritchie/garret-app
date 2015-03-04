@@ -1,0 +1,39 @@
+<table class="table table-bordered align-center">
+  <thead>
+  <tr>
+    <th class="col-xs-1" data-field="id">Name</th>
+    <th class="col-xs-1" data-field="id">Restaurant</th>
+    <th class="col-xs-1" data-field="id">Standards</th>
+    <th class="col-xs-1" data-field="name">Close</th>
+    <th class="col-xs-2" data-field="price">Created At</th>
+    <th class="col-xs-3" data-field="price">Address</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% locals[:evaluations].each do |evaluation| %>
+      <tr>
+        <th>
+          <%= evaluation.name %>
+        </th>
+        <th>
+          <%= evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
+        </th>
+        <th>
+          <%= evaluation.standard.name %>
+        </th>
+        <th>
+          <!--<button class="btn btn-success approveApplication" data-application-id="<%= evaluation.id %>">Close</button>-->
+          <button class="btn btn-danger denyApplication" data-application-id="<%= evaluation.id %>">Close</button>
+          <!--<button href="#login" class="btn btn-success startEvaluation" data-application-id="<%= evaluation.id %>" data-toggle="modal" data-target=".evaluation-modal">Evaluation</button>-->
+        </th>
+
+        <th>
+          <%= evaluation.created_at.to_s(:long) %>
+        </th>
+        <th>
+          <%= render 'helper/address_format', locals: {entity: evaluation.restaurant} %>
+        </th>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

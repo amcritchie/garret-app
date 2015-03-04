@@ -4,6 +4,8 @@ class AddQuestions < ActiveRecord::Migration
       t.string :body
       t.string :standards
       t.string :sub_class
+
+      t.timestamps
     end
   end
 end

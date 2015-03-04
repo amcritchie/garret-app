@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :departments, only: [:create, :destroy, :index]
   resources :keys, only: [:create, :destroy, :index]
 
+  resources :standards, only: [:create, :destroy, :index]
+
   resources :evaluations
 
   post 'evaluations/apply' => 'evaluation_applications#apply'
@@ -21,6 +23,7 @@ Rails.application.routes.draw do
 
   post 'application/get_score' => 'evaluation_applications#get_score'
   post 'application/update_score' => 'evaluation_applications#update_score'
+  post 'application/submit' => 'evaluation_applications#submit'
 
   # post 'restaurants/new' => 'restaurants#create'
 

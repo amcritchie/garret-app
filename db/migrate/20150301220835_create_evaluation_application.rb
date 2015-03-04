@@ -4,7 +4,11 @@ class CreateEvaluationApplication < ActiveRecord::Migration
       t.integer :evaluation_id
       t.integer :user_id
       t.string :status
-      t.string :score
+      t.text :score
+      t.timestamp :accepted_at
+      t.timestamp :started_at
+
+      t.timestamps
     end
   end
 end

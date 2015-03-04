@@ -117,7 +117,15 @@ var Evaluation = {
             if (answeredQuestion === allQuestions.length ){
                 $('.user-evaluation-center').append('<button class="btn btn-success submitEvaluation">Submit</button>');
                 $('.submitEvaluation').on('click',function(){
-
+                    var info = {
+                        id: Evaluation.applicationId
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "application/submit",
+                        data: info
+                    });
+                    location.reload();
                 });
             }
         }
