@@ -24,21 +24,13 @@ class EvaluationsController < ApplicationController
   def create
     restaurant = Restaurant.find_by(name: params['evaluation']['restaurant_id'])
     standards = Standard.find_by(name: params['evaluation']['standard_id'])
-    p '=+1'*80
-    p restaurant
-    p '[][['
-    p params
-    params['evaluation']['standards_id']
-    params['evaluation']
-    p standards
-    p '=+1'*80
     @evaluation = Evaluation.new(evaluation_params)
     @evaluation.restaurant_id = restaurant.id
     @evaluation.standard_id = standards.id
     @evaluation.status = 'open'
 
     if @evaluation.save
-      redirect_to root_path
+      redirect_to admin_path
     else
       render :new
     end

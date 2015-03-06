@@ -1,0 +1,55 @@
+We all can see this!
+<% if current_user.admin %>
+    <h1>
+      Welcome back
+      <%= current_user.first_name.capitalize %>
+    </h1>
+    <br>
+
+    <%= render 'modals/list', locals: {type: 'departments', list: @departments} %>
+    <%= render 'modals/list', locals: {type: 'keys', list: @keys} %>
+    <%= render 'admin/questions' %>
+
+    <%= render 'modals/restaurant' %>
+    <%= render 'admin/standards' %>
+    <%= render 'admin/evaluation' %>
+
+    <%= link_to('Departments', "#login", :data => {toggle: 'modal', target: ".departments-modal"}) %> -
+    <%= link_to('Keys', "#login", :data => {toggle: 'modal', target: ".keys-modal"}) %> -
+    <%= link_to('Questions', "#login", :data => {toggle: 'modal', target: ".questions-modal"}) %><br><br>
+
+    <%= link_to('New Restaurant', "#login", :data => {toggle: 'modal', target: "#new-restaurant-modal"}) %> -
+    <%= link_to('New Standards', "#login", :data => {toggle: 'modal', target: ".standards-modal"}) %> -
+    <%= link_to('New Evaluation', "#login", :data => {toggle: 'modal', target: ".eval-modal"}) %><br><br>
+
+    <h1>Evaluation Applications</h1>
+    <h4>Pending Applications</h4>
+    <%= render 'admin/application_table', locals: {evaluations: @pending_evaluations} %>
+
+    <h4>Open Applications</h4>
+    <%= render 'admin/application_table', locals: {evaluations: @pending_evaluations} %>
+
+    <h4>Completed Applications</h4>
+    <%= render 'admin/application_table', locals: {evaluations: @completed_evaluations} %>
+
+    <hr>
+    <hr>
+    <h1>Restaurant Evaluations</h1>
+
+    <h4>Open Evaluations</h4>
+    <%= render 'admin/tables/evaluations', locals: {evaluations: @open_evaluationss} %>
+
+
+
+
+    <div class="container">
+      <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+        <%= render 'admin/users' %>
+      </div>
+    </div>
+
+
+
+    <%= link_to('Fine Dining', "#login", :data => {toggle: 'modal', target: ".fine_dining-modal"}) %><br>
+    <%= link_to('Fast Casual', "#login", :data => {toggle: 'modal', target: ".fast_casual-modal"}) %><br>
+<% end %>

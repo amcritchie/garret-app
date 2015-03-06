@@ -30,13 +30,14 @@ class RestaurantsController < ApplicationController
 
     @restaurant.name = @restaurant.name.downcase
     @restaurant.user_id = current_user.id
+    @restaurant.url = @restaurant.url.downcase
     @restaurant.address = @restaurant.address.downcase
     @restaurant.city = @restaurant.city.downcase
     @restaurant.state = @restaurant.state.downcase
     @restaurant.zip = @restaurant.zip.downcase
 
     if @restaurant.save
-      redirect_to root_path
+      redirect_to admin_path
     else
       render :new
     end
@@ -88,6 +89,6 @@ class RestaurantsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def restaurant_params
-    params.require(:restaurant).permit(:name, :phone_number, :address, :city, :state, :zip )
+    params.require(:restaurant).permit(:name, :phone_number, :address, :city, :state, :zip, :url )
   end
 end

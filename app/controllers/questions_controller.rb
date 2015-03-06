@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to root_path
+      redirect_to admin_path
     else
       render :new
     end

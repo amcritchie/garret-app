@@ -52,14 +52,11 @@ var Evaluation = {
             if ($(this).children().val() === '1'){
                 $('.questionPass[data-question-id=' + id + ']').click();
                 $('.questionNil[data-question-id=' + id + ']').hide();
-
             } else {
                 $('.questionFail[data-question-id=' + id + ']').click();
                 $('.questionNil[data-question-id=' + id + ']').hide();
 
             }
-//            $('.questionNil').not('.active').children().remove();
-//            $('.questionNil').not('.active').removeClass('btn-default');
             $('.questionLabel').css("background-color", "white");
             $('.active.questionPassed').css("background-color", "lightgreen");
             $('.active.questionFailed').css("background-color", "tomato");

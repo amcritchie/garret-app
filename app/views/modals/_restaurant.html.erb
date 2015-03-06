@@ -31,6 +31,13 @@
                   </div>
 
                   <div class="control-group col-xs-12">
+                    <label class="control-label" for="url">Phone:</label>
+                    <div class="controls">
+                      <%= f.text_field :url, :class => "form-control", :placeholder => "www.google.com" %>
+                    </div>
+                  </div>
+
+                  <div class="control-group col-xs-12">
                     <label class="control-label" for="phone">Phone:</label>
                     <div class="controls">
                       <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555)555-5555" %>

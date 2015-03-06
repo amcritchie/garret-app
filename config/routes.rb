@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
+
+  root 'home#index'
+
   resources :users do
     # resources :restaurants
     # post 'restaurants/new' => 'restaurants#create'
   end
+
+  get "login" => "sessions#new", as: :login
+  post "login" => "sessions#create"
+  post "authenticate" => "sessions#authenticate"
+  post "unique_email" => "users#unique_email"
+  delete "logout" => "sessions#destroy", as: :logout
+
+  get '/admin' => 'admin#home'
 
   resources :restaurants
   post 'restaurants/new' => 'restaurants#create'
@@ -27,13 +38,6 @@ Rails.application.routes.draw do
 
   # post 'restaurants/new' => 'restaurants#create'
 
-  root 'home#index'
-
-  get "login" => "sessions#new", as: :login
-  post "login" => "sessions#create"
-  post "authenticate" => "sessions#authenticate"
-  post "unique_email" => "users#unique_email"
-  delete "logout" => "sessions#destroy", as: :logout
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

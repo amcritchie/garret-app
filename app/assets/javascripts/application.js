@@ -99,7 +99,7 @@ var Register = {
             $('.modalError').remove();
             $.when(Validate.login(info)).done(function (response) {
                 if (response.error) {
-                    FlashMessage.signUpError($('[for=userid]'), response.error);
+                    FlashMessage.signUpError($('[for=email]'), response.error);
                 } else {
                     $('.loginForm').unbind('submit').submit();
                 }
@@ -198,17 +198,14 @@ $(document).ready(function () {
 
     $('.approveApplication').on('click', function () {
         var id = $(this).data('application-id');
-//       debugger;
         $.ajax({
             type: "POST",
             url: "application/approve",
             data: {id: id}
         });
-//        $(this).addClass('btn-danger').html('Pending').off('click');
-//        $(this).addClass('btn-danger').html('Pending').off('click');
         var a = $(this).parent();
         $(this).parent().children('button').remove();
-        a.prepend('fdfdfd');
+        a.prepend('Approved');
     });
 
     $('.denyApplication').on('click', function () {
@@ -219,7 +216,9 @@ $(document).ready(function () {
             url: "application/deny",
             data: {id: id}
         });
-        $(this).addClass('btn-danger').html('Pending').off('click');
+        var a = $(this).parent();
+        $(this).parent().children('button').remove();
+        a.prepend('Decided');
     });
 
     //Click dropdown

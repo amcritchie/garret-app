@@ -26,10 +26,10 @@
 
 
                             <div class="control-group col-xs-12">
-                                <label class="control-label" for="restaurant-name">Name:</label>
+                                <label class="control-label" for="restaurant-name">Title:</label>
 
                                 <div class="controls">
-                                    <%= f.text_field :name, :class => "form-control", :placeholder => "Standards" %>
+                                    <%= f.text_field :name, :class => "form-control", :placeholder => "Evaluation Title" %>
                                 </div>
                             </div>
 
@@ -38,7 +38,7 @@
                                 <label class="control-label" for="restaurant-name">Restaurant:</label>
 
                                 <div class="controls">
-                                    <%= f.select :restaurant_id, @all_restaurants.map(&:name) %>
+                                    <%= f.select :restaurant_id, @restaurants.map(&:name) %>
                                 </div>
                             </div>
 
@@ -80,7 +80,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <% @all_questions.each do |question| %>
+                                <% @questions.each do |question| %>
                                 <tr>
                                     <div class="user-row" data-question-id="<%= question.id %>">
                                         <th>

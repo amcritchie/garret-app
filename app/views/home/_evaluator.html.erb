@@ -1,6 +1,5 @@
 <%= render 'modals/user_evaluation' %>
 
-
 <br>
 <div class="container">
   <h4>Open Evaluations</h4>
@@ -28,7 +27,11 @@
             <%= application.evaluation.restaurant.phone_number %>
           </th>
           <th>
-            <%= link_to 'website', '/' %>
+            <% if application.evaluation.restaurant.url == nil %>
+                <%= link_to 'website', "https://www.google.com/?q=#{application.evaluation.restaurant.name}", :target => "_blank"%>
+            <% else %>
+                <%= link_to 'website', application.evaluation.restaurant.url, :target => "_blank"%>
+            <% end %>
           </th>
           <th>
             <%= render 'helper/address_format', locals: {entity: application.evaluation.restaurant} %>
@@ -84,7 +87,11 @@
                 <button class="btn btn-success applyToEvaluation" data-evaluation-id="<%= evaluation.id %>">Apply</button>
               </th>
               <th>
-                <%= link_to 'website', '/' %>
+                <% if evaluation.restaurant.url == nil %>
+                    <%= link_to 'website', "https://www.google.com/?q=#{evaluation.restaurant.name}", :target => "_blank"%>
+                <% else %>
+                    <%= link_to 'website', evaluation.restaurant.url, :target => "_blank"%>
+                <% end %>
               </th>
               <th>
                 <%= render 'helper/address_format', locals: {entity: evaluation.restaurant} %>

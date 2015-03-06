@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade bs-modal-sm <%= locals[:standard] %>-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-modal-sm questions-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <br>
@@ -36,7 +36,7 @@
 
                 <% end %>
                 </tr>
-                <% @all_questions.each do |question| %>
+                <% @questions.each do |question| %>
                     <tr>
                       <div class="user-row" data-question-id="<%= question.id %>">
                         <th>
