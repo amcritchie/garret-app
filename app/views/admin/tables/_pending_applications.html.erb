@@ -1,0 +1,34 @@
+<table class="table table-bordered align-center">
+  <thead>
+  <tr>
+    <th class="col-xs-2" data-field="id">Evaluator</th>
+    <th class="col-xs-2" data-field="id">Restaurant</th>
+    <th class="col-xs-4" data-field="name">Approve</th>
+    <th class="col-xs-1" data-field="price">Site</th>
+    <th class="col-xs-3" data-field="price">Address</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% locals[:evaluations].each do |application| %>
+      <tr>
+        <th>
+          <%= application.user.email %>
+        </th>
+        <th>
+          <%= application.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
+        </th>
+        <th>
+          <button class="btn btn-success approveApplication" data-application-id="<%= application.id %>">Approve</button>
+          <button class="btn btn-danger denyApplication" data-application-id="<%= application.id %>">Deny</button>
+        </th>
+
+        <th>
+          <%= link_to 'website', '/' %>
+        </th>
+        <th>
+          <%= render 'helper/address_format', locals: {entity: application.evaluation.restaurant} %>
+        </th>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

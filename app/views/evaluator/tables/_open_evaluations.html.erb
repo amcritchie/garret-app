@@ -1,0 +1,45 @@
+<table class="table table-bordered align-center">
+  <thead>
+  <tr>
+    <th class="col-xs-1" data-field="id">Restaurant</th>
+    <th class="col-xs-1" data-field="id">Evaluation</th>
+    <!--<th class="col-xs-1" data-field="name">Phone</th>-->
+    <th class="col-xs-1" data-field="price">Site</th>
+    <th class="col-xs-1" data-field="price">Due date</th>
+    <th class="col-xs-3" data-field="price">Information</th>
+    <th class="col-xs-5" data-field="price">Message</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @open_evaluations.each do |application| %>
+      <tr>
+        <th>
+          <%= application.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
+        </th>
+        <th>
+          <button href="#login" class="btn btn-success startEvaluation" data-application-id="<%= application.id %>" data-toggle="modal" data-target=".evaluation-modal">Open</button>
+        </th>
+        <th>
+          <% if application.evaluation.restaurant.url == nil %>
+              <%= link_to 'website', "https://www.google.com/?q=#{application.evaluation.restaurant.name}", :target => "_blank" %>
+          <% else %>
+              <%= link_to 'website', application.evaluation.restaurant.url, :target => "_blank" %>
+          <% end %>
+        </th>
+        <th>
+          <% if (application.accepted_at != nil) %>
+              <%= (application.accepted_at + 604800).strftime("%b %d, %Y") %>
+          <% end %>
+        </th>
+        <th>
+          Phone: <%= application.evaluation.restaurant.phone_number %><br>
+
+          <%= render 'helper/address_format', locals: {entity: application.evaluation.restaurant} %>
+        </th>
+        <th>
+          <%= application.evaluation.message %>
+        </th>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

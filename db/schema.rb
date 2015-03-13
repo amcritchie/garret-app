@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306000001) do
+ActiveRecord::Schema.define(version: 20150313062238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20150306000001) do
     t.string   "status"
     t.text     "score"
     t.datetime "accepted_at"
-    t.datetime "started_at"
+    t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150306000001) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "message"
   end
 
   create_table "keys", force: true do |t|

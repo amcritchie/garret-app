@@ -1,0 +1,58 @@
+<table class="table table-bordered align-center">
+  <thead>
+  <tr>
+    <th class="col-xs-2" data-field="id">Evaluation</th>
+    <th class="col-xs-2" data-field="id">Restaurant</th>
+    <th class="col-xs-2" data-field="id">Evaluator</th>
+    <th class="col-xs-1" data-field="name">Pay User</th>
+    <th class="col-xs-1" data-field="price">Site</th>
+    <th class="col-xs-1" data-field="price">Accepted</th>
+    <th class="col-xs-1" data-field="price">Submitted</th>
+    <th class="col-xs-1" data-field="price">Due Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% locals[:evaluations].each do |application| %>
+      <tr>
+        <th>
+          <%= application.evaluation.name %>
+        </th>
+        <th>
+          <%= application.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
+        </th>
+        <th>
+          <%= application.user.email %>
+        </th>
+        <th>
+          <button class="btn btn-info denyApplication" data-application-id="<%= application.id %>">Pay</button>
+        </th>
+
+        <th>
+          <%= link_to 'website', '/' %>
+        </th>
+        <th>
+          <% if application.accepted_at != nil %>
+              <%= application.accepted_at.strftime("%b %d, %Y") %>
+          <% else %>
+              N/A
+          <% end %>
+        </th>
+        <th>
+          <% if application.completed_at != nil %>
+              <%= application.completed_at.strftime("%b %d, %Y") %>
+          <% else %>
+              N/A
+          <% end %>
+        </th>
+        <th>
+
+          <% if application.accepted_at != nil %>
+              <%= (application.accepted_at + 604800).strftime("%b %d, %Y") %>
+          <% else %>
+              N/A
+          <% end %>
+        </th>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

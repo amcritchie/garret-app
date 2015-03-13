@@ -2,9 +2,6 @@ var Validate = {
 
     restaurant: function (info) {
         var errors = {};
-        console.log(info);
-        console.log(info.name);
-        console.log(info.phone);
         if (Validate.presence(info.name)) {
             errors['name'] = Validate.presence(info.name);
         }
@@ -98,5 +95,4 @@ var Validate = {
             return error;
         }
     }
-
 };

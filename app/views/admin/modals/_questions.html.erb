@@ -25,16 +25,16 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class: 'newQuestionForm', data: {standard: 'fineDining'}} do |f| %>
+                  <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class: 'newQuestionForm', data: {standard: 'fineDining'}} do |f| %>
                       <div class="user-row">
 
-                      <th><%= f.submit "Add +", :class => "btn btn-primary login addQuestion" %></th>
+                        <th><%= f.submit "Add +", :class => "btn btn-primary login addQuestion" %></th>
                         <th><%= f.text_field :body, :class => "form-control", :placeholder => "New question" %></th>
                         <th><%= f.select :department, @departments.map(&:name) %></th>
                         <th><%= f.select :key, @keys.map(&:name) %></th>
                       </div>
 
-                <% end %>
+                  <% end %>
                 </tr>
                 <% @questions.each do |question| %>
                     <tr>

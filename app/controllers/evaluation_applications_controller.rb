@@ -18,27 +18,33 @@ class EvaluationApplicationsController < ApplicationController
 
   def approve
     @application = EvaluationApplication.find(params[:id])
-    @application.update(status: 'open')
-    redirect_to root_path
+    @application.update(
+        status: 'open',
+        accepted_at: Time.now
+    )
+    redirect_to admin_path
   end
 
   def deny
     @application = EvaluationApplication.find(params[:id])
-    @application.update(status: 'denied')
-    redirect_to root_path
+    @application.update(
+        status: 'denied',
+        accepted_at: Time.now
+    )
+    redirect_to admin_path
   end
 
   def submit
     @application = EvaluationApplication.find(params[:id])
-    @application.update(status: 'submitted')
+    @application.update(
+        status: 'submitted',
+        completed_at: Time.now
+    )
     redirect_to root_path
   end
 
   def get_score
     @application = EvaluationApplication.find(params[:id])
-    p '--1' * 100
-    p @application
-    p '--1' * 100
     respond_to do |format|
       if @application
         format.json { render json: {score: @application.score} }
@@ -49,7 +55,6 @@ class EvaluationApplicationsController < ApplicationController
   end
 
   def update_score
-
 
 
     @application = EvaluationApplication.find(params[:id])

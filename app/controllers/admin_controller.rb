@@ -11,12 +11,13 @@ class AdminController < ApplicationController
     @evaluation = Evaluation.new
 
     # @new_evaluations = Evaluation.where(status: 'open')
-    @pending_evaluations =  EvaluationApplication.where(status: 'pending')
-    @completed_evaluations = EvaluationApplication.where(status: 'submitted')
-    @open_evaluations =  EvaluationApplication.where(status: 'open')
+    @pending_evaluations =  EvaluationApplication.where(status: 'pending').order(:created_at)
+    @completed_evaluations = EvaluationApplication.where(status: 'submitted').order(:created_at)
+    @open_evaluations =  EvaluationApplication.where(status: 'open').order(:created_at)
 
-    @denied_evaluations =  EvaluationApplication.where(status: 'denied')
-    @open_evaluationss = Evaluation.where(status: 'open')
+    @denied_evaluations =  EvaluationApplication.where(status: 'denied').order(:created_at)
+    @open_evaluationss = Evaluation.where(status: 'open').order(:created_at)
+    @completed_evaluationss = Evaluation.where(status: 'completed').order(:created_at)
 
     @all_users = User.all
 
