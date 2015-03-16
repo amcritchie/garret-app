@@ -4,7 +4,7 @@
     <th class="col-xs-2" data-field="id">Name</th>
     <th class="col-xs-1" data-field="id">Restaurant</th>
     <th class="col-xs-1" data-field="id">Standards</th>
-    <th class="col-xs-1" data-field="id">Close</th>
+    <th class="col-xs-1" data-field="id">Complete</th>
     <th class="col-xs-1" data-field="name">Open Evaluations</th>
     <th class="col-xs-1" data-field="name">Completed Evaluations</th>
     <th class="col-xs-1" data-field="price">Created At</th>
@@ -26,9 +26,9 @@
         <th>
           <% ready = (EvaluationApplication.where(evaluation_id: evaluation.id, status: 'submitted').count > 0) && (EvaluationApplication.where(evaluation_id: evaluation.id, status: 'open').count == 0) %>
           <% if ready %>
-              <button class="btn btn-danger denyApplication" data-application-id="<%= evaluation.id %>">Close</button>
+              <button class="btn btn-info completeEvaluation" data-application-id="<%= evaluation.id %>">Complete</button>
           <% else %>
-              <button class="btn btn-default denyApplication" data-application-id="<%= evaluation.id %>">Close</button>
+              <button class="btn btn-default completeEvaluation" data-application-id="<%= evaluation.id %>">Complete</button>
           <% end %>
         </th>
 
