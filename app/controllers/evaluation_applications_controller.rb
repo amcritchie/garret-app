@@ -4,6 +4,13 @@ class EvaluationApplicationsController < ApplicationController
     @application = EvaluationApplication.all
   end
 
+  def show
+    p '---'*80
+    p params
+    @application = EvaluationApplication.find(params[:id])
+    @questions = Question.all
+  end
+
   def apply
     @application = EvaluationApplication.new(
         evaluation_id: params[:evaluation_id],
@@ -41,6 +48,22 @@ class EvaluationApplicationsController < ApplicationController
         completed_at: Time.now
     )
     redirect_to root_path
+  end
+
+  def get_info
+    @application = EvaluationApplication.find(params[:id])
+    @evaluation = Evaluation.find(@application[:evaluation_id])
+    @evaluation = @application.evaluation
+    @questions = Question.all
+    p '--=-==-='
+    @standards = @evaluation.standard
+    respond_to do |format|
+      if @application
+        format.json { render json: {score: @application.score, questions: @questions, standards: @application.evaluation.standard.details} }
+      else
+        format.json { render json: {error: "Application not found."} }
+      end
+    end
   end
 
   def get_score

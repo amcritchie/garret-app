@@ -1,0 +1,41 @@
+<div id="applicationId"><%= @application.id %></div>
+fojofofof
+
+<%= @application.score %>
+
+<%= render 'details' %>
+
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="col-xs-5">Question</th>
+    <th class="col-xs-2">Pass</th>
+    <th class="col-xs-5">Why</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @questions.each do |question| %>
+      <tr>
+        <div class="user-row" data-question-id="<%= question.id %>">
+          <th>
+            <strong><%= question.body %></strong>
+          </th>
+          <th>
+            <strong>
+
+              <div class="btn-group questionCheckboxAll" data-toggle="buttons" data-question-id=<%= question.id %>>
+
+              </div>
+              <div>
+                <input data-question-id=<%= question.id %> class="answerExplanation" placeholder="Why?" value="">
+              </div>
+            </strong>
+          </th>
+          <th class="explanation" data-question-id="<%= question.id %>">
+          </th>
+        </div>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -83,3 +83,14 @@ th{
 .align-center{
   text-align: center;
 }
+
+label.questionNA{
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.answerExplanation{
+  display: none;
+  margin-top: 5px;
+  width: 90%;
+}

@@ -28,6 +28,9 @@ Rails.application.routes.draw do
 
   resources :evaluations
 
+  get 'applications/:id' => 'evaluation_applications#show'
+  post 'applications/get_info' => 'evaluation_applications#get_info'
+
   post 'evaluations/apply' => 'evaluation_applications#apply'
   post 'application/approve' => 'evaluation_applications#approve'
   post 'application/deny' => 'evaluation_applications#deny'

@@ -20,9 +20,11 @@ var Evaluation = {
         $('.questionCheckboxAll').each(function(index,question){
 
             var id = $(question).data('question-id');
-            if ($($(this).children()[0]).hasClass('active')){
-                array.push([id+':'+0]);
-            } else if ($($(this).children()[2]).hasClass('active')) {
+            if ($($(this).children()[1]).hasClass('active')){
+                array.push([id+':'+0+':'+$(this).parent().find('.answerExplanation').val()]);
+            } else if ($($(this).children()[0]).hasClass('active')) {
+                array.push([id+':'+2+':'+$(this).parent().find('.answerExplanation').val()]);
+            } else if ($($(this).children()[3]).hasClass('active')) {
                 array.push([id+':'+1]);
             }
         });
@@ -51,15 +53,23 @@ var Evaluation = {
             var id = $(this).data('question-id');
             if ($(this).children().val() === '1'){
                 $('.questionPass[data-question-id=' + id + ']').click();
+                $('.answerExplanation[data-question-id=' + id + ']').hide();
                 $('.questionNil[data-question-id=' + id + ']').hide();
-            } else {
+            } else if ($(this).children().val() === '0') {
                 $('.questionFail[data-question-id=' + id + ']').click();
+                $('.answerExplanation[data-question-id=' + id + ']').show();
                 $('.questionNil[data-question-id=' + id + ']').hide();
-
+            } else if ($(this).children().val() === '2'){
+                $('.questionNA[data-question-id=' + id + ']').click();
+                $('.answerExplanation[data-question-id=' + id + ']').show();
+                $('.questionNil[data-question-id=' + id + ']').hide();
             }
+
             $('.questionLabel').css("background-color", "white");
             $('.active.questionPassed').css("background-color", "lightgreen");
             $('.active.questionFailed').css("background-color", "tomato");
+            $('.active.questionNA').css("background-color", "orange");
+
             Evaluation.addSubmit();
             Evaluation.registerClickAnswer();
 
@@ -89,6 +99,11 @@ var Evaluation = {
                 $('.questionNil[data-question-id=' + id + ']').hide();
             } else if(question.split(':')[1] === '0'){
                 $('.questionFail[data-question-id=' + id + ']').click();
+                $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
+                $('.questionNil[data-question-id=' + id + ']').hide();
+            } else if(question.split(':')[1] === '2'){
+                $('.questionNA[data-question-id=' + id + ']').click();
+                $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
                 $('.questionNil[data-question-id=' + id + ']').hide();
             }
         });
@@ -97,6 +112,7 @@ var Evaluation = {
         $('.questionLabel').css("background-color", "white");
         $('.active.questionPassed').css("background-color", "lightgreen");
         $('.active.questionFailed').css("background-color", "tomato");
+        $('.active.questionNA').css("background-color", "orange");
         Evaluation.addSubmit();
     },
 
@@ -107,7 +123,9 @@ var Evaluation = {
             allQuestions.each(function(question){
                 if ($($(this).children()[0]).hasClass('active')){
                     answeredQuestion++;
-                } else if ($($(this).children()[2]).hasClass('active')) {
+                } else if ($($(this).children()[1]).hasClass('active')) {
+                    answeredQuestion++;
+                } else if ($($(this).children()[3]).hasClass('active')) {
                     answeredQuestion++;
                 }
             });

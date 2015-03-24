@@ -45,6 +45,9 @@
                                   <strong>
 
                                     <div class="btn-group questionCheckbox" data-toggle="buttons" data-question-id=<%= question.id %>>
+                                      <label class="btn btn-default questionLabel questionCheckbox questionNA" data-question-id=<%= question.id %>>
+                                        <input class="questionNA questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="2" checked>
+                                        N/A </label>
                                       <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
                                         <input class="questionFail questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
                                         Fail </label>
@@ -81,23 +84,33 @@
                 <% @all_questions.each do |question| %>
                     <tr>
                       <div class="user-row" data-question-id="<%= question.id %>">
-                        <th>
+                        <th class="col-xs-7">
                           <strong><%= question.body %></strong>
                         </th>
-                        <th>
+                        <th class="col-xs-5">
                           <strong>
 
                             <div class="btn-group questionCheckboxAll" data-toggle="buttons" data-question-id=<%= question.id %>>
+
+                              <label class="btn btn-default questionLabel questionCheckbox questionNA" data-question-id=<%= question.id %>>
+                                <input class="questionNA questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="2" checked>
+                                N/A </label>
+
                               <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
                                 <input class="questionFail questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
                                 Fail </label>
+
                               <label class="btn btn-default questionLabel questionNil active" data-question-id=<%= question.id %>>
                                 <input type="radio" name="inputWalls" id="inputWalls" value="nil">
                                 <span class="glyphicon"></span>
                               </label>
+
                               <label class="btn btn-default questionLabel questionCheckbox questionPassed" data-question-id=<%= question.id %>>
                                 <input class="questionPass questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
                                 Pass </label>
+                            </div>
+                            <div>
+                              <input data-question-id=<%= question.id %> class="answerExplanation" placeholder="Why?" value="">
                             </div>
                           </strong>
                         </th>
