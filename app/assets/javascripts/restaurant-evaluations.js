@@ -54,12 +54,17 @@ var Evaluations = {
     parseStandards: function(standardsAll) {
         var arrayOfStandards = {};
         standardsAll.forEach(function(standards) {
-            var array = [];
+//            var array = [];
+            var array = {};
             standards.details.split('|').forEach(function(question){
-                array.push({
+//                array.push({
+//                    id: question.split(':')[0],
+//                    score: question.split(':')[1]
+//                });
+                array[question.split(':')[0]] = {
                     id: question.split(':')[0],
                     score: question.split(':')[1]
-                });
+                };
             });
             arrayOfStandards[standards.id] = {
                 id: standards.id,
@@ -105,7 +110,7 @@ var Evaluations = {
     scoresInfo: function(standardsId, array) {
 
         var standards = Evaluations.standards[standardsId];
-        debugger;
+//        debugger;
 
         var totalUserPoints = 0;
         var totalPossPoints = 0;
@@ -115,7 +120,12 @@ var Evaluations = {
         };
 
         array.forEach(function(question,i) {
-            var questionObj = Evaluations.questions[question.questionId];
+            var questionObj = (Evaluations.questions[question.questionId]) || {};
+//            debugger;
+            questionObj.standardsScore = (standards.scores[question.questionId]) ? standards.scores[question.questionId].score : 1;
+            questionObj.userScore = question.score;
+            var standardsObj = standards.scores[question.questionId];
+
             debugger;
 //            if(question.key in scores.keys) {
 //                scores.keys[question.key].scores.push({
