@@ -28,6 +28,10 @@ Rails.application.routes.draw do
 
   resources :evaluations
 
+  get 'restaurant/:id' => 'restaurants#show'
+  post 'restaurant/get_info' => 'restaurants#get_info'
+
+
   get 'applications/:id' => 'evaluation_applications#show'
   post 'applications/get_info' => 'evaluation_applications#get_info'
 

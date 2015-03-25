@@ -10,6 +10,29 @@ class RestaurantsController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    p '---'*80
+    p params
+    @applications = Evaluation.find_by(restaurant_id: 2).evaluation_applications
+    @application = EvaluationApplication.find(params[:id])
+    @questions = Question.all
+    @restaurant = Restaurant.find(params[:id])
+  end
+
+  def get_info
+    @application = EvaluationApplication.find(params[:id])
+    @evaluation = Evaluation.find(@application[:evaluation_id])
+    @evaluation = @application.evaluation
+    @questions = Question.all
+    p '--=-==-='
+    @standards = @evaluation.standard
+    respond_to do |format|
+      if @application
+        # format.json { render json: {score: @application.score, questions: @questions, standards: @application.evaluation.standard.details} }
+        format.json { render json: {applications: Evaluation.find_by(restaurant_id: params[:id]).evaluation_applications, standards: Standard.all, evaluations: Evaluation.all, questions: Question.all} }
+      else
+        format.json { render json: {error: "Application not found."} }
+      end
+    end
   end
 
   # GET /users/new
@@ -89,6 +112,6 @@ class RestaurantsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def restaurant_params
-    params.require(:restaurant).permit(:name, :phone_number, :address, :city, :state, :zip, :url )
+    params.require(:restaurants).permit(:name, :phone_number, :address, :city, :state, :zip, :url )
   end
 end
