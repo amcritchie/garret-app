@@ -30,6 +30,9 @@ Rails.application.routes.draw do
 
   get 'restaurant/:id' => 'restaurants#show'
   post 'restaurant/get_info' => 'restaurants#get_info'
+  get 'restaurant/:id/action_plan/:application_id' => 'restaurants#action_plan'
+  post 'restaurant/:id/action_plan/get_info' => 'restaurants#get_info'
+
 
 
   get 'applications/:id' => 'evaluation_applications#show'

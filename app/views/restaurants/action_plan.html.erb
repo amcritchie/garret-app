@@ -7,12 +7,11 @@
 <table id="evaluationsTable" class="table table-striped" data-restaurant-id="<%= @restaurant.id %>">
   <thead>
   <tr class="tableKeys">
-    <th>When</th>
-    <th>Application ID</th>
-    <th>Total</th>
-    <% @departments.each do |department| %>
-        <th class="department-name"><%= department.name %></th>
-  <% end %>
+    <th>Department</th>
+    <th>Missed Standard</th>
+    <th>Comment</th>
+    <th>Last Visit</th>
+    <th>Last 6 Visits</th>
   </tr>
   </thead>
   <tbody class="tableBody">
