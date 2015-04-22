@@ -1,0 +1,6 @@
+<% if current_user.admin %>
+
+    <h1>Restaurants</h1>
+    <%= render 'admin/tables/restaurants', locals: {restaurants: @restaurants} %>
+
+<% end %>

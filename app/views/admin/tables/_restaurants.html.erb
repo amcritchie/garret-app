@@ -1,0 +1,29 @@
+<table class="table table-bordered align-center">
+  <thead>
+  <tr>
+    <th class="col-xs-3" data-field="id">Restaurant</th>
+    <th class="col-xs-2" data-field="id">Evaluations</th>
+    <th class="col-xs-2" data-field="price">Site</th>
+    <th class="col-xs-5" data-field="price">Address</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% locals[:restaurants].each do |restaurant| %>
+      <tr>
+        <th>
+          <%= restaurant.name.split.map(&:capitalize)*' ' %>
+        </th>
+        <th>
+          <a href=<%= "/restaurant/#{restaurant.id}" %> target="_self">Evaluations</a>
+        </th>
+
+        <th>
+          <%= link_to 'website', '/' %>
+        </th>
+        <th>
+          <%= render 'helper/address_format', locals: {entity: restaurant} %>
+        </th>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

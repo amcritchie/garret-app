@@ -4,11 +4,12 @@ var Evaluations = {
     allScores: null,
     questions: null,
 
+    orderedByCompletedTime: [],
+
     score: null,
     collection: null,
 
     load: function () {
-
         var info = {id: $('#metaInfo').data('restaurant-id')};
         $.when(Evaluations.getData(info)).done(function (response) {
 
@@ -33,6 +34,7 @@ var Evaluations = {
                     console.log(htmlString);
                     $('.tableBody').append('<tr class="tableKeys">' +
                             '<th>' + Evaluations.formatDate(score.completed_time) + '</th>' +
+                            '<th><a href="/restaurant/'+info.id + '/action_plan/'+ score.id + '" target="_self">action plan</a></th>' +
                             '<th>' + score.id + '</th>' +
                             '<th>' + score.totals.totalWeightedScore + '</th>' +
                             htmlString +
@@ -42,27 +44,107 @@ var Evaluations = {
             } else {
 
                 // action plan page
-                var applicationEvalId = window.location.pathname.split( '/' ).reverse()[0];
+                var applicationEvalId = parseInt(window.location.pathname.split( '/' ).reverse()[0]);
+
                 var thisEvaluation = Evaluations.allScores[applicationEvalId];
                 var lastEvaluation = null;
-                $.each(Evaluations.allScores, function (index, eval) {
-                    if (eval.completed_time < thisEvaluation.completed_time) {
-                        if ((lastEvaluation === null) || (eval.completed_time > lastEvaluation)) {
-                            lastEvaluation = eval;
-                        }
+
+
+                // Create array of evaluationes sorted by completed time
+                $.each(Evaluations.allScores, function(index, eval) {
+                    if (Evaluations.orderedByCompletedTime.length === 0){
+                        Evaluations.orderedByCompletedTime.push(eval)
+                    } else {
+                        $.each(Evaluations.orderedByCompletedTime, function(indexx, sortedEval) {
+                            var orderedElementTime = Evaluations.orderedByCompletedTime[indexx].completed_time;
+                            if (orderedElementTime > eval.completed_time) {
+                                return Evaluations.orderedByCompletedTime.splice(indexx, 0, eval)
+                            } else if (Evaluations.orderedByCompletedTime.length === (indexx + 1)){
+                                return Evaluations.orderedByCompletedTime.push(eval)
+                            }
+                        });
                     }
                 });
+
+                var orderedApplicationIndexId = 0;
+                $.each(Evaluations.orderedByCompletedTime, function(index, sortedEval) {
+                    if (applicationEvalId === sortedEval.id) {
+                        orderedApplicationIndexId = index;
+                    }
+                });
+
+                var orderedApplications = Evaluations.orderedByCompletedTime;
+                orderedApplications.splice(orderedApplicationIndexId);
+                if (orderedApplications.length > 6) {
+                    orderedApplications = array.slice(orderedApplicationIndexId)
+                }
+                var lastSixApps = orderedApplications;
+
+                var arrayOfApplications = $.map(Evaluations.allScores, function(value, index) {
+                    return [value];
+                });
+
+                function compare(a,b) {
+                    if (a.completed_time < b.completed_time)
+                        return -1;
+                    if (a.completed_time > b.completed_time)
+                        return 1;
+                    return 0;
+                }
+
+                var sortedArrayOfApplications = arrayOfApplications.sort(compare);
+                var thisArrayIndex = null;
+                sortedArrayOfApplications.forEach( function(e,i) {
+                    if (e.id === applicationEvalId) {
+                        thisArrayIndex = i
+                    }
+                });
+
+
+                sortedArrayOfApplications.length = thisArrayIndex + 1;
+
+                var lastSixEvaluations = [];
+
+
+                $.each(Evaluations.allScores, function (index, eval) {
+                    if (eval.completed_time < thisEvaluation.completed_time) {
+                        if ((lastEvaluation === null) || (eval.completed_time > lastEvaluation.completed_time)) {
+                            lastEvaluation = eval;
+                        }
+
+//                        if ((lastSixEvaluations.length < 6) || )
+                    }
+                });
+                debugger;
                 var missedQuestions = {};
 
                 thisEvaluation.scores.forEach(function(question) {
                     if (question.score === 0) {
-                        var lastEvalScore = $.grep(lastEvaluation.scores, function(e){ return e.questionId == question.questionId; })[0].score;
+//                        debugger;
+                        var lastEvalScore = null;
+                        if (lastEvaluation) {
+                            lastEvalScore = $.grep(lastEvaluation.scores, function(e){ return e.questionId == question.questionId; })[0].score;
+                        }
+
+                        var scoreOnLastSix = 0;
+                        var totalScoreOnLastSix = lastSixApps.length;
+                        $.each(lastSixApps, function (index, eval) {
+                            var evalQuestionScore = $.grep(eval.scores, function(e){ return e.questionId == question.questionId; })[0].score;
+                            debugger;
+                            if (evalQuestionScore < 2){
+                                scoreOnLastSix += evalQuestionScore;
+                            } else {
+                                totalScoreOnLastSix -= 1;
+                            }
+                        });
+
                         missedQuestions[question.questionId] = {
                             id: question.questionId,
                             department: question.dep,
                             explanation: question.explanation,
                             question: question.question,
-                            lastEvaluation: lastEvalScore
+                            lastEvaluation: (lastEvalScore) ? lastEvalScore + ' / 1' : null,
+                            lastSix: scoreOnLastSix + ' / ' + totalScoreOnLastSix
                         }
                     }
                 });
@@ -73,16 +155,13 @@ var Evaluations = {
                             '<th>' + score.question + '</th>' +
                             '<th>' + score.explanation + '</th>' +
                             '<th>' + score.lastEvaluation + '</th>' +
+                            '<th>' + score.lastSix + '</th>' +
 //                            htmlString +
                             '</tr>'
                     );
                 });
 
             }
-
-
-//            Evaluations.loadScores(response.score);
-//            Evaluations.scores();
         });
     },
 

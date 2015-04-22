@@ -2,6 +2,13 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+
+  # Must be before resources :users so get /users directs to admin
+  get '/admin' => 'admin#home'
+  get '/restaurants' => 'admin#restaurants'
+  get '/evaluations' => 'admin#evaluations'
+  get '/users' => 'admin#users'
+
   resources :users do
     # resources :restaurants
     # post 'restaurants/new' => 'restaurants#create'
@@ -13,7 +20,6 @@ Rails.application.routes.draw do
   post "unique_email" => "users#unique_email"
   delete "logout" => "sessions#destroy", as: :logout
 
-  get '/admin' => 'admin#home'
 
   resources :restaurants
   post 'restaurants/new' => 'restaurants#create'

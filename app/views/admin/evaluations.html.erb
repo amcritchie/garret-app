@@ -1,0 +1,13 @@
+<% if current_user.admin %>
+
+    <h1>Evaluation Applications</h1>
+    <h4>Pending Applications</h4>
+    <%= render 'admin/tables/pending_applications', locals: {evaluations: @pending_evaluations} %>
+
+    <h4>Open Applications</h4>
+    <%= render 'admin/tables/open_applications', locals: {evaluations: @open_evaluations} %>
+
+    <h4>Completed Applications</h4>
+    <%= render 'admin/tables/complete_applications', locals: {evaluations: @completed_evaluations} %>
+
+<% end %>

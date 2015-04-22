@@ -24,6 +24,19 @@ class AdminController < ApplicationController
 
   end
 
+  def restaurants
+    @restaurants = Restaurant.all
+  end
+
+  def evaluations
+    @pending_evaluations =  EvaluationApplication.where(status: 'pending').order(:created_at)
+    @completed_evaluations = EvaluationApplication.where(status: 'submitted').order(:created_at)
+    @open_evaluations =  EvaluationApplication.where(status: 'open').order(:created_at)  end
+
+  def users
+    @all_users = User.all
+  end
+
   def new
     @user = User.new
   end
