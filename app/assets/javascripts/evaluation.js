@@ -132,15 +132,29 @@ var Evaluation = {
             if (answeredQuestion === allQuestions.length ){
                 $('.user-evaluation-center').append('<button class="btn btn-success submitEvaluation">Submit</button>');
                 $('.submitEvaluation').on('click',function(){
-                    var info = {
-                        id: Evaluation.applicationId
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "application/submit",
-                        data: info
+                    var allExplanationsFilled = true;
+                    $('.answerExplanation').each(function(a,e){
+                        if (!$(e).val()) {
+                            allExplanationsFilled = false;
+                        }
                     });
-                    location.reload();
+
+                    if (allExplanationsFilled) {
+                        var info = {
+                            id: Evaluation.applicationId
+                        };
+                        $.ajax({
+                            type: "POST",
+                            url: "application/submit",
+                            data: info
+                        });
+                        location.reload();
+                    } else {
+                        $('.user-evaluation-center').prepend('<div class="red-text evaluation-error">Please Fill in Explanations<hr><br></div>');
+                        setTimeout(function() {
+                            $('.evaluation-error').fadeOut()
+                        }, 3000);
+                    }
                 });
             }
         }
