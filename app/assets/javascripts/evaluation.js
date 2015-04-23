@@ -134,7 +134,7 @@ var Evaluation = {
                 $('.submitEvaluation').on('click',function(){
                     var allExplanationsFilled = true;
                     $('.answerExplanation').each(function(a,e){
-                        if (!$(e).val()) {
+                        if ((!$(e).val()) && $(e).is(":visible")) {
                             allExplanationsFilled = false;
                         }
                     });
@@ -150,7 +150,10 @@ var Evaluation = {
                         });
                         location.reload();
                     } else {
-                        $('.user-evaluation-center').prepend('<div class="red-text evaluation-error">Please Fill in Explanations<hr><br></div>');
+                        $('.user-evaluation-center').prepend('<div class="red-text evaluation-error">Please Fill in Explanations<hr></div>');
+                        $('.modal-body').prepend('<div class="red-text evaluation-error">Please Fill in Explanations</div>');
+//                        $('.modal-body').prepend('asd')
+                        $('#all-questions').click();
                         setTimeout(function() {
                             $('.evaluation-error').fadeOut()
                         }, 3000);

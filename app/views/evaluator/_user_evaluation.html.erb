@@ -6,7 +6,7 @@
       <br>
       <div class="bs-example bs-example-tabs">
         <ul id="myTab" class="nav nav-tabs">
-          <li class="active"><a href="#standards" data-toggle="tab">All</a></li>
+          <li class="active"><a id="all-questions" href="#standards" data-toggle="tab">All</a></li>
           <% @departments.each do |department| %>
               <% if Question.where(department: department.name).count > 0 %>
                   <li class=""><a href="#<%= department.name %>" data-toggle="tab"><%= department.name.capitalize %></a>
