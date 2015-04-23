@@ -11,8 +11,12 @@ class RestaurantsController < ApplicationController
   # GET /users/1.json
   def show
 
-    @applications = Evaluation.find_by(restaurant_id: 2).evaluation_applications
-    @application = EvaluationApplication.find(params[:id])
+    @applications = Evaluation.find_by(restaurant_id: 2)
+    if @applications
+
+      @applications = Evaluation.find_by(restaurant_id: 2).evaluation_applications
+    end
+    @application = EvaluationApplication.where(id: params[:id])
     @questions = Question.all
     @restaurant = Restaurant.find(params[:id])
     @departments = Department.all
