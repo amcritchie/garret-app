@@ -24,8 +24,11 @@ class RestaurantsController < ApplicationController
   end
 
   def action_plan
-    @applications = Evaluation.find_by(restaurant_id: 2).evaluation_applications
-    @application = EvaluationApplication.find(params[:id])
+    p '-'*80
+    p params
+    p '-'*80
+    @applications = Evaluation.find_by(restaurant_id: params[:id]).evaluation_applications
+    @application = EvaluationApplication.find(params[:application_id])
     @questions = Question.all
     @restaurant = Restaurant.find(params[:id])
     @departments = Department.all
