@@ -161,7 +161,7 @@ var Evaluations = {
                             department: question.dep,
                             explanation: question.explanation,
                             question: question.question,
-                            lastEvaluation: (lastEvalScore) ? lastEvalScore + ' / 1' : null,
+                            lastEvaluation: lastEvalScore,
                             lastSix: scoreOnLastSix + ' / ' + totalScoreOnLastSix
                         }
                     }
