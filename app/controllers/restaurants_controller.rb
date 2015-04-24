@@ -58,7 +58,7 @@ class RestaurantsController < ApplicationController
     respond_to do |format|
       # if @application
         # format.json { render json: {score: @application.score, questions: @questions, standards: @application.evaluation.standard.details} }
-        format.json { render json: {applications: EvaluationApplication.where(evaluation_id: Evaluation.where(restaurant_id: params[:id], status: 'submitted')), standards: Standard.all, evaluations: Evaluation.all, questions: Question.all} }
+        format.json { render json: {applications: EvaluationApplication.where(evaluation_id: Evaluation.where(restaurant_id: params[:id]), status: 'submitted'), standards: Standard.all, evaluations: Evaluation.all, questions: Question.all} }
       # else
       #   format.json { render json: {error: "Application not found."} }
       # end
