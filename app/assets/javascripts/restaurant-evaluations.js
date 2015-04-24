@@ -137,6 +137,11 @@ var Evaluations = {
                         var lastEvalScore = null;
                         if (lastEvaluation) {
                             lastEvalScore = $.grep(lastEvaluation.scores, function(e){ return e.questionId == question.questionId; })[0].score;
+                            if (lastEvalScore < 2){
+                                lastEvalScore = lastEvalScore + ' / 1'
+                            } else {
+                                lastEvalScore = null;
+                            }
                         }
 
                         var scoreOnLastSix = 0;
@@ -274,6 +279,7 @@ var Evaluations = {
                 var explanation = (question.split(':')[2]) || '';
                 score = (score === 2) ? null : score;
                 var standards = Evaluations.standards[standardsId].scores[question.split(':')[0]];
+                console.log('standards score - ' + standards);
                 var standardsScore = ((standards) ? parseInt(standards.score) : 0);
 
                 var weightedScore = score * standardsScore;
