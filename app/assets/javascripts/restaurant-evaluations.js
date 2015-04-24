@@ -11,7 +11,9 @@ var Evaluations = {
 
     load: function () {
         var info = {id: $('#metaInfo').data('restaurant-id')};
+        debugger;
         $.when(Evaluations.getData(info)).done(function (response) {
+            debugger;
 
             Evaluations.parseQuestions(response.questions);
             Evaluations.parseStandards(response.standards);
@@ -148,6 +150,8 @@ var Evaluations = {
                         }
                     }
                 });
+
+                debugger;
 
                 $.each(missedQuestions, function (index, score) {
                     $('.tableBody').append('<tr class="tableKeys">' +

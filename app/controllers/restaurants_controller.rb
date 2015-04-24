@@ -11,13 +11,10 @@ class RestaurantsController < ApplicationController
   # GET /users/1.json
   def show
 
-    p '--++' *100
-    p params[:id]
-    p '--++' *100
+
 
     @applications = Evaluation.find_by(restaurant_id: params[:id])
     if @applications
-
       @applications = Evaluation.find_by(restaurant_id: params[:id]).evaluation_applications
     end
     @application = EvaluationApplication.where(id: params[:id])
@@ -35,25 +32,33 @@ class RestaurantsController < ApplicationController
   end
 
   def get_info
-    @application = EvaluationApplication.find(params[:id])
-    @evaluation = Evaluation.find(@application[:evaluation_id])
-    @evaluation = @application.evaluation
-    @questions = Question.all
+    p '-'*80
+    p params
+    p '-'*80
+    # @application = Evaluation.where(restaurant_id: params[:id]).evaluation_applications
+    #
+    # p '-'*80
+    #
+    # # @application = EvaluationApplication.find(params[:id])
+    # @application = Evaluation.where(restaurant_id: params[:id]).evaluation_applications
+    # @evaluation = Evaluation.find(@application[:evaluation_id])
+    # @evaluation = @application.evaluation
+    # @questions = Question.all
+    # # p '--=-==-='
+    # # p params[:id]
+    # # p '--=-==-='
+    # # p EvaluationApplication.find_by(restaurant_id: params[:id])
     # p '--=-==-='
-    # p params[:id]
+    # p EvaluationApplication.where(evaluation_id: Evaluation.where(restaurant_id: params[:id]))
     # p '--=-==-='
-    # p EvaluationApplication.find_by(restaurant_id: params[:id])
-    p '--=-==-='
-    p EvaluationApplication.where(evaluation_id: Evaluation.where(restaurant_id: params[:id]))
-    p '--=-==-='
-    @standards = @evaluation.standard
+    # @standards = @evaluation.standard
     respond_to do |format|
-      if @application
+      # if @application
         # format.json { render json: {score: @application.score, questions: @questions, standards: @application.evaluation.standard.details} }
         format.json { render json: {applications: EvaluationApplication.where(evaluation_id: Evaluation.where(restaurant_id: params[:id])), standards: Standard.all, evaluations: Evaluation.all, questions: Question.all} }
-      else
-        format.json { render json: {error: "Application not found."} }
-      end
+      # else
+      #   format.json { render json: {error: "Application not found."} }
+      # end
     end
   end
 
