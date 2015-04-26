@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-
   # Must be before resources :users so get /users directs to admin
   get '/admin' => 'admin#home'
   get '/restaurants' => 'admin#restaurants'

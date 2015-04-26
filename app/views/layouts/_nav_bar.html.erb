@@ -10,7 +10,7 @@
     <% if session[:user_id] && current_user.admin == true %>
         <%= link_to('Brand', '/admin', {class: 'navbar-brand'}) %>
     <% else %>
-        <%= link_to('Brand', root_path, {class: 'navbar-brand'}) %>
+        <%= link_to('Brand', root_path, {class: 'navbar-brand', target: '_self'}) %>
     <% end %>
   </div>
   <!-- Collection of nav links and other content for toggling -->
@@ -26,16 +26,14 @@
           <!--<li><a href="#">Profile</a></li>-->
           <!--<li><a href="#">Messages</a></li>-->
       <% else %>
-          <!--<li class="active"><%= link_to('Home', root_path) %></li>-->
-          <!--<li><a href="#">Profile</a></li>-->
-          <!--<li><a href="#">Messages</a></li>-->
+
       <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right" style="padding-right: 30px">
       <% if session[:user_id] %>
           <li><%= link_to('Logout', logout_path, :method => :delete) %></li>
       <% else %>
-          <li><%= link_to('Login / Register', "#login", :data => {toggle: 'modal', target: ".bs-modal-sm"}) %></li>
+          <li><%= link_to('Login / Register', "#login", :class => 'sign-in', :data => {toggle: 'modal', target: ".bs-modal-sm"}) %></li>
       <% end %>
     </ul>
   </div>

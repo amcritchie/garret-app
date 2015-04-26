@@ -1,6 +1,8 @@
 var Router = {
     load: function() {
-        if (window.location.pathname.indexOf('/admin') === 0) {
+        if ($('#signedOut').length) {
+            LoginRegister.load();
+        } else if (window.location.pathname.indexOf('/admin') === 0) {
             console.log('in admin!!!');
             Admin.load();
         } else if (window.location.pathname.indexOf('/applications') === 0) {
@@ -13,6 +15,18 @@ var Router = {
             console.log('not admin');
             User.load();
         }
+    }
+};
+
+var LoginRegister = {
+    load: function() {
+        $('.sign-up').on('click', function() {
+            $('#myTab').find('[href=#signup]').click();
+        });
+
+        $('.sign-in').on('click', function() {
+            $('#myTab').find('[href=#signin]').click();
+        });
     }
 };
 
