@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :departments, only: [:create, :destroy, :index]
   resources :keys, only: [:create, :destroy, :index]
 
-  resources :standards, only: [:create, :destroy, :index]
+  resources :standards, only: [:create, :destroy, :index, :update]
 
   resources :evaluations
 

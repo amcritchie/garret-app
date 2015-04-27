@@ -6,13 +6,69 @@
 
       <div class="bs-example bs-example-tabs">
         <ul id="myTab" class="nav nav-tabs">
-          <li class="active"><a href="#signin" data-toggle="tab">All questions</a></li>
+          <!--<li class="active"><a href="#signin" data-toggle="tab">New Standards</a></li>-->
+          <li class="active"><a href="#newStandard" data-toggle="tab">New Standards</a></li>
+          <% @standards.each do |standard| %>
+          <li><a href="#standard-id-<%= standard.id %>" data-toggle="tab"><%= standard.name %></a></li>
+          <% end %>
         </ul>
       </div>
       <div class="modal-body">
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade active in" id="signin">
 
+        <div id="myTabContent" class="tab-content">
+          <% @standards.each do |standard| %>
+              <div class="tab-pane fade in" id="standard-id-<%= standard.id %>" data-standard-id="<%= standard.id %>">
+                <% score_hash = {} %>
+                <% standard.details.split('|').each do |score| %>
+                    <% score_hash[score.split(':')[0]] = score.split(':')[1] %>
+                <% end %>
+                <fieldset>
+                  <div class="standardsError red-text align-center"></div>
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th class="col-xs-2">Department</th>
+                      <th class="col-xs-2">Key</th>
+                      <th class="col-xs-6">Question</th>
+                      <th class="col-xs-2">Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% @questions.each do |question| %>
+                        <tr>
+                          <div class="user-row" data-question-id="<%= question.id %>">
+                            <th>
+                              <strong><%= question.department %></strong>
+                            </th>
+                            <th>
+                              <strong><%= question.key %></strong>
+                            </th>
+                            <th>
+                              <strong><%= question.body %></strong>
+                            </th>
+                            <th>
+
+                              <input type="number" class="form-control bfh-number questionStandard" data-question-id=<%= question.id %> value="<%= score_hash[question.id.to_s] %>">
+
+                            </th>
+                          </div>
+                        </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                  <div class="standardsError red-text align-center"></div>
+                </fieldset>
+
+                <div class="col-xs-10">
+                  <input id="standardName" type="text" class="form-control bfh-number standardName" placeholder="Name of standards" value="<%= standard.name %>">
+                </div>
+                <div class="col-xs-2" style="margin-bottom: 10px">
+                  <button type="button" class="btn btn-success updateStandards" data-dismiss="modal">Update</button>
+                </div>
+
+              </div>
+          <% end %>
+          <div class="tab-pane fade active in" id="newStandard">
             <fieldset>
               <div class="standardsError red-text align-center"></div>
               <table class="table table-striped">
@@ -49,19 +105,19 @@
               </table>
               <div class="standardsError red-text align-center"></div>
             </fieldset>
-          </div>
 
+            <div class="col-xs-10">
+              <input id="standardName" type="text" class="form-control bfh-number" placeholder="Name of standards">
+            </div>
+            <div class="col-xs-2" style="margin-bottom: 10px">
+              <button id="saveStandards" type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="modal-footer" style="border: 0">
         <center>
-          <div class="col-xs-8">
-            <input id="standardName" type="text" class="form-control bfh-number" placeholder="Name of standards">
-          </div>
-          <div class="col-xs-4" style="margin-bottom: 10px">
-            <button id="saveStandards" type="button" class="btn btn-success" data-dismiss="modal">Save</button>
-            <button id="closeStandards" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </center>
       </div>
     </div>
