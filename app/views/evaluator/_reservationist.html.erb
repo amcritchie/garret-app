@@ -1,0 +1,21 @@
+<div class="form-group">
+  <hr>
+  <label class=".col-xs-4" for="email">Reservationist
+  </label>
+  <label class=".col-xs-4" style="font-weight: normal;  margin-left: 20px">No Reservationist
+    <input type="checkbox" id="no_res"><br>
+  </label>
+
+  <div class="radio">
+    <label>
+      <input type="radio" name="<%= locals[:key] %>_gender">M<br>
+      <input type="radio" name="<%= locals[:key] %>_gender">F
+    </label>
+    <label> Name
+      <input type="text" class="form-control" id="res_name">
+    </label>
+    <label> Time Reservation Made
+      <input type="text" class="form-control" id="res_time">
+    </label>
+  </div>
+</div>

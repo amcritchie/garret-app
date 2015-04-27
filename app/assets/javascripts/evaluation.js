@@ -7,13 +7,39 @@ var Evaluation = {
     save: function () {
         var info = {
             id: Evaluation.applicationId,
-            score: Evaluation.getScoreString()
+            score: Evaluation.getScoreString(),
+            details: Evaluation.getDetails()
         };
         $.ajax({
             type: "POST",
             url: "application/update_score",
             data: info
-        });    },
+        });
+    },
+
+    getDetails: function() {
+        return {
+            time_spots: {
+                arrival_time: document.getElementById("arrival_time").value,
+                departure_time: document.getElementById("departure_time").value
+            },
+            check: {
+                allItems: document.getElementById("all_items").value,
+                check: document.getElementById("check_id").value,
+                table: document.getElementById("table_id").value,
+                checkAmount: document.getElementById("check_amount").value
+            },
+            employees : {
+                bartender: {
+                    valid: document.getElementById("bar_hair").value,
+                    gender: $("input[name=bar_gender]:checked").val(),
+                    height: document.getElementById("bar_height").value,
+                    hair: document.getElementById("bar_hair").value,
+                    other: document.getElementById("table_id").value
+                }
+            }
+        }
+    },
 
     getScoreString: function(){
         var array = [];

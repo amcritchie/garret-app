@@ -1,0 +1,24 @@
+<div class="form-group">
+  <hr>
+  <label class=".col-xs-4" for="email"><%= locals[:label] %>
+  </label>
+  <label class=".col-xs-4" style="font-weight: normal;  margin-left: 20px">No <%= locals[:label] %>
+    <input type="checkbox" id="no_<%= locals[:key] %>"><br>
+  </label>
+
+  <div class="radio">
+    <label>
+      <input type="radio" name="<%= locals[:key] %>_gender">M<br>
+      <input type="radio" name="<%= locals[:key] %>_gender">F
+    </label>
+    <label> Height
+      <input type="text" class="form-control" id="<%= locals[:key] %>_height">
+    </label>
+    <label> Hair
+      <input type="text" class="form-control" id="<%= locals[:key] %>_hair">
+    </label>
+    <label> Other Description
+      <input type="text" class="form-control" id="<%= locals[:key] %>_other">
+    </label>
+  </div>
+</div>
