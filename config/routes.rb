@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/restaurants' => 'admin#restaurants'
   get '/evaluations' => 'admin#evaluations'
   get '/users' => 'admin#users'
+  get '/users/application' => 'users#application'
 
   resources :users do
     # resources :restaurants

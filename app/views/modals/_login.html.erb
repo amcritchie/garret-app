@@ -51,65 +51,8 @@
 
           <div class="tab-pane fade" id="signup">
             <!-- Sign Up Form -->
-            <%= form_for :user, as: :post, url: users_path(:user), html: { class: 'signUpForm'} do |f| %>
-                <fieldset>
-                <div class="control-group col-xs-12">
-                  <label class="control-label" for="email">Email:</label>
-                  <div class="controls">
-                    <%= f.email_field :email, :class => "form-control", :placeholder => "email@gmail.com" %>
-                  </div>
-                </div>
-                <div class="control-group col-xs-12">
-                  <label class="control-label" for="password">Password:</label>
-                  <div class="controls">
-                    <%= f.password_field :password, :class => "form-control", :placeholder => "**********" %>
-                  </div>
-                </div>
-                <div class="control-group">
-                  <div class="controls col-xs-12">
-                    <label class="control-label" for="name">Name:</label>
-                  </div>
-                  <div class="controls col-xs-6">
-                    <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
-                  </div>
-                  <div class="controls col-xs-6">
-                    <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
-                  </div>
-                </div>
+            <%= link_to('Become an evaluator', "/users/application", :class => 'btn-info btn sign-up') %>
 
-                <div class="control-group col-xs-12">
-                  <label class="control-label" for="phone">Phone:</label>
-                  <div class="controls">
-                    <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555)555-5555" %>
-                  </div>
-                </div>
-
-                <div class="control-group">
-                  <div class="controls col-xs-12">
-                    <label class="control-label" for="address">Address:</label>
-                  </div>
-                  <div class="controls col-xs-5">
-                    <%= f.text_field :address, :class => "form-control", :placeholder => "Address" %>
-                  </div>
-                  <div class="controls col-xs-3">
-                    <%= f.text_field :city, :class => "form-control", :placeholder => "City" %>
-                  </div>
-                  <div class="controls col-xs-2">
-                    <%= f.text_field :state, :class => "form-control", :placeholder => "State" %>
-                  </div>
-                  <div class="controls col-xs-2">
-                    <%= f.text_field :zip, :class => "form-control", :placeholder => "Zip" %>
-                  </div>
-                </div>
-
-                <div class="control-group col-xs-12">
-                  <label class="control-label" for="signup"></label>
-                  <div class="controls">
-                    <%= f.submit "Register", :class => "btn btn-primary signUp" %>
-                  </div>
-                </div>
-              </fieldset>
-            <% end %>
           </div>
         </div>
       </div>
