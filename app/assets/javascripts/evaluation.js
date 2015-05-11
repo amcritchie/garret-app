@@ -68,9 +68,25 @@ var Evaluation = {
         var info = {id: Evaluation.applicationId};
         $.when(Evaluation.getScore(info)).done(function (response) {
             Evaluation.refresh();
+            Evaluation.removeQuestionsWithStandardsZero(response.standards);
             Evaluation.loadScores(response.score);
             Evaluation.registerClickAnswer();
         });
+    },
+
+    removeQuestionsWithStandardsZero: function(standards) {
+        var standardsObject = {};
+        standards.split('|').forEach(function(questionAndStandard) {
+            var id = questionAndStandard.split(':')[0];
+            standardsObject[id] = questionAndStandard.split(':')[1];
+        });
+
+        $.each($('.question-row'), function(key, value) {
+            var questionId = $(value).data('question-id');
+            if ((!standardsObject[questionId]) || standardsObject[questionId] === '0') {
+                $(value).remove();
+            }
+        })
     },
 
     registerClickAnswer: function(){

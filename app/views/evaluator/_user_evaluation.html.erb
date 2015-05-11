@@ -38,7 +38,7 @@
                   </thead>
                   <tbody>
                   <% department_questions.each do |question| %>
-                      <tr>
+                      <tr class="question-row" data-question-id="<%= question.id %>">
                         <div class="user-row" data-question-id="<%= question.id %>">
                           <th>
                             <strong><%= question.body %></strong>
@@ -84,7 +84,7 @@
           </thead>
           <tbody>
           <% @all_questions.each do |question| %>
-              <tr>
+              <tr class="question-row" data-question-id="<%= question.id %>">
                 <div class="user-row" data-question-id="<%= question.id %>">
                   <th class="col-xs-7">
                     <strong><%= question.body %></strong>

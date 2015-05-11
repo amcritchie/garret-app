@@ -70,7 +70,7 @@ class EvaluationApplicationsController < ApplicationController
     @application = EvaluationApplication.find(params[:id])
     respond_to do |format|
       if @application
-        format.json { render json: {score: @application.score} }
+        format.json { render json: {score: @application.score, standards: @application.evaluation.standard.details} }
       else
         format.json { render json: {error: "Application not found."} }
       end
