@@ -1,7 +1,7 @@
 
 <%= form_for :user, as: :post, url: users_path(:user), html: {class: 'signUpForm'} do |f| %>
     <fieldset>
-    <div class="control-group">
+    <div class="control-group margin-top-8">
       <div class="controls col-xs-12">
         <label class="control-label" for="name">Name:</label>
       </div>
@@ -13,21 +13,21 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="email">Email:</label>
 
       <div class="controls">
         <%= f.email_field :email, :class => "form-control", :placeholder => "email@gmail.com" %>
       </div>
     </div>
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="email">Skype:</label>
 
       <div class="controls">
         <%= f.text_field :skype, :class => "form-control", :placeholder => "Skype Handle" %>
       </div>
     </div>
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="password">Password:</label>
 
       <div class="controls">
@@ -35,7 +35,7 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="phone">Phone:</label>
 
       <div class="controls">
@@ -44,7 +44,7 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
+      <div class="controls col-xs-12 margin-top-8">
         <label class="control-label" for="address">Address:</label>
       </div>
       <div class="controls col-xs-5">
@@ -62,8 +62,8 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
-        <label class="control-label" for="devices">Which devices will you be using for restaurant?</label>
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="devices">Which devices will you be using for restaurant anonymous?</label>
       </div>
       <div class="controls col-xs-12">
         <label class="checkbox-inline"><input type="checkbox" value="home-office">Home Office</label>
@@ -76,23 +76,23 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="found_us_by">How did you hear about us?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="found_us_by">How did you hear about us?</label>
 
       <div class="controls">
         <%= f.text_field :found_us_by, :class => "form-control", :placeholder => "Friend, Google, Facebook?" %>
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="occupation">What is your current occupation?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="occupation">What is your current occupation?</label>
       <div class="controls">
         <%= f.text_field :occupation, :class => "form-control", :placeholder => "Occupation" %>
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="qualifications">Why would you be a valuable evaluator?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="qualifications">Why would you be a valuable evaluator?</label>
 
       <div class="controls">
         <%= f.text_field :qualifications, :class => "form-control", :placeholder => "Qualifications" %>
@@ -100,7 +100,7 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
+      <div class="controls col-xs-12 margin-top-8">
         <label class="control-label" for="availability">How often can you service evaluations in your home area?</label>
       </div>
       <div class="controls col-xs-12">
@@ -111,8 +111,8 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="other_locations">Are there any other metropolitan your frequent?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="other_locations">Are there any other metropolitan your frequent?</label>
 
       <div class="controls">
         <%= f.text_field :other_locations, :class => "form-control", :placeholder => "Colorado Springs, CO" %>
@@ -120,8 +120,8 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
-        <label class="control-label" for="interested_in">What opportunities are you interested in evaluation</label>
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="interested_in">What opportunities are you interested in evaluation?</label>
       </div>
       <div class="controls col-xs-12">
         <label class="checkbox-inline"><input type="checkbox" value="restaurant-lunch">Restaurants (Lunch)</label>
@@ -131,7 +131,7 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
+      <div class="controls col-xs-12 margin-top-8">
         <label class="control-label" for="work_with_other_companies">Do you currently perform anonymous evaluations for any other
           companies?</label>
       </div>
@@ -141,8 +141,8 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="certification">Do you have an evaluation certification?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="certification">Do you have an evaluation certification?</label>
 
       <div class="controls">
         <%= f.text_field :certification, :class => "form-control", :placeholder => "MSPA Silver, MSPA Gold, NARMS, PI License, ..." %>
@@ -150,7 +150,7 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
+      <div class="controls col-xs-12 margin-top-8">
         <label class="control-label" for="writing">Which best describes you?</label>
       </div>
       <div class="controls col-xs-12">
@@ -175,47 +175,47 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="good_time">Where would you take a friend in your home town?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="good_time">Where would you take a friend in your home town?</label>
 
       <div class="controls">
         <%= f.text_field :good_time, :class => "form-control", :placeholder => "I really enjoy Dulce Vida on Speer and 11th." %>
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="trends">What food trends do you see catching on in the next few years?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="trends">What food trends do you see catching on in the next few years?</label>
 
       <div class="controls">
         <%= f.text_field :trends, :class => "form-control", :placeholder => "Baked Alaska is coming back!" %>
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="favorite_restaurant">What is your favorite all time restaurant?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="favorite_restaurant">What is your favorite all time restaurant?</label>
 
       <div class="controls">
         <%= f.text_field :favorite_restaurant, :class => "form-control", :placeholder => "Chipotle Mexican Grill" %>
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="favorite_restaurant_why">Why is your favorite?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="favorite_restaurant_why">Why is your favorite?</label>
 
       <div class="controls">
         <%= f.text_field :favorite_restaurant_why, :class => "form-control", :placeholder => "The food is fresh and the atmosphere is great!" %>
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
-      <label class="control-label" for="ten_and_five">Please describe the '10 & 5' rule?:</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="ten_and_five">Please describe the '10 & 5' rule?</label>
 
       <div class="controls">
         <%= f.text_field :ten_and_five, :class => "form-control", :placeholder => "Feel free to use google." %>
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="literacy">Please list the following words in reverse alphabetical order:
         'alligator', 'orange', 'label', 'yams', 'orangutan':</label>
 
@@ -224,7 +224,7 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="no_name_scenario">Lets say you just finished dinner at a restaurant you are evaluation. You
         get home and can't remember the concierge's name. What do you do?</label>
 
@@ -233,7 +233,7 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="birthday">What is your birthday?</label>
 
       <div class="controls">
@@ -242,7 +242,7 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
+      <div class="controls col-xs-12 margin-top-8">
         <label class="control-label" for="gender">What is your gender?</label>
       </div>
       <div class="controls col-xs-12">
@@ -251,7 +251,7 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="certification">Are you currently?</label>
 
       <div class="controls">
@@ -260,7 +260,7 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
+      <div class="controls col-xs-12 margin-top-8">
         <label class="control-label" for="employment">Are you currently?</label>
       </div>
       <div class="controls col-xs-12">
@@ -291,7 +291,7 @@
     </div>
 
     <div class="control-group">
-      <div class="controls col-xs-12">
+      <div class="controls col-xs-12 margin-top-8">
         <label class="control-label" for="education">What is your highest level of education?</label>
       </div>
       <div class="controls col-xs-12">
@@ -314,7 +314,7 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12">
+    <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="signup"></label>
 
       <div class="controls">
