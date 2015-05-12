@@ -5,6 +5,8 @@
     </h1>
     <br>
 
+    <%= render 'evaluator/user_evaluation' %>
+
     <%= render 'admin/modals/root' %>
 
     <%= link_to('Departments', "#login", :data => {toggle: 'modal', target: ".departments-modal"}) %> -
@@ -21,6 +23,9 @@
 
     <h4>Open Applications</h4>
     <%= render 'admin/tables/open_applications', locals: {evaluations: @open_evaluations} %>
+
+    <h4>Submitted Applications</h4>
+    <%= render 'admin/tables/submitted_applications', locals: {evaluations: @submitted_evaluations} %>
 
     <h4>Completed Applications</h4>
     <%= render 'admin/tables/complete_applications', locals: {evaluations: @completed_evaluations} %>

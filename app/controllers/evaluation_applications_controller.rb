@@ -50,6 +50,23 @@ class EvaluationApplicationsController < ApplicationController
     redirect_to root_path
   end
 
+  def accept
+    @application = EvaluationApplication.find(params[:id])
+    @application.update(
+        status: 'complete',
+    )
+    redirect_to root_path
+  end
+
+  def reopen
+    @application = EvaluationApplication.find(params[:id])
+    @application.update(
+        status: 'open',
+        completed_at: Time.now
+    )
+    redirect_to root_path
+  end
+
   def get_info
     @application = EvaluationApplication.find(params[:id])
     @evaluation = Evaluation.find(@application[:evaluation_id])

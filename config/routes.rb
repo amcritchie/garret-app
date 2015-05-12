@@ -52,6 +52,9 @@ Rails.application.routes.draw do
   post 'application/update_score' => 'evaluation_applications#update_score'
   post 'application/submit' => 'evaluation_applications#submit'
 
+  post 'application/accept' => 'evaluation_applications#accept'
+  post 'application/reopen' => 'evaluation_applications#reopen'
+
   # post 'restaurants/new' => 'restaurants#create'
 
 

@@ -1,6 +1,35 @@
 var Admin = {
     load: function() {
 
+        $('.viewSubmission').on('click', function () {
+            Evaluation.applicationId = $(this).data('application-id');
+            Evaluation.open();
+        });
+
+        $('.acceptSubmission').on('click', function () {
+            var id = $(this).data('application-id');
+            $.ajax({
+                type: "POST",
+                url: "application/accept",
+                data: {id: id}
+            });
+            var a = $(this).parent();
+            a.parent().children().children('button').remove();
+            a.prepend('Evaluation Complete');
+        });
+
+        $('.rejectSubmission').on('click', function () {
+            var id = $(this).data('application-id');
+            $.ajax({
+                type: "POST",
+                url: "application/reopen",
+                data: {id: id}
+            });
+            var a = $(this).parent();
+            a.parent().children().children('button').remove();
+            a.prepend('Evaluation Reopened');
+        });
+
         List.listeners("Keys", "keys");
         List.listeners("Departments", "departments");
 
