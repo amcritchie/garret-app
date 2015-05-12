@@ -1,0 +1,40 @@
+class AddBartenderToApplicationEvaluation < ActiveRecord::Migration
+  def change
+    add_column :evaluation_applications, :arrive_time, :string
+    add_column :evaluation_applications, :depart_time, :string
+    add_column :evaluation_applications, :check_all_items_billed, :boolean
+    add_column :evaluation_applications, :check_num, :string
+    add_column :evaluation_applications, :table_num, :string
+    add_column :evaluation_applications, :check_amount, :string
+    add_column :evaluation_applications, :res_valid, :boolean
+    add_column :evaluation_applications, :res_gender, :string
+    add_column :evaluation_applications, :res_height, :string
+    add_column :evaluation_applications, :res_hair, :string
+    add_column :evaluation_applications, :res_other, :text
+    add_column :evaluation_applications, :bar_valid, :boolean
+    add_column :evaluation_applications, :bar_gender, :string
+    add_column :evaluation_applications, :bar_height, :string
+    add_column :evaluation_applications, :bar_hair, :string
+    add_column :evaluation_applications, :bar_other, :text
+    add_column :evaluation_applications, :host1_valid, :boolean
+    add_column :evaluation_applications, :host1_gender, :string
+    add_column :evaluation_applications, :host1_height, :string
+    add_column :evaluation_applications, :host1_hair, :string
+    add_column :evaluation_applications, :host1_other, :text
+    add_column :evaluation_applications, :host2_valid, :boolean
+    add_column :evaluation_applications, :host2_gender, :string
+    add_column :evaluation_applications, :host2_height, :string
+    add_column :evaluation_applications, :host2_hair, :string
+    add_column :evaluation_applications, :host2_other, :text
+    add_column :evaluation_applications, :man_valid, :boolean
+    add_column :evaluation_applications, :man_gender, :string
+    add_column :evaluation_applications, :man_height, :string
+    add_column :evaluation_applications, :man_hair, :string
+    add_column :evaluation_applications, :man_other, :text
+    add_column :evaluation_applications, :ser_valid, :boolean
+    add_column :evaluation_applications, :ser_gender, :string
+    add_column :evaluation_applications, :ser_height, :string
+    add_column :evaluation_applications, :ser_hair, :string
+    add_column :evaluation_applications, :ser_other, :text
+  end
+end

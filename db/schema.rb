@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313062238) do
+ActiveRecord::Schema.define(version: 20150512010908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,42 @@ ActiveRecord::Schema.define(version: 20150313062238) do
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "arrive_time"
+    t.string   "depart_time"
+    t.boolean  "check_all_items_billed"
+    t.string   "check_num"
+    t.string   "table_num"
+    t.string   "check_amount"
+    t.boolean  "res_valid"
+    t.string   "res_gender"
+    t.string   "res_height"
+    t.string   "res_hair"
+    t.text     "res_other"
+    t.boolean  "bar_valid"
+    t.string   "bar_gender"
+    t.string   "bar_height"
+    t.string   "bar_hair"
+    t.text     "bar_other"
+    t.boolean  "host1_valid"
+    t.string   "host1_gender"
+    t.string   "host1_height"
+    t.string   "host1_hair"
+    t.text     "host1_other"
+    t.boolean  "host2_valid"
+    t.string   "host2_gender"
+    t.string   "host2_height"
+    t.string   "host2_hair"
+    t.text     "host2_other"
+    t.boolean  "man_valid"
+    t.string   "man_gender"
+    t.string   "man_height"
+    t.string   "man_hair"
+    t.text     "man_other"
+    t.boolean  "ser_valid"
+    t.string   "ser_gender"
+    t.string   "ser_height"
+    t.string   "ser_hair"
+    t.text     "ser_other"
   end
 
   create_table "evaluations", force: true do |t|
