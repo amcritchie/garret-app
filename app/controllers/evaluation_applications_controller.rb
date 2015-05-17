@@ -87,7 +87,7 @@ class EvaluationApplicationsController < ApplicationController
     @application = EvaluationApplication.find(params[:id])
     respond_to do |format|
       if @application
-        format.json { render json: {score: @application.score, standards: @application.evaluation.standard.details} }
+        format.json { render json: {score: @application.score, standards: @application.evaluation.standard.details, application: @application} }
       else
         format.json { render json: {error: "Application not found."} }
       end
@@ -107,7 +107,7 @@ class EvaluationApplicationsController < ApplicationController
     @application = EvaluationApplication.find(params[:id])
     @application.update(
         score: params[:score],
-        arrive_time: time_spots[:arrive_time],
+        arrive_time: time_spots[:arrival_time],
         depart_time: time_spots[:departure_time],
         check_all_items_billed: check[:allItems],
         check_num: check[:check],

@@ -26,49 +26,49 @@ var Evaluation = {
                 departure_time: document.getElementById("departure_time").value
             },
             check: {
-                allItems: document.getElementById("all_items").value,
+                allItems: document.getElementById("all_items").checked,
                 check: document.getElementById("check_id").value,
                 table: document.getElementById("table_id").value,
                 checkAmount: document.getElementById("check_amount").value
             },
             employees: {
                 reservationist: {
-                    valid: document.getElementById("no_res").value,
+                    valid: document.getElementById("no_res").checked,
                     gender: $("input[name=res_gender]:checked").val(),
 //                    height: document.getElementById("res_height").value,
                     hair: document.getElementById("res_name").value,
                     other: document.getElementById("res_time").value
                 },
                 bartender: {
-                    valid: document.getElementById("no_bar").value,
+                    valid: document.getElementById("no_bar").checked,
                     gender: $("input[name=bar_gender]:checked").val(),
                     height: document.getElementById("bar_height").value,
                     hair: document.getElementById("bar_hair").value,
                     other: document.getElementById("bar_other").value
                 },
                 host1: {
-                    valid: document.getElementById("no_ho1").value,
+                    valid: document.getElementById("no_ho1").checked,
                     gender: $("input[name=ho1_gender]:checked").val(),
                     height: document.getElementById("ho1_height").value,
                     hair: document.getElementById("ho1_hair").value,
                     other: document.getElementById("ho1_other").value
                 },
                 host2: {
-                    valid: document.getElementById("no_ho2").value,
+                    valid: document.getElementById("no_ho2").checked,
                     gender: $("input[name=ho2_gender]:checked").val(),
                     height: document.getElementById("ho2_height").value,
                     hair: document.getElementById("ho2_hair").value,
                     other: document.getElementById("ho2_other").value
                 },
                 manager: {
-                    valid: document.getElementById("no_man").value,
+                    valid: document.getElementById("no_man").checked,
                     gender: $("input[name=man_gender]:checked").val(),
                     height: document.getElementById("man_height").value,
                     hair: document.getElementById("man_hair").value,
                     other: document.getElementById("man_other").value
                 },
                 server: {
-                    valid: document.getElementById("no_ser").value,
+                    valid: document.getElementById("no_ser").checked,
                     gender: $("input[name=ser_gender]:checked").val(),
                     height: document.getElementById("ser_height").value,
                     hair: document.getElementById("ser_hair").value,
@@ -108,6 +108,7 @@ var Evaluation = {
             Evaluation.refresh();
             Evaluation.removeQuestionsWithStandardsZero(response.standards);
             Evaluation.loadScores(response.score);
+            Evaluation.loadDetails(response.application);
             Evaluation.registerClickAnswer();
 
 
@@ -184,6 +185,93 @@ var Evaluation = {
         return deferred;
     },
 
+    loadDetails: function (details) {
+//        debugger;
+        $(document.getElementById("arrival_time")).val(details.arrive_time);
+        $(document.getElementById("departure_time")).val(details.depart_time);
+//        $(document.getElementById("all_items")).val(details.check_all_items_billed);
+        if (details.check_all_items_billed){
+            document.getElementById("all_items").click()
+        }
+        $(document.getElementById("check_id")).val(details.check_num);
+        $(document.getElementById("table_id")).val(details.arrive_time);
+        $(document.getElementById("check_amount")).val(details.check_amount);
+
+
+//        $(document.getElementById("no_res")).val(details.arrive_time);
+        if (details.res_valid){
+            document.getElementById("no_res").click()
+        }
+//        $("input[name=res_gender]:checked").val();
+        $('[name=res_gender][value=' + details.res_gender +']').click();
+
+        $(document.getElementById("res_height")).val(details.arrive_time);
+        $(document.getElementById("res_name")).val(details.arrive_time);
+        $(document.getElementById("res_time")).val(details.arrive_time);
+
+
+//        $(document.getElementById("no_bar")).val(details.bar_valid);
+        debugger;
+        if (details.bar_valid){
+            document.getElementById("no_bar").click()
+        }
+//        $("input[name=bar_gender]:checked").val();
+        $('[name=bar_gender][value=' + details.bar_gender +']').click();
+        $(document.getElementById("bar_height")).val(details.bar_height);
+        $(document.getElementById("bar_hair")).val(details.bar_hair);
+        $(document.getElementById("bar_other")).val(details.arrive_time);
+
+
+        if (details.host1_valid){
+            document.getElementById("no_ho1").click()
+        }
+//        $(document.getElementById("no_ho1")).val(details.arrive_time);
+//        $("input[name=ho1_gender]:checked").val();
+        $('[name=ho1_gender][value=' + details.host1_gender +']').click();
+
+        $(document.getElementById("ho1_height")).val(details.host1_height);
+        $(document.getElementById("ho1_hair")).val(details.host1_hair);
+        $(document.getElementById("ho1_other")).val(details.host1_other);
+
+
+        if (details.host2_valid){
+            document.getElementById("no_ho2").click()
+        }
+//        $(document.getElementById("no_ho2")).val(details.arrive_time);
+//        $("input[name=ho2_gender]:checked").val(details.arrive_time);
+        $('[name=ho2_gender][value=' + details.host2_gender +']').click();
+
+        $(document.getElementById("ho2_height")).val(details.host2_height);
+        $(document.getElementById("ho2_hair")).val(details.host2_hair);
+        $(document.getElementById("ho2_other")).val(details.host2_other);
+
+
+        if (details.man_valid){
+            document.getElementById("no_man").click()
+        }
+//        $(document.getElementById("no_man")).val(details.arrive_time);
+//        $("input[name=man_gender]:checked").val(details.arrive_time);
+        $('[name=man_gender][value=' + details.man_gender +']').click();
+
+        $(document.getElementById("man_height")).val(details.man_height);
+        $(document.getElementById("man_hair")).val(details.man_hair);
+        $(document.getElementById("man_other")).val(details.man_other);
+
+
+
+        if (details.ser_valid){
+            document.getElementById("no_ser").click()
+        }
+//        $(document.getElementById("no_ser")).val(details.arrive_time);
+//        $("input[name=ser_gender]:checked").val(details.arrive_time);
+        $('[name=ser_gender][value=' + details.ser_gender +']').click();
+
+        $(document.getElementById("ser_height")).val(details.arrive_time);
+        $(document.getElementById("ser_hair")).val(details.arrive_time);
+        $(document.getElementById("ser_other")).val(details.arrive_time);
+
+    },
+
     loadScores: function (score) {
         score.split('|').forEach(function (question) {
             var id = question.split(':')[0];
@@ -200,6 +288,7 @@ var Evaluation = {
                 $('.questionNil[data-question-id=' + id + ']').hide();
             }
         });
+
 //        $('.questionNil').not('.active').children().remove();
 //        $('.questionNil').not('.active').removeClass('btn-default');
         $('.questionLabel').css("background-color", "white");
