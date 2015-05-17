@@ -17,17 +17,17 @@
     <%= link_to('New Standards', "#login", :data => {toggle: 'modal', target: ".standards-modal"}) %> -
     <%= link_to('New Evaluation', "#login", :data => {toggle: 'modal', target: ".eval-modal"}) %><br><br>
 
-    <h1>Evaluation Applications</h1>
-    <h4>Pending Applications</h4>
+    <h1>User Evaluations</h1>
+    <h4>Pending Evaluations</h4>
     <%= render 'admin/tables/pending_applications', locals: {evaluations: @pending_evaluations} %>
 
-    <h4>Open Applications</h4>
+    <h4>Open Evaluations</h4>
     <%= render 'admin/tables/open_applications', locals: {evaluations: @open_evaluations} %>
 
-    <h4>Submitted Applications</h4>
+    <h4>Submitted Evaluations</h4>
     <%= render 'admin/tables/submitted_applications', locals: {evaluations: @submitted_evaluations} %>
 
-    <h4>Completed Applications</h4>
+    <h4>Completed Evaluations</h4>
     <%= render 'admin/tables/complete_applications', locals: {evaluations: @completed_evaluations} %>
 
     <hr><hr>

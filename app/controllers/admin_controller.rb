@@ -35,9 +35,15 @@ class AdminController < ApplicationController
   end
 
   def evaluations
+    @departments = Department.all
+    @all_questions = Question.all
+
+
     @pending_evaluations =  EvaluationApplication.where(status: 'pending').order(:created_at)
+    @open_evaluations =  EvaluationApplication.where(status: 'open').order(:created_at)
+    @submitted_evaluations = EvaluationApplication.where(status: 'submitted').order(:created_at)
     @completed_evaluations = EvaluationApplication.where(status: 'submitted').order(:created_at)
-    @open_evaluations =  EvaluationApplication.where(status: 'open').order(:created_at)  end
+  end
 
   def users
     @all_users = User.all

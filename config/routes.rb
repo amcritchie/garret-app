@@ -4,9 +4,9 @@ Rails.application.routes.draw do
 
   # Must be before resources :users so get /users directs to admin
   get '/admin' => 'admin#home'
-  get '/restaurants' => 'admin#restaurants'
-  get '/evaluations' => 'admin#evaluations'
-  get '/users' => 'admin#users'
+  get '/admin/restaurants' => 'admin#restaurants'
+  get '/admin/evaluations' => 'admin#evaluations'
+  get '/admin/users' => 'admin#users'
   get '/users/application' => 'users#application'
 
   resources :users do
