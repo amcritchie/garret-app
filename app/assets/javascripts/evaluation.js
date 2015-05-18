@@ -81,7 +81,8 @@ var Evaluation = {
 
     getScoreString: function () {
         var array = [];
-        $('.questionCheckboxAll:visible').each(function (index, question) {
+//        $('.questionCheckboxAll:visible').each(function (index, question) {
+        $('.questionCheckboxAll[data-relevant=true]').each(function (index, question) {
 
             var id = $(question).data('question-id');
             if ($($(this).children()[1]).hasClass('active')) {
@@ -99,6 +100,7 @@ var Evaluation = {
         $('.question-row').show();
         $('.evaluationFill').prop('disabled', false).val('');
         $('.evaluationClick').prop('disabled', false).prop('checked', false);
+        $('.questionCheckboxAll').attr('data-relevant', true);
         $('.answerExplanation').hide();
         $('label').removeClass('active');
         $('.questionNil').show();
@@ -180,6 +182,7 @@ var Evaluation = {
             var questionId = $(value).data('question-id');
             if ((!standardsObject[questionId]) || standardsObject[questionId] === '0') {
                 $(value).hide();
+                $(value).find('.questionCheckboxAll').attr('data-relevant', false);
             }
         })
     },
@@ -319,31 +322,10 @@ var Evaluation = {
 
                 $('.answerExplanation[data-question-id=' + id + ']').on('keyup', function() {
                     $('.answerExplanation[data-question-id=' + id + ']').val($(this).val());
-//                Evaluation.save();
                 });
             }
-//            var id = question.split(':')[0];
-//            if (question.split(':')[1] === '1') {
-//                $('.questionPass[data-question-id=' + id + ']').click();
-//                $('.questionNil[data-question-id=' + id + ']').hide();
-//            } else if (question.split(':')[1] === '0') {
-//                $('.questionFail[data-question-id=' + id + ']').click();
-//                $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
-//                $('.questionNil[data-question-id=' + id + ']').hide();
-//            } else if (question.split(':')[1] === '2') {
-//                $('.questionNA[data-question-id=' + id + ']').click();
-//                $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
-//                $('.questionNil[data-question-id=' + id + ']').hide();
-//            }
-//
-//            $('.answerExplanation[data-question-id=' + id + ']').on('keyup', function() {
-//                $('.answerExplanation[data-question-id=' + id + ']').val($(this).val());
-////                Evaluation.save();
-//            });
         });
 
-//        $('.questionNil').not('.active').children().remove();
-//        $('.questionNil').not('.active').removeClass('btn-default');
         $('.questionLabel').css("background-color", "white");
         $('.active.questionPassed').css("background-color", "lightgreen");
         $('.active.questionFailed').css("background-color", "tomato");
@@ -355,7 +337,7 @@ var Evaluation = {
         if (window.location.pathname.indexOf('/admin') !== 0) {
             if ($('.submitEvaluation').length === 0) {
                 var answeredQuestion = 0;
-                var allQuestions = $('.questionCheckboxAll:visible');
+                var allQuestions = $('.questionCheckboxAll[data-relevant=true]');
                 allQuestions.each(function (question) {
                     if ($($(this).children()[0]).hasClass('active')) {
                         answeredQuestion++;
@@ -388,7 +370,6 @@ var Evaluation = {
                         } else {
                             $('.user-evaluation-center').prepend('<div class="red-text evaluation-error">Please Fill in Explanations<hr></div>');
                             $('.modal-body').prepend('<div class="red-text evaluation-error">Please Fill in Explanations</div>');
-//                        $('.modal-body').prepend('asd')
                             $('#all-questions').click();
                             setTimeout(function () {
                                 $('.evaluation-error').fadeOut()
