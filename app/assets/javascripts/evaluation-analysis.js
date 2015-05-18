@@ -60,7 +60,6 @@ var Application = {
             }
         });
 
-//        debugger;
         var depColumns = [];
         var depColumnsString = '';
         $.each(scores.departments, function(index, department) {
@@ -142,8 +141,6 @@ var Application = {
             var why = '';
             var resultt = $.grep(Application.standards, function(e){ return e.id == id; });
             var questionObj = $.grep(Application.questions, function(e){ return e.id == id; })[0];
-//            debugger;
-            console.log(resultt);
             if (question.split(':')[1] === '1'){
                 result = ['Pass','Passed'];
             } else if(question.split(':')[1] === '0'){

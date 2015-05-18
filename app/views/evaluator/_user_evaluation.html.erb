@@ -61,7 +61,9 @@
                                   <input class="questionPass questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
                                   Pass </label>
                               </div>
-
+                              <div>
+                                <input class="answerExplanation evaluationFill" data-question-id="<%= question.id %>" placeholder="Why?" value="">
+                              </div>
                             </strong>
                           </th>
                         </div>
@@ -95,11 +97,11 @@
                       <div class="btn-group questionCheckboxAll" data-toggle="buttons" data-question-id=<%= question.id %>>
 
                         <label class="btn btn-default questionLabel questionCheckbox questionNA" data-question-id=<%= question.id %>>
-                          <input class="questionNA questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="2" checked>
+                          <input class="questionNA questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="2" checked>
                           N/A </label>
 
                         <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
-                          <input class="questionFail questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
+                          <input class="questionFail questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
                           Fail </label>
 
                         <label class="btn btn-default questionLabel questionNil active" data-question-id=<%= question.id %>>
@@ -108,11 +110,11 @@
                         </label>
 
                         <label class="btn btn-default questionLabel questionCheckbox questionPassed" data-question-id=<%= question.id %>>
-                          <input class="questionPass questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
+                          <input class="questionPass questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
                           Pass </label>
                       </div>
                       <div>
-                        <input data-question-id=<%= question.id %> class="answerExplanation" placeholder="Why?" value="">
+                        <input data-question-id="<%= question.id %>" class="answerExplanation evaluationFill" placeholder="Why?" value="">
                       </div>
                     </strong>
                   </th>

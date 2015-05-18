@@ -111,14 +111,14 @@ var Evaluation = {
             Evaluation.loadDetails(response.application);
             Evaluation.registerClickAnswer();
 
-
-//            if (window.location.pathname.indexOf('/admin') !== 0) {
-//                $('.questionLabel').off('click');
-//                $('.questionCheckbox').off('click');
-//                $('.questionFailed').off('click');
-//                $('.questionPassed').off('click');
-//            }
-
+            $('.evaluationFill').on('keyup', function() {
+                Evaluation.save();
+            });
+            $('.evaluationClick').on('click', function() {
+                setTimeout(function() {
+                    Evaluation.save();
+                }, 20);
+            });
         });
     },
 
@@ -155,6 +155,13 @@ var Evaluation = {
                 $('.questionNil[data-question-id=' + id + ']').hide();
             }
 
+            var answerExplanation = $('.answerExplanation[data-question-id=' + id + ']');
+            answerExplanation.off('keyup');
+            answerExplanation.on('keyup', function() {
+                answerExplanation.val($(this).val());
+                Evaluation.save();
+            });
+
             $('.questionLabel').css("background-color", "white");
             $('.active.questionPassed').css("background-color", "lightgreen");
             $('.active.questionFailed').css("background-color", "tomato");
@@ -163,9 +170,9 @@ var Evaluation = {
             Evaluation.addSubmit();
             Evaluation.registerClickAnswer();
 
-            setTimeout(function () {
-                Evaluation.save();
-            }, 20);
+//            setTimeout(function () {
+//                Evaluation.save();
+//            }, 20);
         });
     },
 
@@ -261,6 +268,11 @@ var Evaluation = {
                 $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
                 $('.questionNil[data-question-id=' + id + ']').hide();
             }
+
+            $('.answerExplanation[data-question-id=' + id + ']').on('keyup', function() {
+                $('.answerExplanation[data-question-id=' + id + ']').val($(this).val());
+//                Evaluation.save();
+            });
         });
 
 //        $('.questionNil').not('.active').children().remove();

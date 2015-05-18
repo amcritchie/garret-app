@@ -9,24 +9,24 @@
   <div class="row">
     <div class="col-sm-4 col-xs-5">
       <label style="font-weight: normal">No Reservationist
-        <input type="checkbox" id="no_res"><br>
+        <input class="evaluationClick" type="checkbox" id="no_res"><br>
       </label>
 
     </div>
     <div class="col-sm-8 col-xs-7">
       <label style="font-weight: normal;">Gender:
-        <input type="radio" name="<%= locals[:key] %>_gender" value="male">&nbsp M &nbsp
-        <input type="radio" name="<%= locals[:key] %>_gender" value="female">&nbsp F &nbsp
+        <input class="evaluationClick" type="radio" name="<%= locals[:key] %>_gender" value="male">&nbsp M &nbsp
+        <input class="evaluationClick" type="radio" name="<%= locals[:key] %>_gender" value="female">&nbsp F &nbsp
       </label>
     </div>
   </div>
 
   <div class="row">
     <label class="col-sm-4 col-xs-4"> Name
-      <input type="text" class="form-control" id="res_name">
+      <input type="text" class="form-control evaluationFill" id="res_name">
     </label>
     <label class="col-sm-8 col-xs-8"> Time Reservation Made
-      <input type="text" class="form-control" id="res_time">
+      <input type="text" class="form-control evaluationFill" id="res_time">
     </label>
   </div>
 </div>

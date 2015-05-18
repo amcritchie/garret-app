@@ -9,26 +9,26 @@
   <div class="row">
     <div class="col-sm-4 col-xs-5">
       <label style="font-weight: normal;">No <%= locals[:label] %>
-        <input type="checkbox" id="no_<%= locals[:key] %>"><br>
+        <input class="evaluationClick" type="checkbox" id="no_<%= locals[:key] %>"><br>
       </label>
     </div>
     <div class="col-sm-8 col-xs-7">
       <label style="font-weight: normal;">Gender:
-        <input type="radio" name="<%= locals[:key] %>_gender" value="male">&nbsp M &nbsp
-        <input type="radio" name="<%= locals[:key] %>_gender" value="female">&nbsp F &nbsp
+        <input class="evaluationClick" type="radio" name="<%= locals[:key] %>_gender" value="male">&nbsp M &nbsp
+        <input class="evaluationClick" type="radio" name="<%= locals[:key] %>_gender" value="female">&nbsp F &nbsp
       </label>
     </div>
   </div>
 
   <div class="row">
       <label class="col-sm-4 col-xs-6"> Height
-        <input type="text" class="form-control" id="<%= locals[:key] %>_height">
+        <input type="text" class="form-control evaluationFill" id="<%= locals[:key] %>_height">
       </label>
       <label class="col-sm-4 col-xs-6"> Hair
-        <input type="text" class="form-control" id="<%= locals[:key] %>_hair">
+        <input type="text" class="form-control evaluationFill" id="<%= locals[:key] %>_hair">
       </label>
-      <label class="col-sm-4 col-xs-12"> Other Description
-        <input type="text" class="form-control" id="<%= locals[:key] %>_other">
+      <label class="col-sm-4 col-xs-12"> Description
+        <input type="text" class="form-control evaluationFill" id="<%= locals[:key] %>_other">
       </label>
   </div>
 

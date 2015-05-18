@@ -40,7 +40,6 @@ var Register = {
                 FlashMessage.signUpErrors(errors);
             }
             console.log('create new restaurant');
-//            debugger;
         });
     },
     login: function () {

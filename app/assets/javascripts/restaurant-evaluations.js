@@ -11,10 +11,7 @@ var Evaluations = {
 
     load: function () {
         var info = {id: $('#metaInfo').data('restaurant-id')};
-        debugger;
         $.when(Evaluations.getData(info)).done(function (response) {
-            debugger;
-
             Evaluations.parseQuestions(response.questions);
             Evaluations.parseStandards(response.standards);
             Evaluations.parseEvaluations(response.evaluations);
@@ -128,7 +125,6 @@ var Evaluations = {
 //                        if ((lastSixEvaluations.length < 6) || )
                     }
                 });
-                debugger;
                 var missedQuestions = {};
 
                 thisEvaluation.scores.forEach(function(question) {
@@ -148,7 +144,6 @@ var Evaluations = {
                         var totalScoreOnLastSix = lastSixApps.length;
                         $.each(lastSixApps, function (index, eval) {
                             var evalQuestionScore = $.grep(eval.scores, function(e){ return e.questionId == question.questionId; })[0].score;
-                            debugger;
                             if (evalQuestionScore < 2){
                                 scoreOnLastSix += evalQuestionScore;
                             } else {
@@ -166,8 +161,6 @@ var Evaluations = {
                         }
                     }
                 });
-
-                debugger;
 
                 $.each(missedQuestions, function (index, score) {
                     $('.tableBody').append('<tr class="tableKeys">' +
