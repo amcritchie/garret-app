@@ -1,0 +1,37 @@
+<!--<div class="row">-->
+<!--<div class="content clearfix">-->
+
+<%= bootstrap_form_for(@restaurant, :html => {
+        class: 'form-horizontal float-middle'
+}) do |f| %>
+
+    <div class="col-xs-12">
+      <%= f.text_field :name, :placeholder => "Name" %>
+    </div>
+    <div class="col-xs-12">
+      <%= f.email_field :email, :placeholder => "Email" %>
+    </div>
+    <div class="col-xs-12">
+      <%= f.password_field :password, :placeholder => "Password" %>
+    </div>
+    <div class="col-xs-12">
+      <%= f.text_field :url, :placeholder => "Website" %>
+    </div>
+    <div class="col-xs-5">
+      <%= f.text_field :address, :placeholder => "Address" %>
+    </div>
+    <div class="col-xs-3">
+      <%= f.text_field :city, :placeholder => "City" %>
+    </div>
+    <div class="col-xs-2">
+      <%= f.text_field :state, :placeholder => "State" %>
+    </div>
+    <div class="col-xs-2">
+      <%= f.text_field :zip, :placeholder => "Zip" %>
+    </div>
+    <div class="col-xs-12 no-padding">
+      <%= f.submit "Save", :class => "btn btn-primary" %>
+    </div>
+<% end %>
+<!--</div>-->
+<!--</div>-->

@@ -23,21 +23,21 @@
                 <fieldset>
                   <!-- Sign In Form -->
                   <!-- Text input-->
-                  <div class="control-group col-xs-12">
+                  <div class="control-group col-xs-12 margin-top-8">
                     <label class="control-label" for="name">Restaurant Name:</label>
                     <div class="controls">
                       <%= f.text_field :name, :class => "form-control", :placeholder => "Restaurant Name" %>
                     </div>
                   </div>
 
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="url">Phone:</label>
+                  <div class="control-group col-xs-12 margin-top-8">
+                    <label class="control-label" for="url">Website:</label>
                     <div class="controls">
                       <%= f.text_field :url, :class => "form-control", :placeholder => "www.google.com" %>
                     </div>
                   </div>
 
-                  <div class="control-group col-xs-12">
+                  <div class="control-group col-xs-12 margin-top-8">
                     <label class="control-label" for="phone">Phone:</label>
                     <div class="controls">
                       <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555)555-5555" %>
@@ -46,7 +46,24 @@
 
                   <!-- Password input-->
                   <div class="control-group">
-                    <div class="controls col-xs-12">
+                    <div class="controls col-xs-12 margin-top-8">
+                      <label class="control-label" for="username_and_pass">Temp email & password:</label>
+                    </div>
+                    <div class="controls col-xs-6">
+                      <%= f.text_field :email, :class => "form-control", :placeholder => "Temp Username",
+                                       :value => "#{rand(999999999)}@fiveandten.com"
+                      %>
+                    </div>
+                    <div class="controls col-xs-6">
+                      <%= f.text_field :password, :class => "form-control", :placeholder => "Temp Password",
+                          :value => "#{rand(999999999999)}"
+                      %>
+                    </div>
+                  </div>
+
+                  <!-- Password input-->
+                  <div class="control-group">
+                    <div class="controls col-xs-12 margin-top-8">
                       <label class="control-label" for="address">Address:</label>
                     </div>
                     <div class="controls col-xs-5">

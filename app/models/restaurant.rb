@@ -1,9 +1,8 @@
 class Restaurant < ActiveRecord::Base
+  has_secure_password
   belongs_to :user
   has_many :evaluations
 
-  # has_secure_password
-  #
   # validates_presence_of :name
   # validates_uniqueness_of :email
   # validates :password_digest, length: {minimum: 8}

@@ -28,7 +28,17 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    p '-=1'*200
+    p user_params
+    p '-=2'*200
+    p @user = User.new(user_params)
+    p '-=3'*200
+    @user
+    p '-=4'*200
+    p @user.email
+    p '-=5'*200
+    p 'sadsadasdad'
+    p '-=6'*200
 
     # @user.account = params[:account]
     @user.email = @user.email.downcase

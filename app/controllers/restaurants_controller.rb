@@ -72,16 +72,18 @@ class RestaurantsController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @restaurant = Restaurant.find(current_user.id)
   end
 
   # POST /users
   # POST /users.json
   def create
 
+    temp_pass = restaurant_params[:password]
     @restaurant = Restaurant.new(restaurant_params)
 
-
     @restaurant.name = @restaurant.name.downcase
+    @restaurant.temp_password = temp_pass
     @restaurant.user_id = current_user.id
     @restaurant.url = @restaurant.url.downcase
     @restaurant.address = @restaurant.address.downcase
@@ -100,19 +102,19 @@ class RestaurantsController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+      @restaurant = Restaurant.find(current_user.id)
+      if @restaurant.update(restaurant_params)
+        @restaurant.update({temp_password: nil})
+        format.html { redirect_to root_path, notice: 'User was successfully updated.' }
+        format.json { render :root, status: :ok, location: @restaurant }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
       end
     end
   end
 
   def unique_email
-    p '=_='*40
-    p params[:email]
 
     @user = User.find_by(email: params[:email].downcase)
     respond_to do |format|
@@ -142,6 +144,6 @@ class RestaurantsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def restaurant_params
-    params.require(:restaurant).permit(:name, :phone_number, :address, :city, :state, :zip, :url )
+    params.require(:restaurant).permit(:name, :phone_number, :email, :password, :address, :city, :state, :zip, :url )
   end
 end

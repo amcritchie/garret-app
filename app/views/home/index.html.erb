@@ -2,6 +2,8 @@
   <div class="span12">
     <% if session[:user_id] == nil %>
         <%= render 'loggedOut' %>
+    <% elsif session[:user_type] == 'restaurant' %>
+        <%= render 'restaurantLoggedIn' %>
     <% elsif !current_user.admin %>
         <%= render 'loggedIn' %>
     <% end %>

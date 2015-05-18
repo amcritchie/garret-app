@@ -6,19 +6,22 @@ class SessionsController < ApplicationController
   end
 
   def create
-    p '____+___' * 90
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
-      p '___!_' *80
-      p @user.admin
       if @user.admin
         redirect_to admin_path
       else
         redirect_to root_path
       end
     else
-      render :new
+      @restaurant = Restaurant.find_by(email: params[:user][:email].downcase)
+      if @restaurant && @restaurant.authenticate(params[:user][:password])
+        session[:user_id] = @restaurant.id
+        redirect_to root_path
+      else
+        render :new
+      end
     end
   end
 
@@ -27,9 +30,17 @@ class SessionsController < ApplicationController
     respond_to do |format|
       if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
+        session[:user_type] = 'user'
         format.json { render json: @user }
       else
-        format.json { render json: {error: "Username / password is invalid."} }
+        @restaurant = Restaurant.find_by(email: params[:email].downcase)
+        if @restaurant && @restaurant.authenticate(params[:password])
+          session[:user_id] = @restaurant.id
+          session[:user_type] = 'restaurant'
+          format.json { render json: @restaurant }
+        else
+          format.json { render json: {error: "Username / password is invalid."} }
+        end
       end
     end
   end
