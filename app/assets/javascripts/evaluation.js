@@ -249,16 +249,16 @@ var Evaluation = {
             document.getElementById("all_items").click()
         }
         $(document.getElementById("check_id")).val(details.check_num);
-        $(document.getElementById("table_id")).val(details.arrive_time);
+        $(document.getElementById("table_id")).val(details.table_num);
         $(document.getElementById("check_amount")).val(details.check_amount);
 
         if (details.res_valid){
             document.getElementById("no_res").click()
         }
         $('[name=res_gender][value=' + details.res_gender +']').click();
-        $(document.getElementById("res_height")).val(details.arrive_time);
-        $(document.getElementById("res_name")).val(details.arrive_time);
-        $(document.getElementById("res_time")).val(details.arrive_time);
+        $(document.getElementById("res_height")).val(details.res_height);
+        $(document.getElementById("res_name")).val(details.res_hair);
+        $(document.getElementById("res_time")).val(details.res_other);
 
         if (details.bar_valid){
             document.getElementById("no_bar").click()
@@ -266,7 +266,7 @@ var Evaluation = {
         $('[name=bar_gender][value=' + details.bar_gender +']').click();
         $(document.getElementById("bar_height")).val(details.bar_height);
         $(document.getElementById("bar_hair")).val(details.bar_hair);
-        $(document.getElementById("bar_other")).val(details.arrive_time);
+        $(document.getElementById("bar_other")).val(details.bar_other);
 
 
         if (details.host1_valid){
@@ -298,9 +298,9 @@ var Evaluation = {
             document.getElementById("no_ser").click()
         }
         $('[name=ser_gender][value=' + details.ser_gender +']').click();
-        $(document.getElementById("ser_height")).val(details.arrive_time);
-        $(document.getElementById("ser_hair")).val(details.arrive_time);
-        $(document.getElementById("ser_other")).val(details.arrive_time);
+        $(document.getElementById("ser_height")).val(details.ser_height);
+        $(document.getElementById("ser_hair")).val(details.ser_hair);
+        $(document.getElementById("ser_other")).val(details.ser_other);
     },
 
     loadScores: function (score) {
