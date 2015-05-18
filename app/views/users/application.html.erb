@@ -1,6 +1,9 @@
-
 <%= form_for :user, as: :post, url: users_path(:user), html: {class: 'signUpForm'} do |f| %>
     <fieldset>
+    <div class="controls col-xs-12">
+      <h1>Evaluator Application</h1>
+    </div>
+
     <div class="control-group margin-top-8">
       <div class="controls col-xs-12">
         <label class="control-label" for="name">Name:</label>
@@ -86,6 +89,7 @@
 
     <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="occupation">What is your current occupation?</label>
+
       <div class="controls">
         <%= f.text_field :occupation, :class => "form-control", :placeholder => "Occupation" %>
       </div>
@@ -112,7 +116,7 @@
     </div>
 
     <div class="control-group col-xs-12 margin-top-8">
-      <label class="control-label" for="other_locations">Are there any other metropolitan your frequent?</label>
+      <label class="control-label" for="other_locations">Are there any other metropolitan areas you frequent?</label>
 
       <div class="controls">
         <%= f.text_field :other_locations, :class => "form-control", :placeholder => "Colorado Springs, CO" %>
@@ -121,7 +125,7 @@
 
     <div class="control-group">
       <div class="controls col-xs-12 margin-top-8">
-        <label class="control-label" for="interested_in">What opportunities are you interested in evaluation?</label>
+        <label class="control-label" for="interested_in">What opportunities are you interested in evaluating?</label>
       </div>
       <div class="controls col-xs-12">
         <label class="checkbox-inline"><input type="checkbox" value="restaurant-lunch">Restaurants (Lunch)</label>
@@ -132,7 +136,8 @@
 
     <div class="control-group">
       <div class="controls col-xs-12 margin-top-8">
-        <label class="control-label" for="work_with_other_companies">Do you currently perform anonymous evaluations for any other
+        <label class="control-label" for="work_with_other_companies">Do you currently perform anonymous evaluations for
+          any other
           companies?</label>
       </div>
       <div class="controls col-xs-12">
@@ -176,7 +181,7 @@
     </div>
 
     <div class="control-group col-xs-12 margin-top-8">
-      <label class="control-label" for="good_time">Where would you take a friend in your home town?</label>
+      <label class="control-label" for="good_time">Where would you take a friend, if they where visiting your home town?</label>
 
       <div class="controls">
         <%= f.text_field :good_time, :class => "form-control", :placeholder => "I really enjoy Dulce Vida on Speer and 11th." %>
@@ -200,7 +205,7 @@
     </div>
 
     <div class="control-group col-xs-12 margin-top-8">
-      <label class="control-label" for="favorite_restaurant_why">Why is your favorite?</label>
+      <label class="control-label" for="favorite_restaurant_why">Why is it your favorite?</label>
 
       <div class="controls">
         <%= f.text_field :favorite_restaurant_why, :class => "form-control", :placeholder => "The food is fresh and the atmosphere is great!" %>
@@ -225,7 +230,8 @@
     </div>
 
     <div class="control-group col-xs-12 margin-top-8">
-      <label class="control-label" for="no_name_scenario">Lets say you just finished dinner at a restaurant you are evaluation. You
+      <label class="control-label" for="no_name_scenario">Lets say you just finished dinner at a restaurant you are
+        evaluating. You
         get home and can't remember the concierge's name. What do you do?</label>
 
       <div class="controls">
@@ -251,14 +257,6 @@
       </div>
     </div>
 
-    <div class="control-group col-xs-12 margin-top-8">
-      <label class="control-label" for="certification">Are you currently?</label>
-
-      <div class="controls">
-        <%= f.text_field :certification, :class => "form-control", :placeholder => "MSPA Silver, MSPA Gold, NARMS, PI License, ..." %>
-      </div>
-    </div>
-
     <div class="control-group">
       <div class="controls col-xs-12 margin-top-8">
         <label class="control-label" for="employment">Are you currently?</label>
@@ -271,13 +269,16 @@
         <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="self_employed">Self-employed</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="out_of_work">Out of work for more than 1 year</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="out_of_work">Out of work for
+          more than 1 year</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="recently_out_of_work">Out of work for less than 1 year</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="recently_out_of_work">Out of
+          work for less than 1 year</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="homemaker">A homemaker</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="homemaker">A
+          homemaker</label>
       </div>
       <div class="controls col-xs-12">
         <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="student">A student</label>
@@ -286,7 +287,8 @@
         <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="retired">Retired</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="unable_to_work">Unable to work</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="unable_to_work">Unable to
+          work</label>
       </div>
     </div>
 
@@ -295,7 +297,8 @@
         <label class="control-label" for="education">What is your highest level of education?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="none">Never attended school or only attended Kindergarten</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="none">Never attended school or
+          only attended Kindergarten</label>
       </div>
       <div class="controls col-xs-12">
         <label class="radio-inline col-xs-12"><input type="radio" name="education" value="elementary">Elementary School</label>
@@ -304,13 +307,16 @@
         <label class="radio-inline col-xs-12"><input type="radio" name="education" value="high">High School</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="some_college">Some College</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="some_college">Some
+          College</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="college">College Graduate</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="college">College
+          Graduate</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="graduate_school">Graduate School</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="graduate_school">Graduate
+          School</label>
       </div>
     </div>
 
