@@ -81,7 +81,7 @@ var Evaluation = {
 
     getScoreString: function () {
         var array = [];
-        $('.questionCheckboxAll').each(function (index, question) {
+        $('.questionCheckboxAll:visible').each(function (index, question) {
 
             var id = $(question).data('question-id');
             if ($($(this).children()[1]).hasClass('active')) {
@@ -96,7 +96,10 @@ var Evaluation = {
     },
 
     refresh: function () {
-
+        $('.question-row').show();
+        $('.evaluationFill').prop('disabled', false).val('');
+        $('.evaluationClick').prop('disabled', false).prop('checked', false);
+        $('.answerExplanation').hide();
         $('label').removeClass('active');
         $('.questionNil').show();
 
@@ -108,6 +111,7 @@ var Evaluation = {
             Evaluation.refresh();
             Evaluation.removeQuestionsWithStandardsZero(response.standards);
             Evaluation.loadScores(response.score);
+            Evaluation.setDisableEvents();
             Evaluation.loadDetails(response.application);
             Evaluation.registerClickAnswer();
 
@@ -122,6 +126,49 @@ var Evaluation = {
         });
     },
 
+    setDisableEvents: function() {
+        $('#no_bar').on('click', function(){
+            Evaluation.disableEmployee(this,'bar');
+        });
+        $('#no_ho1').on('click', function(){
+            Evaluation.disableEmployee(this,'ho1');
+        });
+        $('#no_ho2').on('click', function(){
+            Evaluation.disableEmployee(this,'ho2');
+        });
+        $('#no_man').on('click', function(){
+            Evaluation.disableEmployee(this,'man');
+        });
+        $('#no_ser').on('click', function(){
+            Evaluation.disableEmployee(this,'ser');
+        });
+        $('#no_res').on('click', function(){
+            if ($(this).prop( "checked" )){
+                $('#res_name').prop('disabled', true).val('');
+                $('#res_time').prop('disabled', true).val('');
+                $('[name=res_gender]').prop('disabled', true).prop('checked', false);
+            } else {
+                $('#res_name').prop('disabled', false);
+                $('#res_time').prop('disabled', false);
+                $('[name=res_gender]').prop('disabled', false);
+            }
+        });
+    },
+
+    disableEmployee: function(box, key) {
+        if ($(box).prop( "checked" )){
+            $('#' + key + '_hair').prop('disabled', true).val('');
+            $('#' + key + '_height').prop('disabled', true).val('');
+            $('#' + key + '_other').prop('disabled', true).val('');
+            $('[name=' + key + '_gender]').prop('disabled', true).prop('checked', false);
+        } else {
+            $('#' + key + '_hair').prop('disabled', false);
+            $('#' + key + '_height').prop('disabled', false);
+            $('#' + key + '_other').prop('disabled', false);
+            $('[name=' + key + '_gender]').prop('disabled', false);
+        }
+    },
+
     removeQuestionsWithStandardsZero: function (standards) {
         var standardsObject = {};
         standards.split('|').forEach(function (questionAndStandard) {
@@ -132,7 +179,7 @@ var Evaluation = {
         $.each($('.question-row'), function (key, value) {
             var questionId = $(value).data('question-id');
             if ((!standardsObject[questionId]) || standardsObject[questionId] === '0') {
-                $(value).remove();
+                $(value).hide();
             }
         })
     },
@@ -255,24 +302,44 @@ var Evaluation = {
 
     loadScores: function (score) {
         score.split('|').forEach(function (question) {
-            var id = question.split(':')[0];
-            if (question.split(':')[1] === '1') {
-                $('.questionPass[data-question-id=' + id + ']').click();
-                $('.questionNil[data-question-id=' + id + ']').hide();
-            } else if (question.split(':')[1] === '0') {
-                $('.questionFail[data-question-id=' + id + ']').click();
-                $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
-                $('.questionNil[data-question-id=' + id + ']').hide();
-            } else if (question.split(':')[1] === '2') {
-                $('.questionNA[data-question-id=' + id + ']').click();
-                $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
-                $('.questionNil[data-question-id=' + id + ']').hide();
-            }
+            if (question) {
+                var id = question.split(':')[0];
+                if (question.split(':')[1] === '1') {
+                    $('.questionPass[data-question-id=' + id + ']').click();
+                    $('.questionNil[data-question-id=' + id + ']').hide();
+                } else if (question.split(':')[1] === '0') {
+                    $('.questionFail[data-question-id=' + id + ']').click();
+                    $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
+                    $('.questionNil[data-question-id=' + id + ']').hide();
+                } else if (question.split(':')[1] === '2') {
+                    $('.questionNA[data-question-id=' + id + ']').click();
+                    $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
+                    $('.questionNil[data-question-id=' + id + ']').hide();
+                }
 
-            $('.answerExplanation[data-question-id=' + id + ']').on('keyup', function() {
-                $('.answerExplanation[data-question-id=' + id + ']').val($(this).val());
+                $('.answerExplanation[data-question-id=' + id + ']').on('keyup', function() {
+                    $('.answerExplanation[data-question-id=' + id + ']').val($(this).val());
 //                Evaluation.save();
-            });
+                });
+            }
+//            var id = question.split(':')[0];
+//            if (question.split(':')[1] === '1') {
+//                $('.questionPass[data-question-id=' + id + ']').click();
+//                $('.questionNil[data-question-id=' + id + ']').hide();
+//            } else if (question.split(':')[1] === '0') {
+//                $('.questionFail[data-question-id=' + id + ']').click();
+//                $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
+//                $('.questionNil[data-question-id=' + id + ']').hide();
+//            } else if (question.split(':')[1] === '2') {
+//                $('.questionNA[data-question-id=' + id + ']').click();
+//                $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
+//                $('.questionNil[data-question-id=' + id + ']').hide();
+//            }
+//
+//            $('.answerExplanation[data-question-id=' + id + ']').on('keyup', function() {
+//                $('.answerExplanation[data-question-id=' + id + ']').val($(this).val());
+////                Evaluation.save();
+//            });
         });
 
 //        $('.questionNil').not('.active').children().remove();
@@ -288,7 +355,7 @@ var Evaluation = {
         if (window.location.pathname.indexOf('/admin') !== 0) {
             if ($('.submitEvaluation').length === 0) {
                 var answeredQuestion = 0;
-                var allQuestions = $('.questionCheckboxAll');
+                var allQuestions = $('.questionCheckboxAll:visible');
                 allQuestions.each(function (question) {
                     if ($($(this).children()[0]).hasClass('active')) {
                         answeredQuestion++;
