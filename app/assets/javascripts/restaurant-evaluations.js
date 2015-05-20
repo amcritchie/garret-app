@@ -25,23 +25,12 @@ var Evaluations = {
             if (window.location.pathname.indexOf('/action_plan') === -1) {
                 $.each(Evaluations.allScores, function (index, score) {
 
-                    console.log('-score-');
-                    console.log(score);
-                    console.log('-score-');
-
-
                     var htmlString = '';
                     departmentNameIndex.forEach(function (j, k) {
                         if (score.departmentsInfo[j]) {
                             htmlString += '<th>' + score.departmentsInfo[j].totalWeightedScore + '</th>';
                         }
                     });
-                    console.log(htmlString);
-                    console.log('-score-2');
-                    console.log(score.totals);
-                    console.log('-score-3');
-                    console.log(score.totals.totalWeightedScore);
-                    console.log('-score-4');
                     $('.tableBody').append('<tr class="tableKeys">' +
                             '<th>' + Evaluations.formatDate(score.completed_time) + '</th>' +
                             '<th><a href="/restaurant/'+info.id + '/action_plan/'+ score.id + '" target="_self">action plan</a></th>' +

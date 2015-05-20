@@ -114,7 +114,7 @@ var Application = {
         var deferred = $.Deferred();
         $.ajax({
             type: "POST",
-            url: "/get_info.json",
+            url: "get_info.json",
             data: info,
             success: function (response) {deferred.resolve(response)},
             error: function (response) {deferred.reject(response)}

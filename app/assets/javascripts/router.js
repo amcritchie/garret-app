@@ -11,7 +11,7 @@ var Router = {
         } else if (window.location.pathname.indexOf('/restaurant') === 0) {
             console.log('app load');
             Evaluations.load();
-        } else if ($('#editRestaurnat')) {
+        } else if ($('#editRestaurnat').length) {
             console.log('restaurant load');
             Evaluations.load();
         }
