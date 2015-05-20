@@ -11,7 +11,11 @@ var Router = {
         } else if (window.location.pathname.indexOf('/restaurant') === 0) {
             console.log('app load');
             Evaluations.load();
-        } else {
+        } else if ($('#editRestaurnat')) {
+            console.log('restaurant load');
+            Evaluations.load();
+        }
+        else {
             console.log('not admin');
             User.load();
         }
