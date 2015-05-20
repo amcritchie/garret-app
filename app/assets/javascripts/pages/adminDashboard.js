@@ -1,7 +1,7 @@
 var AdminDashboard = {
     load: function () {
+        AdminDashboard.pendingEvaluationApplicationListeners();
         AdminDashboard.submittedEvaluationListeners();
-        AdminDashboard.pendingEvaluationListeners();
         AdminDashboard.standardsListeners();
         List.listeners("Keys", "keys");
         List.listeners("Departments", "departments");
@@ -15,71 +15,50 @@ var AdminDashboard = {
         });
     },
     submittedEvaluationListeners: function () {
-        AdminDashboard.viewSubmission();
-        AdminDashboard.acceptSubmission();
-        AdminDashboard.reopenSubmission();
+        AdminDashboard.viewSubmissionListener();
+        AdminDashboard.acceptSubmissionListener();
+        AdminDashboard.reopenSubmissionListener();
     },
-    viewSubmission: function () {
+    viewSubmissionListener: function () {
         $('.viewSubmission').on('click', function () {
             Evaluation.applicationId = $(this).data('application-id');
             Evaluation.open();
         });
     },
-    acceptSubmission: function () {
-
+    acceptSubmissionListener: function () {
         $('.acceptSubmission').on('click', function () {
             var id = $(this).data('application-id');
-            $.ajax({
-                type: "POST",
-                url: "application/accept",
-                data: {id: id}
-            });
             var a = $(this).parent();
-            a.parent().children().children('button').remove();
-            a.prepend('Evaluation Complete');
+            Ajax.respondToSubmittedEvaluation(id, 'application/accept', function(){
+                a.parent().children().children('button').remove();
+                a.prepend('Evaluation Reopened');
+            });
         });
     },
-    reopenSubmission: function () {
+    reopenSubmissionListener: function () {
         $('.rejectSubmission').on('click', function () {
             var id = $(this).data('application-id');
-            $.ajax({
-                type: "POST",
-                url: "application/reopen",
-                data: {id: id}
-            });
             var a = $(this).parent();
-            a.parent().children().children('button').remove();
-            a.prepend('Evaluation Reopened');
+            Ajax.respondToSubmittedEvaluation(id, 'application/reopen', function(){
+                a.parent().children().children('button').remove();
+                a.prepend('Evaluation Reopened');
+            });
         });
     },
-    pendingEvaluationListeners: function () {
-        AdminDashboard.approveApplication();
-        AdminDashboard.denyApplication();
-    },
-    approveApplication: function () {
+    pendingEvaluationApplicationListeners: function () {
         $('.approveApplication').on('click', function () {
-            var id = $(this).data('application-id');
-            $.ajax({
-                type: "POST",
-                url: "application/approve",
-                data: {id: id}
-            });
-            var a = $(this).parent();
-            $(this).parent().children('button').remove();
-            a.prepend('Approved');
+            AdminDashboard.respondToPendingEvaluationApplication(this, 'application/approve', 'Approved');
+        });
+        $('.denyApplication').on('click', function () {
+            AdminDashboard.respondToPendingEvaluationApplication(this, 'application/deny', 'Decided');
         });
     },
-    denyApplication: function () {
-        $('.denyApplication').on('click', function () {
-            var id = $(this).data('application-id');
-            $.ajax({
-                type: "POST",
-                url: "application/deny",
-                data: {id: id}
-            });
-            var a = $(this).parent();
-            $(this).parent().children('button').remove();
-            a.prepend('Decided');
+    respondToPendingEvaluationApplication: function (button, route, message) {
+        var id = $(button).data('application-id');
+        var column = $(button).parent();
+        Ajax.respondToApplication(id, route, function () {
+            column.children('button').remove();
+            column.prepend(message)
         });
     },
     standardsListeners: function () {

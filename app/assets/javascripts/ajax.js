@@ -18,9 +18,7 @@ var Ajax = {
             }
         }).done(callback);
     },
-
     updateStandards: function(id, name, details, callback) {
-//        debugger;
         $.ajax({
             type: "PUT",
             url: "/standards/" + id,
@@ -30,6 +28,20 @@ var Ajax = {
                 details: details
             }
         }).done(callback);
+    },
+    respondToApplication: function(id, route, callback) {
+        $.ajax({
+            type: "POST",
+            url: route,
+            data: {id: id}
+        }).then(callback);
+    },
+    respondToSubmittedEvaluation: function(id, route, callback) {
+        $.ajax({
+            type: "POST",
+            url: route,
+            data: {id: id}
+        }).then(callback);
     }
 
 };
