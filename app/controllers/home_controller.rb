@@ -12,6 +12,9 @@ class HomeController < ApplicationController
     }
     @new_evaluations = Evaluation.where(status: 'open')
     if current_user
+      if current_user.admin
+        redirect_to admin_path
+      end
       if session[:user_type] == 'restaurant'
         @applications = Evaluation.find_by(restaurant_id: current_user.id)
         if @applications

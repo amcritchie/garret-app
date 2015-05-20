@@ -1,5 +1,4 @@
 var Ajax = {
-
     applyToEvaluation: function(evaluationID, callback) {
         $.ajax({
             type: "POST",
@@ -7,7 +6,6 @@ var Ajax = {
             data: {evaluation_id: evaluationID}
         }).done(callback);
     },
-
     createStandards: function(name, details, callback) {
         $.ajax({
             type: "POST",
@@ -43,5 +41,4 @@ var Ajax = {
             data: {id: id}
         }).then(callback);
     }
-
 };
