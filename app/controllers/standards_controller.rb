@@ -21,7 +21,9 @@ class StandardsController < ApplicationController
         details: params[:details]
     )
     if @standard.save
-      redirect_to root_path
+      render json: {status: 200}
+    else
+      render json: {status: 500, error: 'entity could not be processed'}
     end
   end
 

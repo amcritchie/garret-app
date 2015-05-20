@@ -11,16 +11,11 @@ var UserDashboard = {
     },
     listenForApplyToEvaluation: function() {
         $('.applyToEvaluation').on('click', function () {
-            var evaluationID = $(this).data('evaluation-id');
-            UserDashboard.applyToEvaluation(evaluationID);
+            var applyButton = $(this);
+            var evaluationID = applyButton.data('evaluation-id');
+            Ajax.applyToEvaluation(evaluationID, function() {
+                applyButton.addClass('btn-danger').html('Pending').off('click');
+            });
         });
-    },
-    applyToEvaluation: function(evaluationID) {
-        $.ajax({
-            type: "POST",
-            url: "evaluations/apply",
-            data: {evaluation_id: evaluationID}
-        });
-        $(this).addClass('btn-danger').html('Pending').off('click');
     }
 };
