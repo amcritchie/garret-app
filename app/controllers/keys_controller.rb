@@ -16,7 +16,7 @@ class KeysController < ApplicationController
   def destroy
     @key = Key.find(params[:id])
     @key.delete
-    # flash[:error] = "Favorite Removed"
+
     render nothing: true
   end
 

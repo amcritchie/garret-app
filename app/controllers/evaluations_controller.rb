@@ -6,7 +6,6 @@ class EvaluationsController < ApplicationController
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
   end
 
@@ -20,7 +19,6 @@ class EvaluationsController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
   def create
     restaurant = Restaurant.find_by(name: params['evaluation']['restaurant_id'])
     standards = Standard.find_by(name: params['evaluation']['standard_id'])
@@ -37,7 +35,6 @@ class EvaluationsController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -51,7 +48,6 @@ class EvaluationsController < ApplicationController
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|

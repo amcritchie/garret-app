@@ -26,19 +26,8 @@ class UsersController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
   def create
-    p '-=1'*200
-    p user_params
-    p '-=2'*200
-    p @user = User.new(user_params)
-    p '-=3'*200
-    @user
-    p '-=4'*200
-    p @user.email
-    p '-=5'*200
-    p 'sadsadasdad'
-    p '-=6'*200
+    @user = User.new(user_params)
 
     # @user.account = params[:account]
     @user.email = @user.email.downcase
@@ -60,7 +49,6 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -85,7 +73,6 @@ class UsersController < ApplicationController
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|

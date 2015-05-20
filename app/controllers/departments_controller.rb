@@ -14,13 +14,9 @@ class DepartmentsController < ApplicationController
   end
 
   def destroy
-    # favorite = Favorite.where(favoriter: current_user.id, favorited: params[:user_id])
-    # favorite.delete_all
-    p '-=' *800
-    p params[:id]
     @department = Department.find(params[:id])
     @department.delete
-    # flash[:error] = "Favorite Removed"
+
     render nothing: true
   end
 

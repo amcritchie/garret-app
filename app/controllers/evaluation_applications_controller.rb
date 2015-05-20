@@ -5,8 +5,6 @@ class EvaluationApplicationsController < ApplicationController
   end
 
   def show
-    p '---'*80
-    p params
     @application = EvaluationApplication.find(params[:id])
     @questions = Question.all
   end
@@ -73,7 +71,6 @@ class EvaluationApplicationsController < ApplicationController
     @evaluation = Evaluation.find(@application[:evaluation_id])
     @evaluation = @application.evaluation
     @questions = Question.all
-    p '--=-==-='
     @standards = @evaluation.standard
     respond_to do |format|
       if @application
@@ -96,11 +93,6 @@ class EvaluationApplicationsController < ApplicationController
   end
 
   def update_score
-
-    p '-'*100
-    p params[:details]
-    p '-'*100
-
     time_spots = params[:details][:time_spots]
     check = params[:details][:check]
     employees = params[:details][:employees]
@@ -158,13 +150,9 @@ class EvaluationApplicationsController < ApplicationController
   end
 
   def destroy
-    # favorite = Favorite.where(favoriter: current_user.id, favorited: params[:user_id])
-    # favorite.delete_all
-    p '-=' *800
-    p params[:id]
     @application = EvaluationApplication.find(params[:id])
     @application.delete
-    # flash[:error] = "Favorite Removed"
+
     render nothing: true
   end
 

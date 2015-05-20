@@ -20,19 +20,12 @@ class HomeController < ApplicationController
         @application = EvaluationApplication.where(id: current_user.id)
         @questions = Question.all
         @restaurant = Restaurant.find(current_user.id)
-        # Restaurant.find_by(id: session[:user_id])
       else
         @pending_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'pending')
         @open_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'open')
-
-        # User.find_by(id: session[:user_id])
       end
-
       @pending_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'pending')
       @open_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'open')
-
-
-      # @departments = Department.all
     end
   end
 end

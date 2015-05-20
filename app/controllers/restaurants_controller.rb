@@ -2,17 +2,12 @@ class RestaurantsController < ApplicationController
   # before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
-  # GET /users.json
   def index
     @restaurant = Restaurant.all
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
-
-
-
     @applications = Evaluation.find_by(restaurant_id: params[:id])
     if @applications
       @applications = Evaluation.find_by(restaurant_id: params[:id]).evaluation_applications
@@ -24,9 +19,6 @@ class RestaurantsController < ApplicationController
   end
 
   def action_plan
-    p '-'*80
-    p params
-    p '-'*80
     @applications = Evaluation.find_by(restaurant_id: params[:id]).evaluation_applications
     @application = EvaluationApplication.find(params[:application_id])
     @questions = Question.all
@@ -35,26 +27,6 @@ class RestaurantsController < ApplicationController
   end
 
   def get_info
-    p '-'*80
-    p params
-    p '-'*80
-    # @application = Evaluation.where(restaurant_id: params[:id]).evaluation_applications
-    #
-    # p '-'*80
-    #
-    # # @application = EvaluationApplication.find(params[:id])
-    # @application = Evaluation.where(restaurant_id: params[:id]).evaluation_applications
-    # @evaluation = Evaluation.find(@application[:evaluation_id])
-    # @evaluation = @application.evaluation
-    # @questions = Question.all
-    # # p '--=-==-='
-    # # p params[:id]
-    # # p '--=-==-='
-    # # p EvaluationApplication.find_by(restaurant_id: params[:id])
-    # p '--=-==-='
-    # p EvaluationApplication.where(evaluation_id: Evaluation.where(restaurant_id: params[:id]))
-    # p '--=-==-='
-    # @standards = @evaluation.standard
     respond_to do |format|
       # if @application
         # format.json { render json: {score: @application.score, questions: @questions, standards: @application.evaluation.standard.details} }
@@ -76,9 +48,7 @@ class RestaurantsController < ApplicationController
   end
 
   # POST /users
-  # POST /users.json
   def create
-
     temp_pass = restaurant_params[:password]
     @restaurant = Restaurant.new(restaurant_params)
 
@@ -99,7 +69,6 @@ class RestaurantsController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       @restaurant = Restaurant.find(current_user.id)
@@ -115,7 +84,6 @@ class RestaurantsController < ApplicationController
   end
 
   def unique_email
-
     @user = User.find_by(email: params[:email].downcase)
     respond_to do |format|
       if @user
@@ -127,7 +95,6 @@ class RestaurantsController < ApplicationController
   end
 
   # DELETE /users/1
-  # DELETE /users/1.json
   def destroy
     @user.destroy
     respond_to do |format|
