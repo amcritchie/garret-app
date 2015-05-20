@@ -19,14 +19,14 @@
         </th>
 
         <th>
-          <%= link_to 'website', '/' %>
+          <%= link_to 'website', "http://#{restaurant.url}" %>
         </th>
         <th>
           <%= render 'helper/address_format', locals: {entity: restaurant} %>
         </th>
         <th>
           <% if restaurant.temp_password %>
-            Email: <%= restaurant.email %>
+            Email: <%= restaurant.email %><br>
             Password: <%= restaurant.temp_password %>
           <% else %>
             Password Changed

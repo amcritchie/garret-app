@@ -18,6 +18,12 @@ class RestaurantsController < ApplicationController
     @departments = Department.all
   end
 
+  def show_info
+    p '1321' * 40
+    p params
+    @restaurant = Restaurant.find(params[:id])
+  end
+
   def action_plan
     @applications = Evaluation.find_by(restaurant_id: params[:id]).evaluation_applications
     @application = EvaluationApplication.find(params[:application_id])

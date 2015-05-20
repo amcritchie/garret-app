@@ -29,9 +29,10 @@ var AdminDashboard = {
         $('.acceptSubmission').on('click', function () {
             var id = $(this).data('application-id');
             var a = $(this).parent();
+            $(this).html('<i class="fa fa-spinner fa-spin"></i>');
             Ajax.respondToSubmittedEvaluation(id, 'application/accept', function(){
                 a.parent().children().children('button').remove();
-                a.prepend('Evaluation Reopened');
+                a.prepend('Evaluation Accepted');
             });
         });
     },
@@ -39,6 +40,7 @@ var AdminDashboard = {
         $('.rejectSubmission').on('click', function () {
             var id = $(this).data('application-id');
             var a = $(this).parent();
+            $(this).html('<i class="fa fa-spinner fa-spin"></i>');
             Ajax.respondToSubmittedEvaluation(id, 'application/reopen', function(){
                 a.parent().children().children('button').remove();
                 a.prepend('Evaluation Reopened');
@@ -56,6 +58,7 @@ var AdminDashboard = {
     respondToPendingEvaluationApplication: function (button, route, message) {
         var id = $(button).data('application-id');
         var column = $(button).parent();
+        $(button).html('<i class="fa fa-spinner fa-spin"></i>');
         Ajax.respondToApplication(id, route, function () {
             column.children('button').remove();
             column.prepend(message)

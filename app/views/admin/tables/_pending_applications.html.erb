@@ -1,34 +1,60 @@
 <table class="table table-bordered align-center">
   <thead>
-  <tr>
+  <tr class="visible-lg visible-md">
     <th class="col-xs-2" data-field="id">Evaluator</th>
     <th class="col-xs-2" data-field="id">Restaurant</th>
     <th class="col-xs-4" data-field="name">Approve</th>
     <th class="col-xs-1" data-field="price">Site</th>
     <th class="col-xs-3" data-field="price">Address</th>
   </tr>
+  <tr class="visible-sm visible-xs">
+    <th class="col-xs-4" data-field="id">Evaluator</th>
+    <th class="col-xs-4" data-field="id">Restaurant</th>
+    <th class="col-xs-4" data-field="name">Approve</th>
+    <!--<th class="col-xs-1" data-field="price">Site</th>-->
+    <!--<th class="col-xs-3" data-field="price">Address</th>-->
+  </tr>
   </thead>
   <tbody>
   <% locals[:evaluations].each do |application| %>
-      <tr>
+      <tr class="visible-lg visible-md">
         <th>
-          <%= application.user.email %>
+            <%= link_to application.user.email, user_path(application.user) %>
         </th>
         <th>
-          <%= application.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
+          <% restaurant = application.evaluation.restaurant %>
+          <%= link_to restaurant.name.split.map(&:capitalize)*' ', "/admin/restaurant/#{restaurant.id}" %>
         </th>
         <th>
-          <button class="btn btn-success approveApplication" data-application-id="<%= application.id %>">Approve</button>
-          <button class="btn btn-danger denyApplication" data-application-id="<%= application.id %>">Deny</button>
+          <button class="btn btn-success approveApplication width-80" data-application-id="<%= application.id %>">Approve</button>
+          <button class="btn btn-danger denyApplication width-80" data-application-id="<%= application.id %>">Deny</button>
         </th>
 
         <th>
-          <%= link_to 'website', '/' %>
+          <%= link_to 'website', "http://#{restaurant.url}" %>
         </th>
         <th>
           <%= render 'helper/address_format', locals: {entity: application.evaluation.restaurant} %>
         </th>
       </tr>
+      <tr class="visible-sm visible-xs">
+        <th>
+          <h4><%= link_to application.user.email, user_path(application.user) %></h4>
+          <%= application.user.phone_number %><br>
+          <%= render 'helper/address_format', locals: {entity: application.user} %>
+        </th>
+        <th>
+          <% restaurant = application.evaluation.restaurant %>
+          <h4><%= link_to restaurant.name.split.map(&:capitalize)*' ', "/admin/restaurant/#{restaurant.id}" %></h4>
+          <%= link_to 'website', "http://#{restaurant.url}" %><br>
+          <%= render 'helper/address_format', locals: {entity: application.user} %>
+        </th>
+        <th>
+          <button class="btn btn-success approveApplication width-80" data-application-id="<%= application.id %>">Approve</button><br>
+          <button class="btn btn-danger denyApplication width-80 margin-top-8" data-application-id="<%= application.id %>">Deny</button>
+        </th>
+      </tr>
+
   <% end %>
   </tbody>
 </table>

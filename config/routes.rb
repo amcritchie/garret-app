@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :evaluations
 
   get 'restaurant/:id' => 'restaurants#show'
+  get 'admin/restaurant/:id' => 'restaurants#show_info'
 
   # Needed for admin load and restaurant page load.
   post 'restaurant/get_info' => 'restaurants#get_info'
