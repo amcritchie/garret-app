@@ -9,8 +9,10 @@ class StandardsController < ApplicationController
         name: params[:name],
         details: params[:details]
     )
-    if @standards.save
-      redirect_to root_path
+    if @standard.save
+      render json: {status: 200}
+    else
+      render json: {status: 500, error: 'entity could not be processed'}
     end
   end
 
@@ -30,8 +32,6 @@ class StandardsController < ApplicationController
   def destroy
     @standards = Standard.find(params[:id])
     @standards.delete
-
     render nothing: true
   end
-
 end
