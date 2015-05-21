@@ -1,6 +1,6 @@
 <% if current_user %>
     <% if current_user.id == @restaurant.id %>
-        <h1>Editing <%= current_user %></h1>
+        <h1>Editing <%= current_user.name %></h1>
         <%= render 'form' %>
         <%= link_to 'Show', @restaurant %> |
         <%= link_to 'Back', root_path %>
