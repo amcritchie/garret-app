@@ -20,14 +20,14 @@ var AdminDashboard = {
         AdminDashboard.reopenSubmissionListener();
     },
     viewSubmissionListener: function () {
-        $('.viewSubmission').on('click', function (e) {
-            e.preventDefault();
-
-//            var copy = $.extend(true, {}, e);
-//            setTimeout(function() {
-//                $(copy.target.parentNode).trigger(copy);
-//            },2000);
-            e.stopPropagation();
+        $('.viewSubmission').on('click', function () {
+//            e.preventDefault();
+//
+////            var copy = $.extend(true, {}, e);
+////            setTimeout(function() {
+////                $(copy.target.parentNode).trigger(copy);
+////            },2000);
+//            e.stopPropagation();
 //            e.stopPropagation();
 //
 //            setTimeout(function() {
