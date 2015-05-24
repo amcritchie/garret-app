@@ -20,22 +20,18 @@ var AdminDashboard = {
         AdminDashboard.reopenSubmissionListener();
     },
     viewSubmissionListener: function () {
-        $('.viewSubmission').on('click', function () {
-//            e.preventDefault();
-//
-////            var copy = $.extend(true, {}, e);
-////            setTimeout(function() {
-////                $(copy.target.parentNode).trigger(copy);
-////            },2000);
-//            e.stopPropagation();
-//            e.stopPropagation();
-//
-//            setTimeout(function() {
-//                e.startPropagation();
-//            }, 1000);
+        $('.viewSubmission').on('click', function (e) {
+            $(this).html('<i class="fa fa-spinner fa-spin fa-1x"></i>');
+            // This is used to reactivate the e.stopPropagation
+            var copy = $.extend(true, {}, e);
+            e.stopPropagation();
 
+            var button = $(this);
             Evaluation.applicationId = $(this).data('application-id');
-            Evaluation.open();
+            Evaluation.open(function() {
+                button.html('View');
+                $(copy.target.parentNode).trigger(copy);
+            });
         });
     },
     acceptSubmissionListener: function () {

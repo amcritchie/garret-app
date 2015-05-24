@@ -4,6 +4,54 @@ var Evaluation = {
     evaluationId: null,
     score: '13:0|14:0|15:1|16:1',
 
+    open: function (callback) {
+        var info = {id: Evaluation.applicationId};
+        $.when(Evaluation.getScore(info)).done(function (response) {
+            Evaluation.refresh();
+            Evaluation.removeQuestionsWithStandardsZero(response.standards);
+            Evaluation.loadScores(response.score);
+            Evaluation.setDisableEvents();
+            Evaluation.loadDetails(response.application);
+            Evaluation.registerClickAnswer();
+
+            callback();
+
+            $('.evaluationFill').on('keyup', function() {
+                Evaluation.save();
+            });
+            $('.evaluationClick').on('click', function() {
+                setTimeout(function() {
+                    Evaluation.save();
+                }, 20);
+            });
+        });
+    },
+    getScore: function (info) {
+        var deferred = $.Deferred();
+        $.ajax({
+            type: "POST",
+            url: "/application/get_score.json",
+            data: info,
+            success: function (response) {
+                deferred.resolve(response)
+            },
+            error: function (response) {
+                deferred.reject(response)
+            }
+        });
+        return deferred;
+    },
+    refresh: function () {
+        $('.question-row').show();
+        $('.evaluationFill').prop('disabled', false).val('');
+        $('.evaluationClick').prop('disabled', false).prop('checked', false);
+        $('.questionCheckboxAll').attr('data-relevant', true);
+        $('.answerExplanation').hide();
+        $('label').removeClass('active');
+        $('.questionNil').show();
+
+    },
+
     save: function () {
         if (window.location.pathname.indexOf('/admin') !== 0) {
             var info = {
@@ -94,38 +142,6 @@ var Evaluation = {
             }
         });
         return array.join('|')
-    },
-
-    refresh: function () {
-        $('.question-row').show();
-        $('.evaluationFill').prop('disabled', false).val('');
-        $('.evaluationClick').prop('disabled', false).prop('checked', false);
-        $('.questionCheckboxAll').attr('data-relevant', true);
-        $('.answerExplanation').hide();
-        $('label').removeClass('active');
-        $('.questionNil').show();
-
-    },
-
-    open: function () {
-        var info = {id: Evaluation.applicationId};
-        $.when(Evaluation.getScore(info)).done(function (response) {
-            Evaluation.refresh();
-            Evaluation.removeQuestionsWithStandardsZero(response.standards);
-            Evaluation.loadScores(response.score);
-            Evaluation.setDisableEvents();
-            Evaluation.loadDetails(response.application);
-            Evaluation.registerClickAnswer();
-
-            $('.evaluationFill').on('keyup', function() {
-                Evaluation.save();
-            });
-            $('.evaluationClick').on('click', function() {
-                setTimeout(function() {
-                    Evaluation.save();
-                }, 20);
-            });
-        });
     },
 
     setDisableEvents: function() {
@@ -224,22 +240,6 @@ var Evaluation = {
 //                Evaluation.save();
 //            }, 20);
         });
-    },
-
-    getScore: function (info) {
-        var deferred = $.Deferred();
-        $.ajax({
-            type: "POST",
-            url: "/application/get_score.json",
-            data: info,
-            success: function (response) {
-                deferred.resolve(response)
-            },
-            error: function (response) {
-                deferred.reject(response)
-            }
-        });
-        return deferred;
     },
 
     loadDetails: function (details) {

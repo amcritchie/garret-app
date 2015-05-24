@@ -4,9 +4,18 @@ var UserDashboard = {
         UserDashboard.listenForApplyToEvaluation();
     },
     listenForOpenEvaluation: function() {
-        $('.startEvaluation').on('click', function () {
+        $('.startEvaluation').on('click', function (e) {
+            $(this).html('<i class="fa fa-spinner fa-spin fa-1x"></i>');
+            // This is used to reactivate the e.stopPropagation
+            var copy = $.extend(true, {}, e);
+            e.stopPropagation();
+
+            var button = $(this);
             Evaluation.applicationId = $(this).data('application-id');
-            Evaluation.open();
+            Evaluation.open(function() {
+                button.html('Open');
+                $(copy.target.parentNode).trigger(copy);
+            });
         });
     },
     listenForApplyToEvaluation: function() {
