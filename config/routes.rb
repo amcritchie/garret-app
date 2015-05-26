@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   get '/admin/evaluations' => 'admin#evaluations'
   get '/admin/users' => 'admin#users'
   get '/users/application' => 'users#application'
+  get '/users/:id/confirm_email' => 'users#confirm_email'
+  get '/users/:id/accept_application' => 'users#accept_application'
+  get '/users/:id/decline_application' => 'users#decline_application'
 
   resources :users do
     # resources :restaurants

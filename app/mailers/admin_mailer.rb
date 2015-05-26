@@ -4,13 +4,10 @@ class AdminMailer < ActionMailer::Base
   #----------------------------------
   # Emails to Admin
   #----------------------------------
-  def new_evaluator_application(params)
+  def new_evaluator_application(params, user)
     @applicant = params[:user]
-    p '_?_'*200
-    p @applicant
-    p '_?_'*200
-    p @applicant[:devices]
-    p '_?_'*200
+    @user = user
+    # mail to: @user.email, subject: "New evaluator application."
     mail to: "amcritchie@gmail.com", subject: "New evaluator application."
   end
 

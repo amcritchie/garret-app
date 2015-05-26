@@ -39,21 +39,55 @@ class UsersController < ApplicationController
     @user['status'] = 'pending'
     @user['account'] = 'evaluator'
     @user['admin'] = false
+    @user['email_confirmation'] = false
 
-    p '-=-'*200
-    p user_params
-    p '-=-'*200
-    p params
-    p '-=-'*200
-
-    # if @user.save
-      AdminMailer.new_evaluator_application(params).deliver
-      # UserMailer.received_evaluator_application(User.last).deliver
-      # session[:user_id] = @user.id
+    if @user.save
+      AdminMailer.new_evaluator_application(params, @user).deliver
+      UserMailer.received_evaluator_application(@user).deliver
+      session[:user_id] = @user.id
       redirect_to root_path
-    # else
-    #   render :new
-    # end
+    else
+      render :new
+    end
+  end
+
+  def confirm_email
+    @user = User.find(params[:id])
+    @user.update(
+        email_confirmation: true
+    )
+  end
+
+  def accept_application
+    if current_user
+      if current_user.admin
+        @user = User.find(params[:id])
+        UserMailer.evaluator_application_accepted(@user).deliver
+        @user.update(
+            status: 'evaluator'
+        )
+      else
+        render_404
+      end
+    else
+      render_404
+    end
+  end
+
+  def decline_application
+    if current_user
+      if current_user.admin
+        @user = User.find(params[:id])
+        UserMailer.evaluator_application_denied(@user).deliver
+        @user.update(
+            status: 'declined'
+        )
+      else
+        render_404
+      end
+    else
+      render_404
+    end
   end
 
   # PATCH/PUT /users/1
@@ -90,13 +124,13 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:username, :password, :first_name, :last_name, :email, :phone_number, :address, :city, :state, :zip )
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:username, :password, :first_name, :last_name, :email, :phone_number, :address, :city, :state, :zip)
+  end
 end

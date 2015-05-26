@@ -1,13 +1,13 @@
 class HomeController < ApplicationController
   def index
 
-    # # AdminMailer.new_evaluator_application(User.last).deliver
-    # AdminMailer.evaluation_submitted(User.last, EvaluationApplication.last).deliver
-    # # UserMailer.received_evaluator_application(User.last).deliver
+    # AdminMailer.new_evaluator_application(User.last).deliver
+    AdminMailer.evaluation_submitted(User.last, EvaluationApplication.last).deliver
+    # UserMailer.received_evaluator_application(User.last).deliver
     # UserMailer.evaluator_application_accepted(User.last).deliver
     # UserMailer.evaluation_submitted(User.last, EvaluationApplication.last).deliver
-    # UserMailer.evaluation_accepted(User.last, EvaluationApplication.last).deliver
-    # UserMailer.evaluation_reopened(User.last, EvaluationApplication.last).deliver
+    UserMailer.evaluation_accepted(User.last, EvaluationApplication.last).deliver
+    UserMailer.evaluation_reopened(User.last, EvaluationApplication.last).deliver
 
     @user = User.new
     @restaurant = Restaurant.new

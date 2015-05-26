@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def render_404
+    render file: "#{Rails.root}/app/views/404.html", layout: true, status: 404
+  end
+
   helper_method :current_user
 
 end
