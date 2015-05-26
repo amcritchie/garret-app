@@ -38,6 +38,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 #Heroku friendly hidden environment variables
 gem 'figaro'
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
 # For bootstrap forms.
 gem 'bootstrap_form'

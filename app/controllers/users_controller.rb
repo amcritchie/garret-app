@@ -40,12 +40,20 @@ class UsersController < ApplicationController
     @user['account'] = 'evaluator'
     @user['admin'] = false
 
-    if @user.save
-      session[:user_id] = @user.id
+    p '-=-'*200
+    p user_params
+    p '-=-'*200
+    p params
+    p '-=-'*200
+
+    # if @user.save
+      AdminMailer.new_evaluator_application(params).deliver
+      # UserMailer.received_evaluator_application(User.last).deliver
+      # session[:user_id] = @user.id
       redirect_to root_path
-    else
-      render :new
-    end
+    # else
+    #   render :new
+    # end
   end
 
   # PATCH/PUT /users/1

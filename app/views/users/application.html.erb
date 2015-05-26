@@ -69,13 +69,16 @@
         <label class="control-label" for="devices">Which devices will you be using for restaurant anonymous?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="checkbox-inline"><input type="checkbox" value="home-office">Home Office</label>
-        <label class="checkbox-inline"><input type="checkbox" value="computer">Computer</label>
-        <label class="checkbox-inline"><input type="checkbox" value="printer">Printer</label>
-        <label class="checkbox-inline"><input type="checkbox" value="scanner">Scanner</label>
-        <label class="checkbox-inline"><input type="checkbox" value="fax-machine">Fax Machine</label>
-        <label class="checkbox-inline"><input type="checkbox" value="digital-camera">Digital Camera</label>
-        <label class="checkbox-inline"><input type="checkbox" value="digital-video-camera">Digital Video Camera</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Home office">Home
+          Office</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Computer">Computer</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Printer">Printer</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Scanner">Scanner</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Fax-machine">Fax
+          Machine</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Digital camera">Digital Camera</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Digital video camera">Digital
+          Video Camera</label>
       </div>
     </div>
 
@@ -108,10 +111,10 @@
         <label class="control-label" for="availability">How often can you service evaluations in your home area?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline"><input type="radio" name="availability" value="home-office">Any Time</label>
-        <label class="radio-inline"><input type="radio" name="availability" value="computer">Often</label>
-        <label class="radio-inline"><input type="radio" name="availability" value="printer">Sometimes</label>
-        <label class="radio-inline"><input type="radio" name="availability" value="scanner">Rarely</label>
+        <label class="radio-inline"><input type="radio" name="user[availability]" value="Any Time">Any Time</label>
+        <label class="radio-inline"><input type="radio" name="user[availability]" value="Often">Often</label>
+        <label class="radio-inline"><input type="radio" name="user[availability]" value="Sometimes">Sometimes</label>
+        <label class="radio-inline"><input type="radio" name="user[availability]" value="Rarely">Rarely</label>
       </div>
     </div>
 
@@ -128,9 +131,11 @@
         <label class="control-label" for="interested_in">What opportunities are you interested in evaluating?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="checkbox-inline"><input type="checkbox" value="restaurant-lunch">Restaurants (Lunch)</label>
-        <label class="checkbox-inline"><input type="checkbox" value="restaurant-dinner">Restaurants (Dinner)</label>
-        <label class="checkbox-inline"><input type="checkbox" value="bars">Bars</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Restaurants(lunch)">Restaurants
+          (Lunch)</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Restaurants(dinner)">Restaurants
+          (Dinner)</label>
+        <label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Bars">Bars</label>
       </div>
     </div>
 
@@ -141,8 +146,8 @@
           companies?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline"><input type="radio" name="work_with_other_companies" value="yes">Yes</label>
-        <label class="radio-inline"><input type="radio" name="work_with_other_companies" value="no">No</label>
+        <label class="radio-inline"><input type="radio" name="user[work_with_other_companies]" value="Yes">Yes</label>
+        <label class="radio-inline"><input type="radio" name="user[work_with_other_companies]" value="No">No</label>
       </div>
     </div>
 
@@ -159,29 +164,30 @@
         <label class="control-label" for="writing">Which best describes you?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="writing" value="great">I am a great writer, and
-          love writing.</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a great
+          writer, and love writing.">I am a great writer, and love writing.</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="writing" value="good">I am a capable writer, and
-          like writing.</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a capable
+          writer, and like writing.">I am a capable writer, and like writing.</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="writing" value="fair">I am a competent writer,
-          and dont mind writing.</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a competent
+          writer, and dont mind writing.">I am a competent writer, and dont mind writing.</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="writing" value="passable">I can write when I
-          have to.</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I can write when
+          I have to.">I can write when I have to.</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="writing" value="bad">I don't like
-          writing</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I don't like
+          writing">I don't like writing</label>
       </div>
     </div>
 
     <div class="control-group col-xs-12 margin-top-8">
-      <label class="control-label" for="good_time">Where would you take a friend, if they where visiting your home town?</label>
+      <label class="control-label" for="good_time">Where would you take a friend, if they where visiting your home
+        town?</label>
 
       <div class="controls">
         <%= f.text_field :good_time, :class => "form-control", :placeholder => "I really enjoy Dulce Vida on Speer and 11th." %>
@@ -222,7 +228,7 @@
 
     <div class="control-group col-xs-12 margin-top-8">
       <label class="control-label" for="literacy">Please list the following words in reverse alphabetical order:
-        'alligator', 'orange', 'label', 'yams', 'orangutan':</label>
+        'alligator', 'orange', 'label', 'yams', 'orangutan'?</label>
 
       <div class="controls">
         <%= f.text_field :literacy, :class => "form-control", :placeholder => "You got this." %>
@@ -252,8 +258,8 @@
         <label class="control-label" for="gender">What is your gender?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline"><input type="radio" name="gender" value="male">Male</label>
-        <label class="radio-inline"><input type="radio" name="gender" value="female">Female</label>
+        <label class="radio-inline"><input type="radio" name="user[gender]" value="Male">Male</label>
+        <label class="radio-inline"><input type="radio" name="user[gender]" value="Female">Female</label>
       </div>
     </div>
 
@@ -262,32 +268,41 @@
         <label class="control-label" for="employment">Are you currently?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="employed">Employed for
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Employed for
+          wages">Employed for
           wages</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="self_employed">Self-employed</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Self-employed">Self-employed</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="out_of_work">Out of work for
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Out of
+          work for
+          more than 1 year">Out of
+          work for
           more than 1 year</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="recently_out_of_work">Out of
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Out
+          of
+          work for less than 1 year">Out
+          of
           work for less than 1 year</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="homemaker">A
-          homemaker</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Homemaker">A
+          Homemaker</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="student">A student</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Student">A
+          Student</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="retired">Retired</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Retired">Retired</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="employment" value="unable_to_work">Unable to
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Unable to work">Unable
+          to
           work</label>
       </div>
     </div>
@@ -297,25 +312,28 @@
         <label class="control-label" for="education">What is your highest level of education?</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="none">Never attended school or
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="None">Never attended
+          school or
           only attended Kindergarten</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="elementary">Elementary School</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Elementary">Elementary
+          School</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="high">High School</label>
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="High school">High
+          School</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="some_college">Some
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Some college">Some
           College</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="college">College
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="College graduate">College
           Graduate</label>
       </div>
       <div class="controls col-xs-12">
-        <label class="radio-inline col-xs-12"><input type="radio" name="education" value="graduate_school">Graduate
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Graduate school">Graduate
           School</label>
       </div>
     </div>
