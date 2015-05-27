@@ -31,17 +31,40 @@ $(document).ready(function () {
     Register.restaurant();
     Register.addQuestion();
 
+    String.prototype.splice = function (idx, rem, s) {
+        return (this.slice(0, idx) + s + this.slice(idx + Math.abs(rem)));
+    };
+    $('#user_phone_number').on('click', function () {
+        $(this).on('keyup', function (e) {
+            var noActionKeyCodes = [8, 13, 16, 18, 37, 38, 39, 40, 91];
+            if (($.inArray(e.keyCode, noActionKeyCodes) === -1)) {
+                var phone_number = $(this).val();
+                if (phone_number.charAt(0) !== '(') {
+                    phone_number = '(' + phone_number;
+                }
+                if ((phone_number.length > 3) && (phone_number.charAt(4) !== ')')) {
+                    phone_number = phone_number.splice(4, 0, ") ");
+                }
+                if ((phone_number.length > 8) && (phone_number.charAt(9) !== '-')) {
+                    phone_number = phone_number.splice(9, 0, "-");
+                }
+                $(this).val(phone_number.substring(0, 14))
+            }
+        });
+    });
+
+
     // Load from url params
-    $.urlParam = function(name){
+    $.urlParam = function (name) {
         var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
         return results ? results[1] : 0;
     };
     var loadEvaluation = $.urlParam('load_evaluation');
     if (loadEvaluation) {
-        setTimeout(function(){
-            $('.viewSubmission[data-application-id=' + loadEvaluation +']:visible').click();
-            $('.startEvaluation[data-application-id=' + loadEvaluation +']:visible').click();
-        },500);
+        setTimeout(function () {
+            $('.viewSubmission[data-application-id=' + loadEvaluation + ']:visible').click();
+            $('.startEvaluation[data-application-id=' + loadEvaluation + ']:visible').click();
+        }, 500);
     }
 });
 
