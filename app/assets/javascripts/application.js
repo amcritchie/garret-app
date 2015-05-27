@@ -30,6 +30,19 @@ $(document).ready(function () {
     Register.signUp();
     Register.restaurant();
     Register.addQuestion();
+
+    // Load from url params
+    $.urlParam = function(name){
+        var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
+        return results ? results[1] : 0;
+    };
+    var loadEvaluation = $.urlParam('load_evaluation');
+    if (loadEvaluation) {
+        setTimeout(function(){
+            $('.viewSubmission[data-application-id=' + loadEvaluation +']:visible').click();
+            $('.startEvaluation[data-application-id=' + loadEvaluation +']:visible').click();
+        },500);
+    }
 });
 
 $(document).ready(function () {

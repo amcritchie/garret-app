@@ -34,11 +34,11 @@ var Ajax = {
             data: {id: id}
         }).then(callback);
     },
-    respondToSubmittedEvaluation: function(id, route, callback) {
+    respondToSubmittedEvaluation: function(data, route, callback) {
         $.ajax({
             type: "POST",
             url: route,
-            data: {id: id}
+            data: data
         }).then(callback);
     }
 };

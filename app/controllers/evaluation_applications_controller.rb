@@ -41,6 +41,8 @@ class EvaluationApplicationsController < ApplicationController
 
   def submit
     @application = EvaluationApplication.find(params[:id])
+    UserMailer.evaluation_submitted(current_user, @application).deliver
+    AdminMailer.evaluation_submitted(current_user, @application).deliver
     @application.update(
         status: 'submitted',
         completed_at: Time.now
@@ -50,6 +52,7 @@ class EvaluationApplicationsController < ApplicationController
 
   def accept
     @application = EvaluationApplication.find(params[:id])
+    UserMailer.evaluation_accepted(@application.user, @application).deliver
     @application.update(
         status: 'complete',
         completed_at: Time.now
@@ -59,6 +62,7 @@ class EvaluationApplicationsController < ApplicationController
 
   def reopen
     @application = EvaluationApplication.find(params[:id])
+    UserMailer.evaluation_reopened(@application.user, @application, params[:message]).deliver
     @application.update(
         status: 'open',
         completed_at: Time.now

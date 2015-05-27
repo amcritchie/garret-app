@@ -28,7 +28,7 @@ var AdminDashboard = {
 
             var button = $(this);
             Evaluation.applicationId = $(this).data('application-id');
-            Evaluation.open(function() {
+            Evaluation.open(function () {
                 button.html('View');
                 $(copy.target.parentNode).trigger(copy);
             });
@@ -39,7 +39,7 @@ var AdminDashboard = {
             var id = $(this).data('application-id');
             var a = $(this).parent();
             $(this).html('<i class="fa fa-spinner fa-spin"></i>');
-            Ajax.respondToSubmittedEvaluation(id, 'application/accept', function(){
+            Ajax.respondToSubmittedEvaluation(id, 'application/accept', function () {
                 a.parent().children().children('button').remove();
                 a.prepend('Evaluation Accepted');
             });
@@ -47,12 +47,19 @@ var AdminDashboard = {
     },
     reopenSubmissionListener: function () {
         $('.rejectSubmission').on('click', function () {
+            var tableButton = $(this);
             var id = $(this).data('application-id');
             var a = $(this).parent();
-            $(this).html('<i class="fa fa-spinner fa-spin"></i>');
-            Ajax.respondToSubmittedEvaluation(id, 'application/reopen', function(){
-                a.parent().children().children('button').remove();
-                a.prepend('Evaluation Reopened');
+            $('#reopenMessage').val('');
+            $('.reopenEvaluation').off('click').on('click', function () {
+                var message = $('#reopenMessage').val();
+                $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+                tableButton.html('<i class="fa fa-spinner fa-spin"></i>');
+                Ajax.respondToSubmittedEvaluation({id: id, message: message}, 'application/reopen', function () {
+                    a.parent().children().children('button').remove();
+                    a.parent().children().children('a').remove();
+                    a.prepend('Evaluation Reopened');
+                });
             });
         });
     },

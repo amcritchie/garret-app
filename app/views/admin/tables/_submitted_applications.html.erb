@@ -30,7 +30,8 @@
         <th>
           <button class="btn btn-info viewSubmission width-58" data-application-id="<%= application.id %>" data-toggle="modal" data-target=".evaluation-modal">View</button>
           <button class="btn btn-success acceptSubmission width-80" data-application-id="<%= application.id %>">Accept</button>
-          <button class="btn btn-danger rejectSubmission width-80" data-application-id="<%= application.id %>">Reopen</button>
+          <%= link_to('Reopen', "#login", :class => "btn btn-danger rejectSubmission width-80", :data => {toggle: 'modal', target: ".reopen-modal", :'application-id' => application.id}) %><br><br>
+
         </th>
         <th>
           <% if application.accepted_at != nil %>
@@ -62,7 +63,8 @@
           <br>
           <button class="btn btn-success acceptSubmission width-80 margin-top-8" data-application-id="<%= application.id %>">Accept</button>
           <br>
-          <button class="btn btn-danger rejectSubmission width-80 margin-top-8" data-application-id="<%= application.id %>">Reopen</button>
+          <%= link_to('Reopen', "#login", :class => "btn btn-danger rejectSubmission width-80 margin-top-8", :data => {toggle: 'modal', target: ".reopen-modal", :'application-id' => application.id}) %>
+
         </th>
         <th>
           <h4>Started</h4>
