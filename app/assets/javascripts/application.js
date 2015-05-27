@@ -34,7 +34,7 @@ $(document).ready(function () {
     String.prototype.splice = function (idx, rem, s) {
         return (this.slice(0, idx) + s + this.slice(idx + Math.abs(rem)));
     };
-    $('#user_phone_number').on('click', function () {
+    $('[type=tel]').on('click', function () {
         $(this).on('keyup', function (e) {
             var noActionKeyCodes = [8, 13, 16, 18, 37, 38, 39, 40, 91];
             if (($.inArray(e.keyCode, noActionKeyCodes) === -1)) {
