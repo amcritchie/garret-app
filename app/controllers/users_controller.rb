@@ -105,9 +105,10 @@ class UsersController < ApplicationController
 
   def unique_email
     @user = User.find_by(email: params[:email].downcase)
+    @restaurant = Restaurant.find_by(email: params[:email].downcase)
     respond_to do |format|
-      if @user
-        format.json { render json: {error: "Email is already used."} }
+      if @user || @restaurant
+        format.json { render json: {error: "Email is already used"} }
       else
         format.json { render json: {eror: "No error"} }
       end

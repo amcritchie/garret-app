@@ -2,45 +2,30 @@
 <div class="modal fade bs-modal-sm questions-modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
-      <br>
-
-      <div class="bs-example bs-example-tabs">
-        <ul id="myTab" class="nav nav-tabs">
-          <li class="active"><a href="#signin" data-toggle="tab">All questions</a></li>
-        </ul>
-      </div>
       <div class="modal-body">
-        <div id="myTabContent" class="tab-content">
-          <div class="tab-pane fade active in" id="signin">
-
-            <fieldset>
-              <table class="table table-striped">
+        <fieldset>
+          <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class: 'newQuestionForm'} do |f| %>
+              <table class="table table-striped control-group">
                 <thead>
                 <tr>
                   <th class="col-xs-2"></th>
-                  <th class="col-xs-7">Question</th>
+                  <th class="col-xs-6" for="body">Question</th>
                   <th class="col-xs-2">Department</th>
-                  <th class="col-xs-1">Key</th>
+                  <th class="col-xs-2">Key</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                  <%= form_for :question, as: :post, url: questions_new_path(:question), html: {class: 'newQuestionForm', data: {standard: 'fineDining'}} do |f| %>
-                      <div class="user-row">
-
-                        <th><%= f.submit "Add +", :class => "btn btn-primary login addQuestion" %></th>
-                        <th><%= f.text_field :body, :class => "form-control", :placeholder => "New question" %></th>
-                        <th><%= f.select :department, @departments.map(&:name) %></th>
-                        <th><%= f.select :key, @keys.map(&:name) %></th>
-                      </div>
-
-                  <% end %>
+                  <th><%= f.submit "Add +", :class => "btn btn-primary login addQuestion" %></th>
+                  <th><%= f.text_field :body, :class => "form-control", :placeholder => "New question" %></th>
+                  <th><%= f.select :department, @departments.map(&:name), {}, :class => 'form-control' %></th>
+                  <th><%= f.select :key, @keys.map(&:name), {}, :class => 'form-control' %></th>
                 </tr>
                 <% @questions.each do |question| %>
                     <tr>
                       <div class="user-row" data-question-id="<%= question.id %>">
                         <th>
-                          <button class="btn btn-sm btn-danger deleteQuestion"
+                          <button disabled class="btn btn-sm btn-danger deleteQuestion"
                                   type="button" data-toggle="tooltip"
                                   data-original-title="Remove this question"
                                   data-question-id="<%= question.id %>">
@@ -61,10 +46,8 @@
                 <% end %>
                 </tbody>
               </table>
-            </fieldset>
-          </div>
-
-        </div>
+          <% end %>
+        </fieldset>
       </div>
       <div class="modal-footer" style="border: 0">
         <center>

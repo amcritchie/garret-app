@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
           session[:user_type] = 'restaurant'
           format.json { render json: @restaurant }
         else
-          format.json { render json: {error: "Username / password is invalid."} }
+          format.json { render json: {error: "Email / password is invalid."} }
         end
       end
     end

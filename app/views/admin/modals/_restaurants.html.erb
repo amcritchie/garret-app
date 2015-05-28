@@ -1,28 +1,11 @@
-
-<!-- Button trigger modal -->
-
-<div class="container">
-</div>
-
-<!-- Modal -->
 <div class="modal fade bs-modal-sm" id="new-restaurant-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <br>
-
-      <div class="bs-example bs-example-tabs">
-        <ul id="myTab" class="nav nav-tabs">
-          <li class="active"><a href="#signin" data-toggle="tab">New Restaurant</a></li>
-        </ul>
-      </div>
       <div class="modal-body">
-        <div id="myTabContent" class="tab-content">
-
-          <div class="tab-pane fade active in" id="signin">
             <%= form_for :restaurant, as: :post, url: new_restaurant_path(:restaurants), html: { class: 'restaurantForm'} do |f| %>
                 <fieldset>
-                  <!-- Sign In Form -->
-                  <!-- Text input-->
+                  <!-- Name -->
                   <div class="control-group col-xs-12 margin-top-8">
                     <label class="control-label" for="name">Restaurant Name:</label>
                     <div class="controls">
@@ -30,6 +13,7 @@
                     </div>
                   </div>
 
+                  <!-- Url -->
                   <div class="control-group col-xs-12 margin-top-8">
                     <label class="control-label" for="url">Website:</label>
                     <div class="controls">
@@ -37,17 +21,19 @@
                     </div>
                   </div>
 
+                  <!-- Phone number -->
                   <div class="control-group col-xs-12 margin-top-8">
-                    <label class="control-label" for="phone">Phone:</label>
+                    <label class="control-label" for="phone_number">Phone:</label>
                     <div class="controls">
                       <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555) 555-5555" %>
                     </div>
                   </div>
 
-                  <!-- Password input-->
+                  <!-- Email and password-->
                   <div class="control-group">
                     <div class="controls col-xs-12 margin-top-8">
-                      <label class="control-label" for="username_and_pass">Temp email & password:</label>
+                      <label class="control-label" for="email">Temp email </label>
+                      <label class="control-label" for="password">& password:</label>
                     </div>
                     <div class="controls col-xs-6">
                       <%= f.text_field :email, :class => "form-control", :placeholder => "Temp Username",
@@ -61,7 +47,7 @@
                     </div>
                   </div>
 
-                  <!-- Password input-->
+                  <!-- address-->
                   <div class="control-group">
                     <div class="controls col-xs-12 margin-top-8">
                       <label class="control-label" for="address">Address:</label>
@@ -89,100 +75,6 @@
                   </div>
                 </fieldset>
             <% end %>
-          </div>
-
-          <div class="tab-pane fade" id="signup">
-            <%= form_for :user, as: :post, url: users_path(:user), html: { class: 'signUpForm'} do |f| %>
-                <!--<form class="form-horizontal">-->
-                <fieldset>
-                  <!-- Sign Up Form -->
-                  <div class="control-group col-xs-12">
-                    <div class="controls">
-                      <label class="control-label" for="account">Applying to be:</label>
-                    </div>
-                    <div class="controls">
-                      <label class="radio inline col-xs-4" for="humancheck-0">
-                        <input type="radio" name="account" value="evaluator" checked="checked">I'm an
-                        Evaluator</label>
-
-                      <div class="col-xs-8 inline">
-                        <label class="radio inline" for="humancheck-1">
-                          <input type="radio" name="account" value="restaurant">I'm a Restaurant
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Text input-->
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="email">Email:</label>
-                    <div class="controls">
-                      <%= f.email_field :email, :class => "form-control", :placeholder => "email@gmail.com" %>
-                    </div>
-                  </div>
-
-                  <!-- Text input-->
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="password">Password:</label>
-                    <div class="controls">
-                      <%= f.password_field :password, :class => "form-control", :placeholder => "**********" %>
-                    </div>
-                  </div>
-
-                  <!-- Password input-->
-                  <div class="control-group">
-                    <div class="controls col-xs-12">
-                      <label class="control-label" for="name">Name:</label>
-                    </div>
-
-                    <div class="controls col-xs-6">
-                      <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
-                    </div>
-                    <div class="controls col-xs-6">
-                      <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
-                    </div>
-                  </div>
-
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="phone">Phone:</label>
-                    <div class="controls">
-                      <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555) 555-5555" %>
-                    </div>
-                  </div>
-
-                  <!-- Password input-->
-                  <div class="control-group">
-                    <div class="controls col-xs-12">
-                      <label class="control-label" for="address">Address:</label>
-                    </div>
-                    <div class="controls col-xs-5">
-                      <%= f.text_field :address, :class => "form-control", :placeholder => "Address" %>
-                    </div>
-                    <div class="controls col-xs-3">
-                      <%= f.text_field :city, :class => "form-control", :placeholder => "City" %>
-                    </div>
-                    <div class="controls col-xs-2">
-                      <%= f.text_field :state, :class => "form-control", :placeholder => "State" %>
-                    </div>
-                    <div class="controls col-xs-2">
-                      <%= f.text_field :zip, :class => "form-control", :placeholder => "Zip" %>
-                    </div>
-                  </div>
-
-                  <!-- Button -->
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="confirmsignup"></label>
-
-                    <div class="controls">
-                      <%= f.submit "Register", :class => "btn btn-primary signUp" %>
-                      <!--<button id="confirmsignup" name="confirmsignup" class="btn btn-success">Sign Up</button>-->
-                    </div>
-                  </div>
-                </fieldset>
-                <!--</form>-->
-            <% end %>
-          </div>
-        </div>
       </div>
       <div class="modal-footer">
         <center>

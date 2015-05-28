@@ -4,111 +4,51 @@
   <div class="modal-dialog modal-md">
     <div class="modal-content">
       <br>
-
-      <div class="bs-example bs-example-tabs">
-        <ul id="myTab" class="nav nav-tabs">
-          <li class="active"><a href="#newEvaluation" data-toggle="tab">New Evaluation</a></li>
-          <li class=""><a href="#standards" data-toggle="tab">Questions</a></li>
-
-        </ul>
-      </div>
       <div class="modal-body">
-        <div id="myTabContent" class="tab-content">
-
-
-          <div class="tab-pane fade active in" id="newEvaluation">
-
-            <fieldset>
-              <!-- Sign In Form -->
-              <!-- Text input-->
-              <%= form_for @evaluation, html: {class:
-                                                       'newEvaluationForm'} do |f| %>
-
-
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="restaurant-name">Title:</label>
-
-                    <div class="controls">
-                      <%= f.text_field :name, :class => "form-control", :placeholder => "Evaluation Title" %>
-                    </div>
-                  </div>
-
-
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="restaurant-name">Restaurant:</label>
-
-                    <div class="controls">
-                      <%= f.select :restaurant_id, @restaurants.map(&:name) %>
-                    </div>
-                  </div>
-
-                  <!-- Text input-->
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="passwordinput">Standards:</label>
-
-                    <div class="controls">
-                      <%= f.select :standard_id, @standards.map(&:name) %>
-                    </div>
-                  </div>
-
-                  <!-- Text input-->
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="passwordinput">Message:</label>
-
-                    <div class="controls">
-                      <%= f.text_area :message, :class => "form-control", :placeholder => "Extra info about this evaluation." %>
-                    </div>
-                  </div>
-
-                  <!-- Button -->
-                  <div class="control-group col-xs-12">
-                    <label class="control-label" for="signin"></label>
-
-                    <div class="controls">
-                      <%= f.submit "Submit", :class => "btn btn-primary login" %>
-                    </div>
-                  </div>
-                  </fieldset>
-              <% end %>
-              <br>
-              <br>
-              <br>
-              <!--<br>-->
-
+        <fieldset>
+          <%= form_for @evaluation, html: {class: 'newEvaluationForm'} do |f| %>
+              <!-- Name-->
+              <div class="control-group col-xs-12">
+                <label class="control-label" for="name">Title:</label>
+                <div class="controls">
+                  <%= f.text_field :name, :class => "form-control", :placeholder => "Evaluation Title" %>
+                </div>
               </div>
 
-          <div class="tab-pane fade" id="standards">
-            <fieldset>
-              <table class="table table-striped">
-                <thead>
-                <tr>
-                  <th class="col-xs-8">Question</th>
-                  <th class="col-xs-2">class</th>
-                  <th class="col-xs-2">sub class</th>
-                </tr>
-                </thead>
-                <tbody>
-                <% @questions.each do |question| %>
-                    <tr>
-                      <div class="user-row" data-question-id="<%= question.id %>">
-                        <th>
-                          <strong><%= question.body %></strong>
-                        </th>
-                        <th>
-                          <strong><%= question.department %></strong>
-                        </th>
-                        <th>
-                          <strong><%= question.key %></strong>
-                        </th>
-                      </div>
-                    </tr>
-                <% end %>
-                </tbody>
-              </table>
-            </fieldset>
+              <!-- Restaurant-->
+              <div class="control-group col-xs-12">
+                <label class="control-label" for="restaurant">Restaurant:</label>
+                <div class="controls">
+                  <%= f.select :restaurant_id, @restaurants.map(&:name), {}, :class => 'form-control' %>
+                </div>
+              </div>
+
+              <!-- Standards-->
+              <div class="control-group col-xs-12">
+                <label class="control-label" for="standards">Standards:</label>
+                <div class="controls">
+                  <%= f.select :standard_id, @standards.map(&:name), {}, :class => 'form-control' %>
+                </div>
+              </div>
+
+              <!-- Message-->
+              <div class="control-group col-xs-12">
+                <label class="control-label" for="message">Message:</label>
+                <div class="controls">
+                  <%= f.text_area :message, :class => "form-control", :placeholder => "Extra info about this evaluation." %>
+                </div>
+              </div>
+
+              <!-- Submit -->
+              <div class="control-group col-xs-12">
+                <div class="controls">
+                  <br>
+                  <%= f.submit "Submit", :class => "btn btn-primary login" %>
+                </div>
+              </div>
+              </fieldset>
+          <% end %>
           </div>
-        </div>
-      </div>
       <div class="modal-footer" style="border: 0">
         <center>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

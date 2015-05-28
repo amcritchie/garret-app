@@ -11,13 +11,14 @@
 <%= render 'layouts/nav_bar' %>
 <%= render 'modals/login' %>
 
-<div class="container">
-  <hr class="prettyline">
-  <hr class="prettyline">
+<div class="main-content">
+  <%= yield %>
 </div>
 
-<div class="container">
-  <%= yield %>
+<div id="footer">
+  <div class="container">
+    <p class="footer-block">©10&5 Hospitality, LLC</p>
+  </div>
 </div>
 
 </body>

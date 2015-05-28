@@ -24,7 +24,7 @@
               <tr>
                 <div class="user-row" data-<%= locals[:type] %>-id="<%= question.id %>">
                   <th>
-                    <button class="btn btn-md btn-danger delete<%= locals[:type].capitalize %>"
+                    <button disabled class="btn btn-md btn-danger delete<%= locals[:type].capitalize %>"
                             type="button" data-toggle="tooltip"
                             data-original-title="Remove this question"
                             data-<%= locals[:type] %>-id="<%= question.id %>">
