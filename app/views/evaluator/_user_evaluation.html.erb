@@ -90,6 +90,15 @@
                   <% end %>
                   <div class="department-tab-pane tab-pane fade" id=<%= department.name %>>
                     <fieldset>
+
+                      <div class="control-group margin-top-8">
+                        <label class="control-label" for="<%= department.name %>Description">Overall experience with the <%= department.name %> department:</label>
+
+                        <div class="controls">
+                          <textarea class="form-control departmentDescription" data-description-id="<%= department.id %>" placeholder="Please be detailed."></textarea>
+                        </div>
+                      </div>
+
                       <table class="table table-striped">
                         <thead>
                         <tr>

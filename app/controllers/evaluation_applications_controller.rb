@@ -104,6 +104,7 @@ class EvaluationApplicationsController < ApplicationController
     @application = EvaluationApplication.find(params[:id])
     @application.update(
         score: params[:score],
+        department_descriptions: params[:descriptions],
         arrive_time: time_spots[:arrival_time],
         depart_time: time_spots[:departure_time],
         check_all_items_billed: check[:allItems],
