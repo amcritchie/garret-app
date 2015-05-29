@@ -164,7 +164,7 @@ body {
 *       http://css-tricks.com/webkit-sibling-bug/
 */
 .switch-input {
-  display: none;
+   display: none;
 }
 .switch-input:checked + .switch-label {
   font-weight: bold;

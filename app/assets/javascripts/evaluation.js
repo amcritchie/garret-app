@@ -9,13 +9,13 @@ var Evaluation = {
         $.when(Evaluation.getScore(info)).done(function (response) {
             Evaluation.refresh();
             Evaluation.removeQuestionsWithStandardsZero(response.standards);
+            Evaluation.removerDepartmentsWithNoQuestions(response.standards);
             Evaluation.loadScores(response.score);
             Evaluation.setDisableEvents();
             Evaluation.loadDetails(response.application);
             Evaluation.registerClickAnswer();
 
             callback();
-
             $('.evaluationFill').on('keyup', function() {
                 Evaluation.save();
             });
@@ -43,6 +43,7 @@ var Evaluation = {
     },
     refresh: function () {
         $('.question-row').show();
+        $('.department-tab').show();
         $('.evaluationFill').prop('disabled', false).val('');
         $('.evaluationClick').prop('disabled', false).prop('checked', false);
         $('.questionCheckboxAll').attr('data-relevant', true);
@@ -201,6 +202,29 @@ var Evaluation = {
                 $(value).find('.questionCheckboxAll').attr('data-relevant', false);
             }
         })
+    },
+
+    removerDepartmentsWithNoQuestions: function () {
+        var activeQuestionRows = $('#allQuestions').find('.question-row')
+            .filter(function () {
+                return $(this).css('display') == 'table-row'
+            });
+        var activeQuestionIds = [];
+        activeQuestionRows.each(function(index, row) {
+            activeQuestionIds.push($(row).data('question-id'));
+        });
+
+        $('.department-tab-pane').each(function(index, department) {
+            var hideDepartment = true;
+            $(department).find('.question-row').each(function(i, question) {
+                if ((!hideDepartment) || $(question).css('display') === 'table-row') {
+                    hideDepartment = false;
+                }
+            });
+            if (hideDepartment) {
+                $('.department-tab[data-department=' + department.id + ']').hide();
+            }
+        });
     },
 
     registerClickAnswer: function () {

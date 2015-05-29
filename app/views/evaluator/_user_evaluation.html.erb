@@ -1,158 +1,147 @@
 <!-- Modal -->
 <div class="modal fade bs-modal-sm evaluation-modal" id="myModal" tabindex="-1" role="dialog"
      aria-labelledby="mySmallModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-md">
-<div class="modal-content">
-<br>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <br>
 
-<div class="bs-example bs-example-tabs">
-  <ul id="myTab" class="nav nav-tabs">
-    <li class="active"><a id="evaluation-info" href="#details" data-toggle="tab">Details</a></li>
-    <li class=""><a id="all-questions" href="#standards" data-toggle="tab">All</a></li>
-    <% @departments.each do |department| %>
-        <% if Question.where(department: department.name).count > 0 %>
-            <li class=""><a href="#<%= department.name %>" data-toggle="tab"><%= department.name.capitalize %></a>
-            </li>
-        <% end %>
-    <% end %>
-  </ul>
-</div>
-<div class="modal-body">
-  <div id="myTabContent" class="tab-content">
-    <% @departments.each do |department| %>
-        <% if Question.where(department: department.name).count > 0 %>
-            <% department_questions = [] %>
-            <% @all_questions.each do |question| %>
-                <% if question.department == department.name %>
-                    <% department_questions.push(question) %>
-                <% end %>
-            <% end %>
-            <div class="tab-pane fade" id=<%= department.name %>>
-              <fieldset>
-                <table class="table table-striped">
-                  <thead>
-                  <tr>
-                    <th class="col-xs-7">Question</th>
-                    <th class="col-xs-">Pass</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <% department_questions.each do |question| %>
-                      <tr class="question-row" data-question-id="<%= question.id %>">
-                        <div class="user-row" data-question-id="<%= question.id %>">
-                          <th>
-                            <strong><%= question.body %></strong>
-                          </th>
-                          <th>
-                            <strong>
-
-                              <div class="btn-group questionCheckbox" data-toggle="buttons" data-question-id=<%= question.id %>>
-                                <label class="btn btn-default questionLabel questionCheckbox questionNA" data-question-id=<%= question.id %>>
-                                  <input class="questionNA questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="2" checked>
-                                  N/A </label>
-                                <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
-                                  <input class="questionFail questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
-                                  Fail </label>
-                                <label class="btn btn-default questionLabel questionNil active" data-question-id=<%= question.id %>>
-                                  <input type="radio" name="inputWalls" id="inputWalls" value="nil">
-                                  <span class="glyphicon"></span>
-                                </label>
-                                <label class="btn btn-default questionLabel questionCheckbox questionPassed" data-question-id=<%= question.id %>>
-                                  <input class="questionPass questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
-                                  Pass </label>
-                              </div>
-                              <div>
-                                <input class="answerExplanation evaluationFill" data-question-id="<%= question.id %>" placeholder="Why?" value="">
-                              </div>
-                            </strong>
-                          </th>
-                        </div>
-                      </tr>
-                  <% end %>
-                  </tbody>
-                </table>
-              </fieldset>
-            </div>
-        <% end %>
-    <% end %>
-    <div class="tab-pane fade in" id="standards">
-      <fieldset>
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th class="col-xs-7">Question</th>
-            <th class="col-xs-5">Pass</th>
-          </tr>
-          </thead>
-          <tbody>
-          <% @all_questions.each do |question| %>
-              <tr class="question-row" data-question-id="<%= question.id %>">
-                <div class="user-row" data-question-id="<%= question.id %>">
-                  <th class="col-xs-7">
-                    <strong><%= question.body %></strong>
-                  </th>
-                  <th class="col-xs-5">
-                    <strong>
-
-                      <div class="btn-group questionCheckboxAll" data-toggle="buttons" data-question-id=<%= question.id %>>
-
-                        <label class="btn btn-default questionLabel questionCheckbox questionNA" data-question-id=<%= question.id %>>
-                          <input class="questionNA questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="2" checked>
-                          N/A </label>
-
-                        <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
-                          <input class="questionFail questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
-                          Fail </label>
-
-                        <label class="btn btn-default questionLabel questionNil active" data-question-id=<%= question.id %>>
-                          <input type="radio" name="inputWalls" id="inputWalls" value="nil">
-                          <span class="glyphicon"></span>
-                        </label>
-
-                        <label class="btn btn-default questionLabel questionCheckbox questionPassed" data-question-id=<%= question.id %>>
-                          <input class="questionPass questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
-                          Pass </label>
-                      </div>
-                      <div>
-                        <input data-question-id="<%= question.id %>" class="answerExplanation evaluationFill" placeholder="Why?" value="">
-                      </div>
-                    </strong>
-                  </th>
-                </div>
-              </tr>
+      <div class="bs-example bs-example-tabs">
+        <ul id="myTab" class="nav nav-tabs">
+          <li class="active"><a id="evaluation-info" href="#details" data-toggle="tab">Details</a></li>
+          <li class=""><a id="all-questions" href="#allQuestions" data-toggle="tab">All</a></li>
+          <% @departments.each do |department| %>
+              <% if Question.where(department: department.name).count > 0 %>
+                  <li class="department-tab" data-department="<%= department.name %>"><a href="#<%= department.name %>" data-toggle="tab"><%= department.name.capitalize %></a>
+                  </li>
+              <% end %>
           <% end %>
-          </tbody>
-        </table>
-      </fieldset>
+        </ul>
+      </div>
+
+      <div class="modal-body">
+        <div id="myTabContent" class="tab-content">
+          <div class="tab-pane fade active in" id="details">
+            <fieldset>
+              <form role="form">
+                <%= render 'evaluator/time_points' %>
+                <%= render 'evaluator/check' %>
+
+                <%= render 'evaluator/reservationist', locals: {label: 'Reservationist', key: 'res'} %>
+                <%= render 'evaluator/employee_input', locals: {label: 'Bartender', key: 'bar'} %>
+                <%= render 'evaluator/employee_input', locals: {label: 'Host 1', key: 'ho1'} %>
+                <%= render 'evaluator/employee_input', locals: {label: 'Host 2', key: 'ho2'} %>
+                <%= render 'evaluator/employee_input', locals: {label: 'Manager', key: 'man'} %>
+                <%= render 'evaluator/employee_input', locals: {label: 'Server', key: 'ser'} %>
+              </form>
+            </fieldset>
+          </div>
+          <div class="tab-pane fade in" id="allQuestions">
+            <fieldset>
+              <table class="table table-striped">
+                <thead>
+                <tr>
+                  <th class="col-xs-7">Question</th>
+                  <th class="col-xs-5">Pass</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% @all_questions.each do |question| %>
+                    <tr class="question-row" data-question-id="<%= question.id %>">
+                      <div class="user-row" data-question-id="<%= question.id %>">
+                        <th class="col-xs-7">
+                          <strong><%= question.body %></strong>
+                        </th>
+                        <th class="col-xs-5">
+                          <strong>
+                            <div class="btn-group questionCheckboxAll" data-toggle="buttons" data-question-id=<%= question.id %>>
+                              <label class="btn btn-default questionLabel questionCheckbox questionNA" data-question-id=<%= question.id %>>
+                                <input class="questionNA questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="2" checked>
+                                N/A </label>
+                              <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
+                                <input class="questionFail questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
+                                Fail </label>
+                              <label class="btn btn-default questionLabel questionNil active" data-question-id=<%= question.id %>>
+                                <input type="radio" name="inputWalls" id="inputWalls" value="nil">
+                                <span class="glyphicon"></span>
+                              </label>
+                              <label class="btn btn-default questionLabel questionCheckbox questionPassed" data-question-id=<%= question.id %>>
+                                <input class="questionPass questionAnswer evaluationClick" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
+                                Pass </label>
+                            </div>
+                            <div>
+                              <input data-question-id="<%= question.id %>" class="answerExplanation evaluationFill" placeholder="Why?" value="">
+                            </div>
+                          </strong>
+                        </th>
+                      </div>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </fieldset>
+          </div>
+          <% @departments.each do |department| %>
+              <% if Question.where(department: department.name).count > 0 %>
+                  <% department_questions = [] %>
+                  <% @all_questions.each do |question| %>
+                      <% if question.department == department.name %>
+                          <% department_questions.push(question) %>
+                      <% end %>
+                  <% end %>
+                  <div class="department-tab-pane tab-pane fade" id=<%= department.name %>>
+                    <fieldset>
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th class="col-xs-7">Question</th>
+                          <th class="col-xs-">Pass</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% department_questions.each do |question| %>
+                            <tr class="question-row" data-question-id="<%= question.id %>">
+                              <div class="user-row" data-question-id="<%= question.id %>">
+                                <th>
+                                  <strong><%= question.body %></strong>
+                                </th>
+                                <th>
+                                  <strong>
+                                    <div class="btn-group questionCheckbox" data-toggle="buttons" data-question-id=<%= question.id %>>
+                                      <label class="btn btn-default questionLabel questionCheckbox questionNA" data-question-id=<%= question.id %>>
+                                        <input class="questionNA questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="2" checked>
+                                        N/A </label>
+                                      <label class="btn btn-default questionLabel questionCheckbox questionFailed" data-question-id=<%= question.id %>>
+                                        <input class="questionFail questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="0" checked>
+                                        Fail </label>
+                                      <label class="btn btn-default questionLabel questionNil active" data-question-id=<%= question.id %>>
+                                        <input type="radio" name="inputWalls" id="inputWalls" value="nil">
+                                        <span class="glyphicon"></span>
+                                      </label>
+                                      <label class="btn btn-default questionLabel questionCheckbox questionPassed" data-question-id=<%= question.id %>>
+                                        <input class="questionPass questionAnswer" data-question-id=<%= question.id %> type="radio" name="inputWalls" id="inputWalls" value="1">
+                                        Pass </label>
+                                    </div>
+                                    <div>
+                                      <input class="answerExplanation evaluationFill" data-question-id="<%= question.id %>" placeholder="Why?" value="">
+                                    </div>
+                                  </strong>
+                                </th>
+                              </div>
+                            </tr>
+                        <% end %>
+                        </tbody>
+                      </table>
+                    </fieldset>
+                  </div>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="modal-footer" style="border: 0">
+        <center class="user-evaluation-center">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </center>
+      </div>
     </div>
-
-    <div class="tab-pane fade active in" id="details">
-      <fieldset>
-        <form role="form">
-
-
-          <%= render 'evaluator/time_points' %>
-          <%= render 'evaluator/check' %>
-
-          <%= render 'evaluator/reservationist', locals: {label: 'Reservationist', key: 'res'} %>
-          <%= render 'evaluator/employee_input', locals: {label: 'Bartender', key: 'bar'} %>
-          <%= render 'evaluator/employee_input', locals: {label: 'Host 1', key: 'ho1'} %>
-          <%= render 'evaluator/employee_input', locals: {label: 'Host 2', key: 'ho2'} %>
-          <%= render 'evaluator/employee_input', locals: {label: 'Manager', key: 'man'} %>
-          <%= render 'evaluator/employee_input', locals: {label: 'Server', key: 'ser'} %>
-
-
-        </form>
-      </fieldset>
-    </div>
-
   </div>
-</div>
-<div class="modal-footer" style="border: 0">
-  <center class="user-evaluation-center">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-  </center>
-</div>
-</div>
-</div>
 </div>

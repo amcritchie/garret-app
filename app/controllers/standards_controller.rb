@@ -5,7 +5,7 @@ class StandardsController < ApplicationController
   end
 
   def create
-    @standards = Standard.new(
+    @standard = Standard.new(
         name: params[:name],
         details: params[:details]
     )

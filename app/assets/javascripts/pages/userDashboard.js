@@ -5,6 +5,7 @@ var UserDashboard = {
     },
     listenForOpenEvaluation: function() {
         $('.startEvaluation').on('click', function (e) {
+            $('#all-questions').click();
             $(this).html('<i class="fa fa-spinner fa-spin fa-1x"></i>');
             // This is used to reactivate the e.stopPropagation
             var copy = $.extend(true, {}, e);
