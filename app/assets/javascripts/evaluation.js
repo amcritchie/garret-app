@@ -102,45 +102,45 @@ var Evaluation = {
             },
             employees: {
                 reservationist: {
-                    valid: document.getElementById("no_res").checked,
+                    valid: !document.getElementById("no_res").checked,
                     gender: $("input[name=res_gender]:checked").val(),
-//                    height: document.getElementById("res_height").value,
-                    hair: document.getElementById("res_name").value,
+                    height: document.getElementById("res_name").value,
+//                    hair: document.getElementById("res_name").value,
                     other: document.getElementById("res_time").value
                 },
                 bartender: {
-                    valid: document.getElementById("no_bar").checked,
+                    valid: !document.getElementById("no_bar").checked,
                     gender: $("input[name=bar_gender]:checked").val(),
                     height: document.getElementById("bar_height").value,
-                    hair: document.getElementById("bar_hair").value,
+//                    hair: document.getElementById("bar_hair").value,
                     other: document.getElementById("bar_other").value
                 },
                 host1: {
-                    valid: document.getElementById("no_ho1").checked,
+                    valid: !document.getElementById("no_ho1").checked,
                     gender: $("input[name=ho1_gender]:checked").val(),
                     height: document.getElementById("ho1_height").value,
-                    hair: document.getElementById("ho1_hair").value,
+//                    hair: document.getElementById("ho1_hair").value,
                     other: document.getElementById("ho1_other").value
                 },
                 host2: {
-                    valid: document.getElementById("no_ho2").checked,
+                    valid: !document.getElementById("no_ho2").checked,
                     gender: $("input[name=ho2_gender]:checked").val(),
                     height: document.getElementById("ho2_height").value,
-                    hair: document.getElementById("ho2_hair").value,
+//                    hair: document.getElementById("ho2_hair").value,
                     other: document.getElementById("ho2_other").value
                 },
                 manager: {
-                    valid: document.getElementById("no_man").checked,
+                    valid: !document.getElementById("no_man").checked,
                     gender: $("input[name=man_gender]:checked").val(),
                     height: document.getElementById("man_height").value,
-                    hair: document.getElementById("man_hair").value,
+//                    hair: document.getElementById("man_hair").value,
                     other: document.getElementById("man_other").value
                 },
                 server: {
-                    valid: document.getElementById("no_ser").checked,
+                    valid: !document.getElementById("no_ser").checked,
                     gender: $("input[name=ser_gender]:checked").val(),
                     height: document.getElementById("ser_height").value,
-                    hair: document.getElementById("ser_hair").value,
+//                    hair: document.getElementById("ser_hair").value,
                     other: document.getElementById("ser_other").value
                 }
 
@@ -297,7 +297,7 @@ var Evaluation = {
         $(document.getElementById("table_id")).val(details.table_num);
         $(document.getElementById("check_amount")).val(details.check_amount);
 
-        if (details.res_valid) {
+        if (!details.res_valid) {
             document.getElementById("no_res").click()
         }
         $('[name=res_gender][value=' + details.res_gender + ']').click();
@@ -305,46 +305,48 @@ var Evaluation = {
         $(document.getElementById("res_name")).val(details.res_hair);
         $(document.getElementById("res_time")).val(details.res_other);
 
-        if (details.bar_valid) {
+        if (!details.bar_valid) {
             document.getElementById("no_bar").click()
         }
         $('[name=bar_gender][value=' + details.bar_gender + ']').click();
         $(document.getElementById("bar_height")).val(details.bar_height);
-        $(document.getElementById("bar_hair")).val(details.bar_hair);
+//        $(document.getElementById("bar_hair")).val(details.bar_hair);
         $(document.getElementById("bar_other")).val(details.bar_other);
 
 
-        if (details.host1_valid) {
+        if (!details.host1_valid) {
             document.getElementById("no_ho1").click()
         }
         $('[name=ho1_gender][value=' + details.host1_gender + ']').click();
         $(document.getElementById("ho1_height")).val(details.host1_height);
-        $(document.getElementById("ho1_hair")).val(details.host1_hair);
+//        $(document.getElementById("ho1_hair")).val(details.host1_hair);
         $(document.getElementById("ho1_other")).val(details.host1_other);
 
 
-        if (details.host2_valid) {
+        if (!details.host2_valid) {
             document.getElementById("no_ho2").click()
         }
         $('[name=ho2_gender][value=' + details.host2_gender + ']').click();
         $(document.getElementById("ho2_height")).val(details.host2_height);
-        $(document.getElementById("ho2_hair")).val(details.host2_hair);
+//        $(document.getElementById("ho2_hair")).val(details.host2_hair);
+//        debugger;
+        $("#ho2_height").val(details.host2_height);
         $(document.getElementById("ho2_other")).val(details.host2_other);
 
-        if (details.man_valid) {
+        if (!details.man_valid) {
             document.getElementById("no_man").click()
         }
         $('[name=man_gender][value=' + details.man_gender + ']').click();
         $(document.getElementById("man_height")).val(details.man_height);
-        $(document.getElementById("man_hair")).val(details.man_hair);
+//        $(document.getElementById("man_hair")).val(details.man_hair);
         $(document.getElementById("man_other")).val(details.man_other);
 
-        if (details.ser_valid) {
+        if (!details.ser_valid) {
             document.getElementById("no_ser").click()
         }
         $('[name=ser_gender][value=' + details.ser_gender + ']').click();
         $(document.getElementById("ser_height")).val(details.ser_height);
-        $(document.getElementById("ser_hair")).val(details.ser_hair);
+//        $(document.getElementById("ser_hair")).val(details.ser_hair);
         $(document.getElementById("ser_other")).val(details.ser_other);
     },
 

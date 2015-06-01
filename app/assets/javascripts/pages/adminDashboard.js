@@ -39,8 +39,9 @@ var AdminDashboard = {
             var id = $(this).data('application-id');
             var a = $(this).parent();
             $(this).html('<i class="fa fa-spinner fa-spin"></i>');
-            Ajax.respondToSubmittedEvaluation(id, 'application/accept', function () {
+            Ajax.respondToSubmittedEvaluation({id: id}, 'application/accept', function () {
                 a.parent().children().children('button').remove();
+                a.parent().children().children('a').remove();
                 a.prepend('Evaluation Accepted');
             });
         });

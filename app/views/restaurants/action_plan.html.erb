@@ -1,20 +1,69 @@
-<div id="metaInfo" data-restaurant-id="<%= @restaurant.id %>">
-  <h1>
-    <%= @restaurant.name.capitalize %> Action Plan
-  </h1>
+<div class="container">
+  <div data-restaurant-id="<%= @restaurant.id %>">
+    <h1>
+      <%= @restaurant.name.capitalize %> Action Plan
+      <a id="printPage" class="btn btn-default">Print Page</a>
+    </h1>
+    <h5>
+      Accepted on: <%= @application.completed_at.strftime("%b %d, %Y") %>
+    </h5>
+  </div>
+
+  <div>
+    <table class="table table-striped">
+      <tbody>
+      <tr>
+        <div class="row">
+          <div class="col-xs-2" style="background-color: d">
+            <h5>Reservationist</h5>
+            <% if @application.res_valid %>
+                <% if @application.res_gender == 'male' %>
+                    <i class="fa fa-male"></i>
+                <% else %>
+                    <i class="fa fa-female"></i>
+                <% end %>
+                <%= @application.res_hair %> -
+                <%= @application.res_other %>
+            <% else %>
+                N/A
+            <% end %>
+          </div>
+          <%= render 'restaurants/action_plan_elements/employee_details', locals: {code: 'host1', title: 'Host 1'} %>
+          <%= render 'restaurants/action_plan_elements/employee_details', locals: {code: 'host2', title: 'Host 2'} %>
+          <%= render 'restaurants/action_plan_elements/employee_details', locals: {code: 'bar', title: 'Bartender'} %>
+          <%= render 'restaurants/action_plan_elements/employee_details', locals: {code: 'ser', title: 'Server'} %>
+          <%= render 'restaurants/action_plan_elements/employee_details', locals: {code: 'man', title: 'Manager'} %>
+        </div>
+      </tr>
+      <hr>
+      <tr>
+        <div class="col-xs-2">Arrival Time: <%= @application.arrive_time %></div>
+        <div class="col-xs-2">Departure Time: <%= @application.depart_time %></div>
+        <div class="col-xs-2">Check # <%= @application.check_num %></div>
+        <div class="col-xs-2">Table # <%= @application.table_num %></div>
+        <div class="col-xs-2">Check Amount: <%= @application.check_amount %></div>
+        <div class="col-xs-2">All items billed: <%= @application.check_all_items_billed %></div>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="departmentSummary">
+  </div>
+
+  <table id="evaluationsTable" class="table table-striped" data-restaurant-id="<%= @restaurant.id %>">
+    <thead>
+    <tr class="tableKeys">
+      <th>Department</th>
+      <th>Missed Standard</th>
+      <th>Comment</th>
+      <th>Previous Visit</th>
+      <th>Previous 6 Visits</th>
+    </tr>
+    </thead>
+    <tbody class="tableBody">
+
+    </tbody>
+  </table>
 </div>
-
-<table id="evaluationsTable" class="table table-striped" data-restaurant-id="<%= @restaurant.id %>">
-  <thead>
-  <tr class="tableKeys">
-    <th>Department</th>
-    <th>Missed Standard</th>
-    <th>Comment</th>
-    <th>Last Visit</th>
-    <th>Last 6 Visits</th>
-  </tr>
-  </thead>
-  <tbody class="tableBody">
-
-  </tbody>
-</table>
+</div>

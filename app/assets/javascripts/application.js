@@ -126,6 +126,10 @@ $(document).ready(function () {
     var panelsButton = $('.dropdown-user');
     panels.hide();
 
+    $('#printPage').click(function(){
+        window.print();
+    });
+
     //Click dropdown
     panelsButton.click(function () {
         //get data-for attribute

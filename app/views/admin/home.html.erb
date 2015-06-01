@@ -1,54 +1,60 @@
-<% if current_user && current_user.admin %>
-    <h1>
-      Welcome back
-      <%= current_user.first_name.capitalize %>
-    </h1>
-    <br>
+<div class="container">
+  <% if current_user && current_user.admin %>
+      <h1>
+        Welcome back
+        <%= current_user.first_name.capitalize %>
+      </h1>
+      <br>
 
-    <%= render 'evaluator/user_evaluation' %>
+      <%= render 'evaluator/user_evaluation' %>
 
-    <%= render 'admin/modals/root' %>
-    <%= render 'admin/modals/reopen_submission' %>
+      <%= render 'admin/modals/root' %>
+      <%= render 'admin/modals/reopen_submission' %>
 
-    <%= link_to('Departments', "#login", :data => {toggle: 'modal', target: ".departments-modal"}) %> -
-    <%= link_to('Keys', "#login", :data => {toggle: 'modal', target: ".keys-modal"}) %> -
-    <%= link_to('Questions', "#login", :data => {toggle: 'modal', target: ".questions-modal"}) %><br><br>
+      <%= link_to('Departments', "#login", :data => {toggle: 'modal', target: ".departments-modal"}) %> -
+      <%= link_to('Keys', "#login", :data => {toggle: 'modal', target: ".keys-modal"}) %> -
+      <%= link_to('Questions', "#login", :data => {toggle: 'modal', target: ".questions-modal"}) %>
+      <br><br>
 
-    <%= link_to('New Restaurant', "#login", :data => {toggle: 'modal', target: "#new-restaurant-modal"}) %> -
-    <%= link_to('New Standards', "#login", :data => {toggle: 'modal', target: ".standards-modal"}) %> -
-    <%= link_to('New Evaluation', "#login", :data => {toggle: 'modal', target: ".eval-modal"}) %><br><br>
+      <%= link_to('New Restaurant', "#login", :data => {toggle: 'modal', target: "#new-restaurant-modal"}) %> -
+      <%= link_to('New Standards', "#login", :data => {toggle: 'modal', target: ".standards-modal"}) %> -
+      <%= link_to('New Evaluation', "#login", :data => {toggle: 'modal', target: ".eval-modal"}) %>
+      <br><br>
 
-    <h1>User Evaluations</h1>
-    <h4>Pending Evaluations</h4>
-    <%= render 'admin/tables/pending_applications', locals: {evaluations: @pending_evaluations} %>
+      <h1>User Evaluations</h1>
+      <h4>Pending Evaluations</h4>
+      <%= render 'admin/tables/pending_applications', locals: {evaluations: @pending_evaluations} %>
 
-    <h4>Open Evaluations</h4>
-    <%= render 'admin/tables/open_applications', locals: {evaluations: @open_evaluations} %>
+      <h4>Open Evaluations</h4>
+      <%= render 'admin/tables/open_applications', locals: {evaluations: @open_evaluations} %>
 
-    <h4>Submitted Evaluations</h4>
-    <%= render 'admin/tables/submitted_applications', locals: {evaluations: @submitted_evaluations} %>
+      <h4>Submitted Evaluations</h4>
+      <%= render 'admin/tables/submitted_applications', locals: {evaluations: @submitted_evaluations} %>
 
-    <h4>Completed Evaluations</h4>
-    <%= render 'admin/tables/complete_applications', locals: {evaluations: @completed_evaluations} %>
+      <h4>Completed Evaluations</h4>
+      <%= render 'admin/tables/complete_applications', locals: {evaluations: @completed_evaluations} %>
 
-    <hr><hr>
+      <hr>
+      <hr>
 
-    <h1>Restaurants</h1>
-    <%= render 'admin/tables/restaurants', locals: {restaurants: @restaurants} %>
+      <h1>Restaurants</h1>
+      <%= render 'admin/tables/restaurants', locals: {restaurants: @restaurants} %>
 
-    <hr><hr>
-    <h1>Restaurant Evaluations</h1>
+      <hr>
+      <hr>
+      <h1>Restaurant Evaluations</h1>
 
-    <h4>Open Evaluations</h4>
-    <%= render 'admin/tables/evaluations', locals: {evaluations: @open_evaluationss} %>
+      <h4>Open Evaluations</h4>
+      <%= render 'admin/tables/evaluations', locals: {evaluations: @open_evaluationss} %>
 
-    <h4>Completed Evaluations</h4>
-    <%= render 'admin/tables/completed_evaluations', locals: {evaluations: @completed_evaluationss} %>
+      <h4>Completed Evaluations</h4>
+      <%= render 'admin/tables/completed_evaluations', locals: {evaluations: @completed_evaluationss} %>
 
-    <div class="container">
-      <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-        <%= render 'admin/users' %>
+      <div class="container">
+        <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+          <%= render 'admin/users' %>
+        </div>
       </div>
-    </div>
 
-<% end %>
+  <% end %>
+</div>

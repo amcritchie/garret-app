@@ -19,8 +19,6 @@ class RestaurantsController < ApplicationController
   end
 
   def show_info
-    p '1321' * 40
-    p params
     @restaurant = Restaurant.find(params[:id])
   end
 
@@ -36,7 +34,7 @@ class RestaurantsController < ApplicationController
     respond_to do |format|
       # if @application
         # format.json { render json: {score: @application.score, questions: @questions, standards: @application.evaluation.standard.details} }
-        format.json { render json: {applications: EvaluationApplication.where(evaluation_id: Evaluation.where(restaurant_id: params[:id]), status: 'complete'), standards: Standard.all, evaluations: Evaluation.all, questions: Question.all} }
+        format.json { render json: {applications: EvaluationApplication.where(evaluation_id: Evaluation.where(restaurant_id: params[:id]), status: 'complete'), standards: Standard.all, evaluations: Evaluation.all, questions: Question.all, departments: Department.all} }
       # else
       #   format.json { render json: {error: "Application not found."} }
       # end

@@ -7,12 +7,12 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-4 col-xs-5">
+    <div class="col-sm-3 col-xs-4">
       <label style="font-weight: normal;">No <%= locals[:label] %>
         <input class="evaluationClick" type="checkbox" id="no_<%= locals[:key] %>"><br>
       </label>
     </div>
-    <div class="col-sm-8 col-xs-7">
+    <div class="col-sm-9 col-xs-8">
       <label style="font-weight: normal;">Gender:
         <input class="evaluationClick" type="radio" name="<%= locals[:key] %>_gender" value="male">&nbsp M &nbsp
         <input class="evaluationClick" type="radio" name="<%= locals[:key] %>_gender" value="female">&nbsp F &nbsp
@@ -21,15 +21,31 @@
   </div>
 
   <div class="row">
-      <label class="col-sm-4 col-xs-6"> Height
-        <input type="text" class="form-control evaluationFill" id="<%= locals[:key] %>_height">
-      </label>
-      <label class="col-sm-4 col-xs-6"> Hair
-        <input type="text" class="form-control evaluationFill" id="<%= locals[:key] %>_hair">
-      </label>
-      <label class="col-sm-4 col-xs-12"> Description
-        <input type="text" class="form-control evaluationFill" id="<%= locals[:key] %>_other">
-      </label>
+    <label class="col-sm-3 col-xs-3"> Height
+      <select id="<%= locals[:key] %>_height" class="form-control">
+        <option value=""></option>
+        <option value="-5'0">-5'0</option>
+        <option value="5'1">5'1</option>
+        <option value="5'2">5'2</option>
+        <option value="5'3">5'3</option>
+        <option value="5'4">5'4</option>
+        <option value="5'5">5'5</option>
+        <option value="5'6">5'6</option>
+        <option value="5'7">5'7</option>
+        <option value="5'8">5'8</option>
+        <option value="5'9">5'9</option>
+        <option value="5'10">5'10</option>
+        <option value="5'11">5'11</option>
+        <option value="6'0">6'0</option>
+        <option value="6'1">6'1</option>
+        <option value="6'2">6'2</option>
+        <option value="6'3">6'3</option>
+        <option value="6'4">6'4</option>
+        <option value="6'5+">6'5+</option>
+      </select>
+    </label>
+    <label class="col-sm-9 col-xs-9"> Description
+      <input type="text" class="form-control evaluationFill" id="<%= locals[:key] %>_other">
+    </label>
   </div>
-
 </div>
