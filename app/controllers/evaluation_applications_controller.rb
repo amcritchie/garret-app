@@ -147,7 +147,13 @@ class EvaluationApplicationsController < ApplicationController
 
   def create
     @application = EvaluationApplication.new(
-        name: params[:name]
+        name: params[:name],
+        res_valid: true,
+        bar_valid: true,
+        host1_valid: true,
+        host2_valid: true,
+        man_valid: true,
+        ser_valid: true
     )
     if @application.save
       redirect_to root_path
