@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
-</head>
-<body>
 <h2>Hello admin,</h2>
 
 <h4>You have a new evaluator applicant, their information is below.</h4>
@@ -43,10 +37,12 @@
 
 <p>
   <br>
-  <a href="http://localhost:3000/users/<%= @user.id %>/accept_application" target="_blank">Accept Applicant</a>.
-  <a href="http://localhost:3000/users/<%= @user.id %>/decline_application" target="_blank">Deny Applicant</a>.
+  <a href="<%= base_url %>/users/<%= @user.id %>/accept_application" target="_blank">Accept Applicant</a>.
+  <a href="<%= base_url %>/users/<%= @user.id %>/decline_application" target="_blank">Deny Applicant</a>.
+  (Note: you must be logged in for these links to work.
+  If you are not logged in, go to
+  <a href="<%= base_url %>" target="_blank">10&5 Hospitality</a>
+  , login, then these links will be usable.)
   <br><br>
   Please do not send this email to anyone.
 </p>
-</body>
-</html>

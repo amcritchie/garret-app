@@ -1,0 +1,16 @@
+<h2>Hello evaluator,</h2>
+<p>
+  We have reviewed your evaluation for <%= @evaluation.evaluation.restaurant.name %>, and consider it
+  unfinished. Please read the notes below.
+<div class="border-green">
+  <h4>Notes</h4>
+  <i><%= @message %></i>
+</div>
+<br><br>
+The evaluation has been reopened, can be viewed on your
+<a href="<%= base_url %>/?load_evaluation=<%= @evaluation.id %>" target="_blank">Dashboard</a>.
+<br><br>
+Thank you for your time,
+<br><br>
+10&5 Team
+</p>

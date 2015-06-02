@@ -1,24 +1,27 @@
-<div id="metaInfo" data-restaurant-id="<%= @restaurant.id %>">
-  <h1>
-    <%= @restaurant.name.capitalize %> Evaluations
-    <a id="editRestaurant" class="btn btn-success" href="/restaurants/<%= current_user.id %>/edit" target="_self">Edit info</a>
-  </h1>
+<div class="container">
+  <div id="metaInfo" data-restaurant-id="<%= @restaurant.id %>">
+    <h1>
+      <%= @restaurant.name.capitalize %> Evaluations
+      <a id="editRestaurant" class="btn btn-success" href="/restaurants/<%= current_user.id %>/edit" target="_self">Edit
+        info</a>
+    </h1>
 
+  </div>
+
+  <table id="evaluationsTable" class="table table-striped" data-restaurant-id="<%= @restaurant.id %>">
+    <thead>
+    <tr class="tableKeys">
+      <th>When</th>
+      <th>Action Plan</th>
+      <th>Application ID</th>
+      <th>Total</th>
+      <% @departments.each do |department| %>
+          <th class="department-name"><%= department.name %></th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody class="tableBody">
+
+    </tbody>
+  </table>
 </div>
-
-<table id="evaluationsTable" class="table table-striped" data-restaurant-id="<%= @restaurant.id %>">
-  <thead>
-  <tr class="tableKeys">
-    <th>When</th>
-    <th>Action Plan</th>
-    <th>Application ID</th>
-    <th>Total</th>
-    <% @departments.each do |department| %>
-        <th class="department-name"><%= department.name %></th>
-    <% end %>
-  </tr>
-  </thead>
-  <tbody class="tableBody">
-
-  </tbody>
-</table>

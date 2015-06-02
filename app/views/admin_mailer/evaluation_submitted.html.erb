@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
-</head>
-<body>
 <h2>Hello admin,</h2>
-
-<h4>An evaluation has been submitted, click below to view the submission.</h4>
-
-  <button href="restaurant-anonymous.herokuapp.com">View evaluation</button>.
-
-</body>
-</html>
+<p>
+  An evaluation has been submitted, click below to view the submission.
+  <br>
+  <a href="<%= base_url %>/admin/?load_evaluation=<%= @evaluation.id %>" target="_blank">Dashboard</a>.
+  (Note: you must be logged in for this link to work.
+  If you are not logged in, go to
+  <a href="<%= base_url %>" target="_blank">10&5 Hospitality</a>
+  , login, then this link will be usable.)
+  <br><br>
+  Please do not send this email to anyone.
+</p>

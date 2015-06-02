@@ -34,7 +34,8 @@
               <%= evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
             </th>
             <th>
-              <button class="btn btn-success applyToEvaluation" data-evaluation-id="<%= evaluation.id %>">Apply</button>
+              <button href="#login" class="btn btn-success applyToEvaluation" data-evaluation-id="<%= evaluation.id %>" data-toggle="modal" data-target=".application-modal">Apply</button>
+              <!--<button class="btn btn-success applyToEvaluation" data-evaluation-id="<%= evaluation.id %>">Apply</button>-->
             </th>
             <th>
               <% if evaluation.restaurant.url == nil %>

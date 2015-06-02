@@ -39,7 +39,7 @@ var AdminDashboard = {
             var id = $(this).data('application-id');
             var a = $(this).parent();
             $(this).html('<i class="fa fa-spinner fa-spin"></i>');
-            Ajax.respondToSubmittedEvaluation({id: id}, 'application/accept', function () {
+            Ajax.respondToSubmittedEvaluation({id: id}, '/application/accept', function () {
                 a.parent().children().children('button').remove();
                 a.parent().children().children('a').remove();
                 a.prepend('Evaluation Accepted');
@@ -56,7 +56,7 @@ var AdminDashboard = {
                 var message = $('#reopenMessage').val();
                 $(this).html('<i class="fa fa-spinner fa-spin"></i>');
                 tableButton.html('<i class="fa fa-spinner fa-spin"></i>');
-                Ajax.respondToSubmittedEvaluation({id: id, message: message}, 'application/reopen', function () {
+                Ajax.respondToSubmittedEvaluation({id: id, message: message}, '/application/reopen', function () {
                     a.parent().children().children('button').remove();
                     a.parent().children().children('a').remove();
                     a.prepend('Evaluation Reopened');
@@ -66,10 +66,10 @@ var AdminDashboard = {
     },
     pendingEvaluationApplicationListeners: function () {
         $('.approveApplication').on('click', function () {
-            AdminDashboard.respondToPendingEvaluationApplication(this, 'application/approve', 'Approved');
+            AdminDashboard.respondToPendingEvaluationApplication(this, '/application/approve', 'Approved');
         });
         $('.denyApplication').on('click', function () {
-            AdminDashboard.respondToPendingEvaluationApplication(this, 'application/deny', 'Decided');
+            AdminDashboard.respondToPendingEvaluationApplication(this, '/application/deny', 'Decided');
         });
     },
     respondToPendingEvaluationApplication: function (button, route, message) {

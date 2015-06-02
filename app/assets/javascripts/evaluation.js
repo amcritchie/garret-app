@@ -426,6 +426,8 @@ var Evaluation = {
                                 data: info
                             });
                             location.reload();
+                            //Remove params in url
+//                            location.href = location.pathname
                         } else {
                             $('.user-evaluation-center').prepend('<div class="red-text evaluation-error">Please Fill in Explanations<hr></div>');
                             $('.modal-body').prepend('<div class="red-text evaluation-error">Please Fill in Explanations</div>');

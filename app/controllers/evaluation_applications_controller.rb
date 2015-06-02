@@ -17,6 +17,8 @@ class EvaluationApplicationsController < ApplicationController
         score: '0'
     )
     if @application.save
+      UserMailer.received_evaluation_application(current_user, @application).deliver
+      AdminMailer.new_evaluation_application(current_user, @application, params[:message]).deliver
       redirect_to root_path
     end
   end
@@ -27,6 +29,7 @@ class EvaluationApplicationsController < ApplicationController
         status: 'open',
         accepted_at: Time.now
     )
+    UserMailer.evaluation_application_accepted(current_user, @application).deliver
     redirect_to admin_path
   end
 
@@ -36,6 +39,7 @@ class EvaluationApplicationsController < ApplicationController
         status: 'denied',
         accepted_at: Time.now
     )
+    UserMailer.evaluation_application_denied(current_user, @application).deliver
     redirect_to admin_path
   end
 
@@ -53,7 +57,8 @@ class EvaluationApplicationsController < ApplicationController
   def accept
     @application = EvaluationApplication.find(params[:id])
     UserMailer.evaluation_accepted(@application.user, @application).deliver
-    @application.update(
+    RestaurantMailer.completed_evaluation(@application).deliver
+    @application. update(
         status: 'complete',
         completed_at: Time.now
     )

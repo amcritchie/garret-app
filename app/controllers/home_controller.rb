@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
   def index
+    # UserMailer.received_evaluation_application(User.find(2), EvaluationApplication.find(37)).deliver
+    # UserMailer.evaluation_application_accepted(User.find(2), EvaluationApplication.find(37)).deliver
+    # UserMailer.evaluation_application_denied(User.find(2), EvaluationApplication.find(37)).deliver
 
     @user = User.new
     @restaurant = Restaurant.new

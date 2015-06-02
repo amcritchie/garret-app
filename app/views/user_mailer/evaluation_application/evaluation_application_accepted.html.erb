@@ -1,0 +1,10 @@
+<h2>Hello <%= @user.first_name %>,</h2>
+<p>
+  Congratulations, we have chosen you do conduct the evaluation of <%= @evaluation.evaluation.restaurant.name %>,
+  You will be able to access the evaluation on your
+  <a href="<%= base_url %>/?load_evaluation=<%= @evaluation.id %>" target="_blank">Dashboard</a>.
+  <br><br>
+  Thank you for your time,
+  <br><br>
+  10&5 Team
+</p>

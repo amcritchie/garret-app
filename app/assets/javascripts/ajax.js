@@ -1,9 +1,9 @@
 var Ajax = {
-    applyToEvaluation: function(evaluationID, callback) {
+    applyToEvaluation: function(evaluationID, message, callback) {
         $.ajax({
             type: "POST",
             url: "evaluations/apply",
-            data: {evaluation_id: evaluationID}
+            data: {evaluation_id: evaluationID, message: message}
         }).done(callback);
     },
     createStandards: function(name, details, callback) {
@@ -35,6 +35,8 @@ var Ajax = {
         }).then(callback);
     },
     respondToSubmittedEvaluation: function(data, route, callback) {
+        console.log(' 32131231');
+        console.log(route);
         $.ajax({
             type: "POST",
             url: route,
