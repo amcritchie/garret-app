@@ -6,7 +6,8 @@ class RestaurantMailer < ActionMailer::Base
     # @user = user
     @evaluation = evaluation
     @restaurant = evaluation.evaluation.restaurant
-    mail to: "amcritchie@gmail.com", subject: "10 and 5 hospitality email confirmation.", :template_path => '/restaurant_mailer'
+    additional_emails = @restaurant.additional_emails.split(', ')
+    mail to: "amcritchie@gmail.com", cc: additional_emails, subject: "10 and 5 hospitality email confirmation.", :template_path => '/restaurant_mailer'
   end
 
   def base_url

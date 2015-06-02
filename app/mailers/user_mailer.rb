@@ -19,7 +19,7 @@ class UserMailer < ActionMailer::Base
   def received_evaluation_application(user, evaluation)
     @user = user
     @evaluation = evaluation
-    mail to: "amcritchie@gmail.com", subject: "10 and 5 hospitality email confirmation.", :template_path => '/user_mailer/evaluation_application'
+    mail to: "amcritchie@gmail.com",subject: "10 and 5 hospitality email confirmation.", :template_path => '/user_mailer/evaluation_application'
   end
   def evaluation_application_accepted(user, evaluation)
     @user = user
