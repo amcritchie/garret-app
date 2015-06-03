@@ -74,6 +74,40 @@ class UsersController < ApplicationController
     end
   end
 
+  def activate_user
+    if current_user
+      if current_user.admin
+        @user = User.find(params[:id])
+        UserMailer.account_activate(@user).deliver
+        @user.update(
+            status: 'evaluator'
+        )
+        render nothing: true
+      else
+        render_404
+      end
+    else
+      render_404
+    end
+  end
+
+  def deactivate_user
+    if current_user
+      if current_user.admin
+        @user = User.find(params[:id])
+        UserMailer.account_deactivate(@user, params[:message]).deliver
+        @user.update(
+            status: 'disabled'
+        )
+        render nothing: true
+      else
+        render_404
+      end
+    else
+      render_404
+    end
+  end
+
   def decline_application
     if current_user
       if current_user.admin

@@ -49,6 +49,17 @@ class UserMailer < ActionMailer::Base
     mail to: "amcritchie@gmail.com", subject: "Evaluation submitted.", :template_path => '/user_mailer/evaluation_submitted'
   end
 
+  # account_activation
+  def account_activate(user)
+    @user = user
+    mail to: "amcritchie@gmail.com", subject: "Evaluation submitted.", :template_path => '/user_mailer/account_activation'
+  end
+  def account_deactivate(user, message)
+    @user = user
+    @message = message
+    mail to: "amcritchie@gmail.com", subject: "Evaluation submitted.", :template_path => '/user_mailer/account_activation'
+  end
+
   def base_url
     if Rails.env.production?
       'https://restaurant-anonymous.herokuapp.com'

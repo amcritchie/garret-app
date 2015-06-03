@@ -34,11 +34,14 @@ var Evaluations = {
                             htmlString += '<th>' + score.departmentsInfo[j].totalWeightedScore + '</th>';
                         }
                     });
+                    console.log('---=--==-');
+                    console.log(score.totals.totalWeightedScore);
+                    console.log('---=--==-');
                     $('.tableBody').prepend('<tr class="tableKeys">' +
                             '<th>' + Evaluations.formatDate(score.completed_time) + '</th>' +
                             '<th><a href="/restaurant/'+info.id + '/action_plan/'+ score.id + '" target="_self">action plan</a></th>' +
                             '<th>' + score.id + '</th>' +
-                            '<th>' + score.totals.totalWeightedScore + '</th>' +
+                            '<th>' + score.totals.totalWeightedScorePercent + '</th>' +
                             htmlString +
                             '</tr>'
                     );
@@ -263,6 +266,7 @@ var Evaluations = {
 
             totals.totalScore = userScore;
             totals.totalWeightedScore = weightedUserScore + ' / ' + totalWeightedUserScore;
+            totals.totalWeightedScorePercent = (Math.floor((weightedUserScore/totalWeightedUserScore) * 100)) + '%';
 
 
             arrayOfScores[application.id] = {

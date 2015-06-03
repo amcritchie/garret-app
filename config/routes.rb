@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/users/application' => 'users#application'
   get '/users/:id/confirm_email' => 'users#confirm_email'
   get '/users/:id/accept_application' => 'users#accept_application'
+  post '/users/activate_user' => 'users#activate_user'
+  post '/users/deactivate_user' => 'users#deactivate_user'
   get '/users/:id/decline_application' => 'users#decline_application'
 
   resources :users do

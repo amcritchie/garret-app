@@ -18,6 +18,7 @@ var AdminDashboard = {
         AdminDashboard.viewSubmissionListener();
         AdminDashboard.acceptSubmissionListener();
         AdminDashboard.reopenSubmissionListener();
+        AdminDashboard.userActivation();
     },
     viewSubmissionListener: function () {
         $('.viewSubmission').on('click', function (e) {
@@ -43,6 +44,43 @@ var AdminDashboard = {
                 a.parent().children().children('button').remove();
                 a.parent().children().children('a').remove();
                 a.prepend('Evaluation Accepted');
+            });
+        });
+    },
+    userActivation: function () {
+//        disableAccount
+//        activateAccount
+        $('.activateAccount').on('click', function () {
+            var tableButton = $(this);
+            var id = $(this).data('user-id');
+            var a = $(this).parent();
+//            $('#reopenMessage').val('');
+//            $('.reopenEvaluation').off('click').on('click', function () {
+//                var message = $('#reopenMessage').val();
+            $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+            tableButton.html('<i class="fa fa-spinner fa-spin"></i>');
+            Ajax.respondToUserActivation({id: id}, '/users/activate_user', function () {
+                tableButton.remove();
+                a.prepend('User Activated')
+            });
+        });
+
+        $('.disableAccount').on('click', function () {
+            var tableButton = $(this);
+            var id = $(this).data('user-id');
+            var a = $(this).parent();
+            $('#disableUserMessage').val('');
+            $('.disableUser').off('click').on('click', function () {
+                var message = $('#disableUserMessage').val();
+                $(this).html('<i class="fa fa-spinner fa-spin"></i>');
+                tableButton.html('<i class="fa fa-spinner fa-spin"></i>');
+                Ajax.respondToUserActivation({id: id, message: message}, '/users/deactivate_user', function () {
+//                    a.parent().children().children('button').remove();
+//                    a.parent().children().children('a').remove();
+//                    a.prepend('Evaluation Reopened');
+                    tableButton.remove();
+                    a.prepend('User Disabled')
+                });
             });
         });
     },

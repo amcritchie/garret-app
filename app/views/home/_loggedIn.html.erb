@@ -1,22 +1,36 @@
 <div class="container">
-  <div>
-    <h1 class="col-xs-12">
-      Welcome back
-      <%= current_user.first_name.capitalize %>
-      <a id="editUser" class="btn btn-success" href="/users/<%= current_user.id %>/edit" target="_self">Edit info</a>
+  <% if current_user.email_confirmation == nil %>
+      <h2>Your email needs to be verified, please check for your email for our confirmation email</h2>
+  <% elsif current_user.status == 'disabled' %>
+      <h2>Your account has been disabled, please check your email for more details</h2>
+  <% elsif current_user.status == 'pending' %>
+      <h2>We are reviewing your Evaluator application, you can expect a responce from us in 3 - 5 days from when you
+        submitted your application.</h2>
+  <% elsif current_user.status == 'declined' %>
+      <h2>We have reviewed your Evaluator application, unfortunately we
+        do not believe you would be right as one of our evaluators.
+      </h2>
+  <% elsif current_user.status == 'evaluator' %>
+      <div>
+        <h1 class="col-xs-12">
+          Welcome back
+          <%= current_user.first_name.capitalize %>
+          <a id="editUser" class="btn btn-success" href="/users/<%= current_user.id %>/edit" target="_self">Edit
+            info</a>
 
-    </h1>
+        </h1>
 
-    <div class="col-xs-12">
-      <% if current_user.account == 'restaurant' %>
-          <%= render 'restaurant' %>
-      <% end %>
+        <div class="col-xs-12">
+          <% if current_user.account == 'restaurant' %>
+              <%= render 'restaurant' %>
+          <% end %>
 
-      <% if current_user.account == 'evaluator' %>
-          <%= render 'evaluator/home' %>
-      <% end %>
-    </div>
-  </div>
+          <% if current_user.account == 'evaluator' %>
+              <%= render 'evaluator/home' %>
+          <% end %>
+        </div>
+      </div>
+  <% end %>
 </div>
 
 

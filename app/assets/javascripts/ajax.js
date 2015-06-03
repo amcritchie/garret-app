@@ -35,8 +35,13 @@ var Ajax = {
         }).then(callback);
     },
     respondToSubmittedEvaluation: function(data, route, callback) {
-        console.log(' 32131231');
-        console.log(route);
+        $.ajax({
+            type: "POST",
+            url: route,
+            data: data
+        }).then(callback);
+    },
+    respondToUserActivation: function(data, route, callback) {
         $.ajax({
             type: "POST",
             url: route,

@@ -1,0 +1,48 @@
+<%= render 'admin/modals/deactivate_user' %>
+<table class="table table-bordered align-center">
+  <thead>
+  <tr>
+    <th class="col-xs-2" data-field="id">Email</th>
+    <th class="col-xs-2" data-field="id">Name</th>
+    <th class="col-xs-2" data-field="id">Email Confirmed</th>
+    <th class="col-xs-2" data-field="name">Status</th>
+    <th class="col-xs-2" data-field="price">Site</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% locals[:users].each do |user| %>
+      <tr>
+        <th>
+          <%= user.email %>
+        </th>
+        <th>
+          <%= user.status %>
+        </th>
+        <th>
+          <% email_confirmed = user.email_confirmation ? true : false %>
+          <p class="btn btn-<%= email_confirmed ? 'success' : 'danger' %>"><%= email_confirmed %></p>
+        </th>
+        <th>
+          <% if user.status == 'evaluator' %>
+              <% status = 'Active Evaluator' %>
+          <% elsif user.status == 'pending' %>
+              <% status = 'Pending Application' %>
+          <% elsif user.status == 'declined' %>
+              <% status = 'Rejected Application' %>
+          <% elsif user.status == 'disabled' %>
+              <% status = 'Disabled' %>
+          <% end %>
+          <%= status %>
+        </th>
+
+        <th>
+          <% if user.status == 'evaluator' %>
+              <%= link_to('Disable Account', "#login", :class => "btn btn-danger disableAccount", :data => {toggle: 'modal', target: ".disable-user-modal", :'user-id' => user.id}) %><br><br>
+          <% elsif user.status == 'disabled' || 'pending' %>
+              <button class="btn btn-info activateAccount" data-user-id="<%= user.id %>">Activate Account</button>
+        <% end %>
+        </th>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
