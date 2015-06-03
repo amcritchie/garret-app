@@ -26,7 +26,7 @@ Rails.application.configure do
   #     :enable_starttls_auto => true
   # }
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'restaurant-anonymous.herokuapp.com' }
   ActionMailer::Base.smtp_settings = {
       :address        => "smtp.gmail.com",
       :port           => 587,
