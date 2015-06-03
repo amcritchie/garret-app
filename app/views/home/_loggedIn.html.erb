@@ -1,5 +1,5 @@
 <div class="container">
-  <% if current_user.email_confirmation == nil %>
+  <% if current_user.email_confirmation == false %>
       <h2>Your email needs to be verified, please check for your email for our confirmation email</h2>
   <% elsif current_user.status == 'disabled' %>
       <h2>Your account has been disabled, please check your email for more details</h2>
