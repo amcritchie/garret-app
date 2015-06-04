@@ -11,7 +11,7 @@
           <li class=""><a id="all-questions" href="#allQuestions" data-toggle="tab">All</a></li>
           <% @departments.each do |department| %>
               <% if Question.where(department: department.name).count > 0 %>
-                  <li class="department-tab" data-department="<%= department.name %>"><a href="#<%= department.name %>" data-toggle="tab"><%= department.name.capitalize %></a>
+                  <li class="department-tab" data-department="<%= department.name %>"><a href="#<%= department.name.downcase.tr(' ', '-') %>" data-toggle="tab"><%= department.name.capitalize %></a>
                   </li>
               <% end %>
           <% end %>
@@ -88,7 +88,7 @@
                           <% department_questions.push(question) %>
                       <% end %>
                   <% end %>
-                  <div class="department-tab-pane tab-pane fade" id=<%= department.name %>>
+                  <div class="department-tab-pane tab-pane fade" id="<%= department.name.downcase.tr(' ', '-') %>">
                     <fieldset>
 
                       <div class="control-group margin-top-8">
