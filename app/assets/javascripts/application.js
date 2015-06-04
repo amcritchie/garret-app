@@ -36,51 +36,11 @@ $(document).ready(function () {
 //    Register.restaurant();
 //    Register.addQuestion();
 
-//    window.onload = function () { alert("It's loaded!") };
-//
-//    document.getElementById('homePage').onLoad = function () {
-//        console.log('--00');
-//    };
-//
-//    $.when(img.src).done(function(v1){
-//
-//    });
-    $("#homePage").hide();
-    var img = new Image();
-    img.src = document.location.origin + "/assets/wine.jpg";
-
-
-    $.when(onImageLoad(), minTime()).done(function (v1, v2) {
-        $("#homePage").css("background-image", "url(" + img.src + ")");
-        $('.page-load-spinner').fadeOut('slow');
-        $("#homePage").hide().fadeIn('slow');
+    var backgroundImage = document.location.origin + "/assets/wine.jpg";
+    $('<img/>').attr('src', backgroundImage).load(function() {
+        $(this).remove(); // prevent memory leaks as @benweet suggested
+        $('#homePage').css('background-image', 'url(' + backgroundImage  + ')').fadeIn('slow');
     });
-
-    function minTime() {
-        var minLoadTime = 500;
-        var deferred = $.Deferred();
-
-        // set the min timeout handler
-        setTimeout(function () {
-            deferred.resolve();
-        }, minLoadTime);
-        return deferred;
-    }
-
-    function onImageLoad() {
-        var deferred = $.Deferred();
-        $.when(img.onload).done(function (v1) {
-            $("#homePage").css("background-image", img.src);
-
-            deferred.resolve();
-        });
-        return deferred;
-    }
-
-//    img.onload = function( ) {
-//        $('.page-load-spinner').fadeOut('slow');
-//        $("#homePage").hide().fadeIn('slow');
-//    };
 
     String.prototype.splice = function (idx, rem, s) {
         return (this.slice(0, idx) + s + this.slice(idx + Math.abs(rem)));
@@ -126,7 +86,7 @@ $(document).ready(function () {
     var panelsButton = $('.dropdown-user');
     panels.hide();
 
-    $('#printPage').click(function(){
+    $('#printPage').click(function () {
         window.print();
     });
 
