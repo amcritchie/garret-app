@@ -266,12 +266,12 @@ var Evaluation = {
                 $('.questionNil[data-question-id=' + id + ']').hide();
             }
 
-//            var answerExplanation = $('.answerExplanation[data-question-id=' + id + ']');
-//            answerExplanation.off('keyup');
-//            answerExplanation.on('keyup', function() {
-//                answerExplanation.val($(this).val());
-//                Evaluation.save();
-//            });
+            var answerExplanation = $('.answerExplanation[data-question-id=' + id + ']');
+            answerExplanation.off('keyup');
+            answerExplanation.on('keyup', function() {
+                answerExplanation.val($(this).val());
+                Evaluation.save();
+            });
 
             $('.questionLabel').css("background-color", "white");
             $('.active.questionPassed').css("background-color", "lightgreen");
