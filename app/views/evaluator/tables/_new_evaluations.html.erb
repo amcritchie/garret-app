@@ -18,13 +18,20 @@
                   <%= evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
                 </th>
                 <th>
-                  <button class="btn btn-danger pendingEvaluation" data-evaluation-id="<%= evaluation.id %>">Pending</button>
+                  <p class="btn-danger pendingEvaluation margin-0" data-evaluation-id="<%= evaluation.id %>">Pending</p>
                 </th>
                 <th>
                   <%= link_to 'website', "http://#{evaluation.restaurant.url}" %>
                 </th>
                 <th>
                   <%= render 'helper/address_format', locals: {entity: evaluation.restaurant} %>
+                </th>
+                <th>
+                  <% if evaluation.message %>
+                      <%= evaluation.message %>
+                  <% else %>
+                      No message.
+                  <% end %>
                 </th>
               </tr>
           <% end %>
@@ -48,11 +55,15 @@
               <%= render 'helper/address_format', locals: {entity: evaluation.restaurant} %>
             </th>
             <th>
-              <%= evaluation.message %>
+              <% if evaluation.message %>
+                  <%= evaluation.message %>
+              <% else %>
+                  No message.
+              <% end %>
             </th>
           </tr>
 
-  <% end %>
+      <% end %>
   <% end %>
   </tbody>
 </table>

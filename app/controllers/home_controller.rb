@@ -33,7 +33,8 @@ class HomeController < ApplicationController
       end
       @pending_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'pending')
       @open_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'open')
-      @submitted_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'submitted')
+      @submitted_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'submitted').order(completed_at: :desc)
+      @completed_evaluations = EvaluationApplication.where(user_id: current_user.id, status: 'complete').order(completed_at: :desc)
     end
   end
 end

@@ -1,0 +1,37 @@
+<table class="table table-bordered align-center">
+  <thead>
+  <tr>
+    <th class="col-xs-2" data-field="id">Restaurant</th>
+    <th class="col-xs-1" data-field="id">Status</th>
+    <th class="col-xs-5" data-field="price">Message</th>
+    <th class="col-xs-2" data-field="price">Evaluation Started</th>
+    <th class="col-xs-2" data-field="price">Evaluation Accepted</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @completed_evaluations.each do |application| %>
+      <tr>
+        <th>
+          <%= application.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
+        </th>
+        <th>
+          <p class="btn-success margin-0"><%= application.status %></p>        </th>
+        </th>
+        <th>
+          <%= application.evaluation.message %>
+        </th>
+        <th>
+          <% if (application.completed_at != nil) %>
+              <%= (application.accepted_at).strftime("%b %d, %Y") %>
+          <% end %>
+        </th>
+        <th>
+          <% if (application.completed_at != nil) %>
+              <%= (application.completed_at).strftime("%b %d, %Y") %>
+          <% end %>
+        </th>
+      </tr>
+
+  <% end %>
+  </tbody>
+</table>

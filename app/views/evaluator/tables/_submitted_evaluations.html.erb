@@ -2,9 +2,10 @@
   <thead>
   <tr>
     <th class="col-xs-2" data-field="id">Restaurant</th>
-    <th class="col-xs-2" data-field="id">Status</th>
-    <th class="col-xs-3" data-field="price">Submitted Time</th>
+    <th class="col-xs-1" data-field="id">Status</th>
     <th class="col-xs-5" data-field="price">Message</th>
+    <th class="col-xs-2" data-field="price">Evaluation Started</th>
+    <th class="col-xs-2" data-field="price">Evaluation Submitted</th>
   </tr>
   </thead>
   <tbody>
@@ -14,15 +15,20 @@
               <%= application.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
             </th>
             <th>
-              <%= application.status %>
+              <p class="btn-info margin-0"><%= application.status %></p>
+            </th>
+            <th>
+              <%= application.evaluation.message %>
+            </th>
+            <th>
+              <% if (application.completed_at != nil) %>
+                  <%= (application.accepted_at).strftime("%b %d, %Y") %>
+              <% end %>
             </th>
             <th>
               <% if (application.completed_at != nil) %>
                   <%= (application.completed_at).strftime("%b %d, %Y") %>
               <% end %>
-            </th>
-            <th>
-              <%= application.evaluation.message %>
             </th>
           </tr>
 
