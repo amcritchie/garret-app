@@ -36,11 +36,27 @@ $(document).ready(function () {
 //    Register.restaurant();
 //    Register.addQuestion();
 
-    var backgroundImage = document.location.origin + "/assets/wine.jpg";
-    $('<img/>').attr('src', backgroundImage).load(function() {
-        $(this).remove(); // prevent memory leaks as @benweet suggested
-        $('#homePage').css('background-image', 'url(' + backgroundImage  + ')').fadeIn('slow');
+    var img = new Image();
+    $.when(minTime(), onImageLoad()).then(function () {
+        $(".background-image").css("background-image", "url('" + img.src + "')").fadeIn(1000);
+        $(".page-load-spinner").fadeOut(1000);
     });
+    function minTime() {
+        var minLoadTime = 1000;
+        var deferred = $.Deferred();
+        setTimeout(function () {
+            deferred.resolve();
+        }, minLoadTime);
+        return deferred;
+    }
+    function onImageLoad() {
+        var deferred = $.Deferred();
+        img.src = "http://farm1.staticflickr.com/293/18278124840_42bcd162cb_b.jpg";
+        img.onload = function () {
+            deferred.resolve();
+        };
+        return deferred;
+    }
 
     String.prototype.splice = function (idx, rem, s) {
         return (this.slice(0, idx) + s + this.slice(idx + Math.abs(rem)));
