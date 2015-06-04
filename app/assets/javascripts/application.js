@@ -38,11 +38,11 @@ $(document).ready(function () {
 
     var img = new Image();
     $.when(minTime(), onImageLoad()).then(function () {
-        $(".background-image").css("background-image", "url('" + img.src + "')").fadeIn(1000);
-        $(".page-load-spinner").fadeOut(1000);
+        $(".background-image").css("background-image", "url('" + img.src + "')").fadeIn('medium');
+        $(".page-load-spinner").fadeOut('medium');
     });
     function minTime() {
-        var minLoadTime = 1000;
+        var minLoadTime = 500;
         var deferred = $.Deferred();
         setTimeout(function () {
             deferred.resolve();
