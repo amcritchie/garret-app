@@ -28,8 +28,6 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new(user_params)
-
-    # @user.account = params[:account]
     @user.email = @user.email.downcase
     @user.first_name = @user.first_name.downcase
     @user.last_name = @user.last_name.downcase
@@ -59,66 +57,50 @@ class UsersController < ApplicationController
   end
 
   def accept_application
-    if current_user
-      if current_user.admin
-        @user = User.find(params[:id])
-        UserMailer.evaluator_application_accepted(@user).deliver
-        @user.update(
-            status: 'evaluator'
-        )
-      else
-        render_404
-      end
+    if current_user && current_user.admin
+      @user = User.find(params[:id])
+      UserMailer.evaluator_application_accepted(@user).deliver
+      @user.update(
+          status: 'evaluator'
+      )
     else
       render_404
     end
   end
 
   def activate_user
-    if current_user
-      if current_user.admin
-        @user = User.find(params[:id])
-        UserMailer.account_activate(@user).deliver
-        @user.update(
-            status: 'evaluator'
-        )
-        render nothing: true
-      else
-        render_404
-      end
+    if current_user && current_user.admin
+      @user = User.find(params[:id])
+      UserMailer.account_activate(@user).deliver
+      @user.update(
+          status: 'evaluator'
+      )
+      render nothing: true
     else
       render_404
     end
   end
 
   def deactivate_user
-    if current_user
-      if current_user.admin
-        @user = User.find(params[:id])
-        UserMailer.account_deactivate(@user, params[:message]).deliver
-        @user.update(
-            status: 'disabled'
-        )
-        render nothing: true
-      else
-        render_404
-      end
+    if current_user && current_user.admin
+      @user = User.find(params[:id])
+      UserMailer.account_deactivate(@user, params[:message]).deliver
+      @user.update(
+          status: 'disabled'
+      )
+      render nothing: true
     else
       render_404
     end
   end
 
   def decline_application
-    if current_user
-      if current_user.admin
-        @user = User.find(params[:id])
-        UserMailer.evaluator_application_denied(@user).deliver
-        @user.update(
-            status: 'declined'
-        )
-      else
-        render_404
-      end
+    if current_user && current_user.admin
+      @user = User.find(params[:id])
+      UserMailer.evaluator_application_denied(@user).deliver
+      @user.update(
+          status: 'declined'
+      )
     else
       render_404
     end

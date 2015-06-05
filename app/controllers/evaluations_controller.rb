@@ -7,6 +7,46 @@ class EvaluationsController < ApplicationController
 
   # GET /users/1
   def show
+    @evaluation = Evaluation.find(params[:id])
+  end
+
+  def assign_user
+    if current_user && current_user.admin
+        @evaluation = Evaluation.find(params[:id])
+        @applicant = User.find(params[:user_id])
+        @application = EvaluationApplication.where(user_id: @applicant.id, evaluation_id: @evaluation.id)[0]
+        if @application && @evaluation.status == 'open'
+          EvaluationApplication.where(evaluation_id: @evaluation.id).update_all(
+              status: 'denied'
+          )
+          @application.update(
+              status: 'open',
+              accepted_at: Time.now
+          )
+          @application.evaluation.update(
+              status: 'closed'
+          )
+          UserMailer.evaluation_application_accepted(@applicant, @application).deliver
+        end
+    else
+      render_404
+    end
+  end
+
+  def decline_user
+    if current_user && current_user.admin
+        @evaluation = Evaluation.find(params[:id])
+        @applicant = User.find(params[:user_id])
+        @application = EvaluationApplication.where(user_id: @applicant.id, evaluation_id: @evaluation.id)[0]
+        if @application && @evaluation.status == 'open'
+          @application.evaluation.update(
+              status: 'closed'
+          )
+          UserMailer.evaluation_application_denied(@applicant, @application).deliver
+        end
+    else
+      render_404
+    end
   end
 
   # GET /users/new
@@ -64,6 +104,6 @@ class EvaluationsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def evaluation_params
-    params.require(:evaluation).permit(:restaurant_id,:standards,:name,:message)
+    params.require(:evaluation).permit(:restaurant_id, :standards, :name, :message)
   end
 end

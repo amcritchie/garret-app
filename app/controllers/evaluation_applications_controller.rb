@@ -24,23 +24,42 @@ class EvaluationApplicationsController < ApplicationController
   end
 
   def approve
-    @application = EvaluationApplication.find(params[:id])
-    @application.update(
-        status: 'open',
-        accepted_at: Time.now
-    )
-    UserMailer.evaluation_application_accepted(current_user, @application).deliver
-    redirect_to admin_path
+    if current_user && current_user.admin
+      @application = EvaluationApplication.find(params[:id])
+      @evaluation = @application.evaluation
+      if @evaluation.status == 'open'
+        EvaluationApplication.where(evaluation_id: @evaluation.id).update_all(
+            status: 'denied'
+        )
+        @application.update(
+            status: 'open',
+            accepted_at: Time.now
+        )
+        @application.evaluation.update(
+            status: 'closed'
+        )
+        UserMailer.evaluation_application_accepted(current_user, @application).deliver
+        redirect_to admin_path
+      else
+        redirect_to 'evalustion'
+      end
+    else
+      render_404
+    end
   end
 
   def deny
-    @application = EvaluationApplication.find(params[:id])
-    @application.update(
-        status: 'denied',
-        accepted_at: Time.now
-    )
-    UserMailer.evaluation_application_denied(current_user, @application).deliver
-    redirect_to admin_path
+    if current_user && current_user.admin
+      @application = EvaluationApplication.find(params[:id])
+      @application.update(
+          status: 'denied',
+          accepted_at: Time.now
+      )
+      UserMailer.evaluation_application_denied(current_user, @application).deliver
+      redirect_to admin_path
+    else
+      render_404
+    end
   end
 
   def submit
@@ -55,24 +74,34 @@ class EvaluationApplicationsController < ApplicationController
   end
 
   def accept
-    @application = EvaluationApplication.find(params[:id])
-    UserMailer.evaluation_accepted(@application.user, @application).deliver
-    RestaurantMailer.completed_evaluation(@application).deliver
-    @application. update(
-        status: 'complete',
-        completed_at: Time.now
-    )
-    redirect_to root_path
+    if current_user && current_user.admin
+      @application = EvaluationApplication.find(params[:id])
+      UserMailer.evaluation_accepted(@application.user, @application).deliver
+      RestaurantMailer.completed_evaluation(@application).deliver
+      @application.update(
+          status: 'complete',
+          completed_at: Time.now
+      )
+      redirect_to root_path
+    else
+      render_404
+    end
+
   end
 
   def reopen
-    @application = EvaluationApplication.find(params[:id])
-    UserMailer.evaluation_reopened(@application.user, @application, params[:message]).deliver
-    @application.update(
-        status: 'open',
-        completed_at: Time.now
-    )
-    redirect_to root_path
+    if current_user && current_user.admin
+      @application = EvaluationApplication.find(params[:id])
+      UserMailer.evaluation_reopened(@application.user, @application, params[:message]).deliver
+      @application.update(
+          status: 'open',
+          completed_at: Time.now
+      )
+      redirect_to root_path
+    else
+      render_404
+    end
+
   end
 
   def get_info

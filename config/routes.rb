@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   resources :standards, only: [:create, :destroy, :index, :update]
 
   resources :evaluations
+  get 'evaluations/:id/assign_to/:user_id' => 'evaluations#assign_user'
+  get 'evaluations/:id/decline/:user_id' => 'evaluations#decline_user'
 
   get 'restaurant/:id' => 'restaurants#show'
   get 'admin/restaurant/:id' => 'restaurants#show_info'
