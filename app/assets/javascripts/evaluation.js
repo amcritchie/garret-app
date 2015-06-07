@@ -204,6 +204,8 @@ var Evaluation = {
         $('.errorMessage').remove();
         $('.evaluation-error').remove();
 
+        Evaluation.save();
+
         Validate.evaluationsExplanationsFilled(function (errors) {
             if (errors) {
                 Evaluation.headerFooterMessage('Please Fill in Explanations');

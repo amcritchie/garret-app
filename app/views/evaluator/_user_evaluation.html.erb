@@ -152,7 +152,11 @@
       </div>
       <div class="modal-footer" style="border: 0">
         <center class="user-evaluation-center">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default closeEvaluation" data-dismiss="modal">Close</button>
+          <% if current_user && current_user.admin %>
+              <button class="btn btn-success acceptLink">Accept</button>
+              <button class="btn btn-danger reopenLink">Reopen</button>
+          <% end %>
         </center>
       </div>
     </div>

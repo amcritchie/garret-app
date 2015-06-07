@@ -29,6 +29,15 @@ var AdminDashboard = {
 
             var button = $(this);
             Evaluation.applicationId = $(this).data('application-id');
+
+            $('.acceptLink').attr('data-application-id', Evaluation.applicationId).on('click', function(){
+                $('.closeEvaluation').click();
+                $('.acceptSubmission[data-application-id="'+Evaluation.applicationId+'"]:visible').click();
+            });
+            $('.reopenLink').attr('data-application-id', Evaluation.applicationId).on('click', function(){
+                $('.closeEvaluation').click();
+                $('.rejectSubmission[data-application-id="'+Evaluation.applicationId+'"]:visible').click();
+            });
             Evaluation.open(function () {
                 button.html('View');
                 $(copy.target.parentNode).trigger(copy);
