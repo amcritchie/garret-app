@@ -34,9 +34,6 @@ var Evaluations = {
                             htmlString += '<th>' + score.departmentsInfo[j].totalWeightedScore + '</th>';
                         }
                     });
-                    console.log('---=--==-');
-                    console.log(score.totals.totalWeightedScore);
-                    console.log('---=--==-');
                     $('.tableBody').prepend('<tr class="tableKeys">' +
                             '<th>' + Evaluations.formatDate(score.completed_time) + '</th>' +
                             '<th><a href="/restaurant/'+info.id + '/action_plan/'+ score.id + '" target="_self">action plan</a></th>' +
@@ -155,7 +152,6 @@ var Evaluations = {
                 var value = string.split('Æχ')[1];
                 departmentDescriptions[id] = value
             });
-//            debugger;
 
             application.score.split('|').forEach(function (question) {
 
@@ -164,7 +160,6 @@ var Evaluations = {
                 var explanation = (question.split(':')[2]) || '';
                 score = (score === 2) ? null : score;
                 var standards = Evaluations.standards[standardsId].scores[question.split(':')[0]];
-                console.log('standards score - ' + standards);
                 var standardsScore = ((standards) ? parseInt(standards.score) : 0);
 
                 var weightedScore = score * standardsScore;
@@ -232,7 +227,6 @@ var Evaluations = {
             });
 
             $.each(departments, function (index, department) {
-//                debugger;
                 var userScore = 0;
                 var weightedUserScore = 0;
                 var totalWeightedUserScore = 0;

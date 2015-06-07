@@ -19,6 +19,8 @@
       </div>
 
       <div class="modal-body">
+        <div class="error-header">
+        </div>
         <div id="myTabContent" class="tab-content">
           <div class="tab-pane fade active in" id="details">
             <fieldset>
@@ -69,7 +71,7 @@
                                 Pass </label>
                             </div>
                             <div>
-                              <input data-question-id="<%= question.id %>" class="answerExplanation evaluationFill" placeholder="Why?" value="">
+                              <input data-question-id="<%= question.id %>" class="answerExplanation evaluationFill allQuestionsExplanation" placeholder="Why?" value="" data-relevant="false">
                             </div>
                           </strong>
                         </th>
@@ -144,6 +146,8 @@
                   </div>
               <% end %>
           <% end %>
+        </div>
+        <div class="error-footer">
         </div>
       </div>
       <div class="modal-footer" style="border: 0">

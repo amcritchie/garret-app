@@ -28,9 +28,9 @@
           <%= link_to application.user.email, user_path(application.user) %>
         </th>
         <th>
-          <button class="btn btn-info viewSubmission width-58" data-application-id="<%= application.id %>" data-toggle="modal" data-target=".evaluation-modal">View</button>
-          <button class="btn btn-success acceptSubmission width-80" data-application-id="<%= application.id %>">Accept</button>
-          <%= link_to('Reopen', "#login", :class => "btn btn-danger rejectSubmission width-80", :data => {toggle: 'modal', target: ".reopen-modal", :'application-id' => application.id}) %><br><br>
+          <button class="btn btn-info viewSubmission" data-application-id="<%= application.id %>" data-toggle="modal" data-target=".evaluation-modal">View</button>
+          <button class="btn btn-success acceptSubmission" data-application-id="<%= application.id %>">Accept</button>
+          <%= link_to('Reopen', "#login", :class => "btn btn-danger rejectSubmission", :data => {toggle: 'modal', target: ".reopen-modal", :'application-id' => application.id}) %><br><br>
 
         </th>
         <th>

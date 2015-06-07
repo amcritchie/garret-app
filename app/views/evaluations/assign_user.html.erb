@@ -1,16 +1,16 @@
 <div class="container">
   <% if @evaluation.status == 'closed' %>
       <h1>This Evaluation has already been assigned</h1>
-      This Evaluation of <%= @evaluation.restaurant.name %>, is already been assigned
-      to <%= @evaluation.evaluation_applications[0].user.email %>
+      This Evaluation of <%= @evaluation.restaurant.name.split.map(&:capitalize)*' ' %>, is already been assigned
+      to <%= @evaluation.evaluation_applications.where.not(accepted_at: nil)[0].user.email %>
   <% else %>
       <% if @application %>
           <h1>Evaluation Assigned</h1>
-          This evaluation of <%= @evaluation.restaurant.name %> is now assigned
-          to <%= @evaluation.evaluation_applications[0].user.email %>
+          This evaluation of <%= @evaluation.restaurant.name.split.map(&:capitalize)*' ' %> is now assigned
+          to <%= @applicant.email %>
       <% else %>
           <h1>Evaluator Hasn't Applied</h1>
-          <%= @applicant.email %> has not applied to this evaluation of <%= @evaluation.restaurant.name %>
+          <%= @applicant.email %> has not applied to this evaluation of <%= @evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
       <% end %>
   <% end %>
 </div>

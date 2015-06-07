@@ -6,7 +6,6 @@ var Application = {
     load: function() {
         Evaluation.applicationId = parseInt($('#applicationId').html());
         var info = {id: parseInt($('#applicationId').html())};
-        console.log(info);
         $.when(Application.getScore(info)).done(function (response) {
             Application.questions = response.questions;
             Application.loadStandards(response.standards);
@@ -99,15 +98,7 @@ var Application = {
             '<th>dfd</th>' +
             '<th>'+totalUserPoints + ' / ' + totalPossPoints+'</th>' +
             depColumnsString +
-//            '<th>dfd</th>' +
-//            '<th>dfd</th>' +
-//            '<th>dfd</th>' +
-//            '<th>dfd</th>' +
             '</tr>');
-
-
-        console.log(totalUserPoints + ' / ' + totalPossPoints);
-        console.log(scores);
     },
 
     getScore: function(info) {

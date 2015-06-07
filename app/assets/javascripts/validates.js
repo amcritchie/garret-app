@@ -107,25 +107,6 @@ var Validate = {
         }
         return error
     },
-//    signUp: function (info) {
-//        var errors = {};
-//        if (Validate.email(info.email)) {
-//            errors['email'] = Validate.email(info.email);
-//        }
-//        if (Validate.password(info.password)) {
-//            errors['password'] = Validate.password(info.password);
-//        }
-//        if (Validate.presence(info.name)) {
-//            errors['name'] = Validate.presence(info.name);
-//        }
-//        if (Validate.presence(info.phone)) {
-//            errors['phone'] = Validate.presence(info.phone);
-//        }
-//        if (Validate.presence(info.address)) {
-//            errors['address'] = Validate.presence(info.address);
-//        }
-//        return errors;
-//    },
     login: function (info) {
         var deferred = $.Deferred();
         $.ajax({
@@ -143,7 +124,6 @@ var Validate = {
     },
     uniqueEmail: function (email) {
         var deferred = $.Deferred();
-        console.log(email);
         $.ajax({
             type: "POST",
             url: "/unique_email.json",
@@ -158,22 +138,71 @@ var Validate = {
         return deferred;
     },
 
+    evaluationsExplanationsFilled: function(callback) {
+        var errors = {};
+        $('.allQuestionsExplanation[data-relevant=true]').each(function(index, explanation) {
+            Validate.isFilled($(explanation), true, function(error){
+                if (error){
+                    errors[$(explanation).data('question-id')] = 'explanation not filled.';
+                }
+            });
+        });
+        if (Object.keys(errors).length === 0){
+            callback(null);
+        } else {
+            callback(errors);
+        }
+    },
+
     evaluationDepartmentDescriptions: function(callback) {
         var errors = [];
         $('.departmentDescription[data-relevant=true]').each(function(index, textarea) {
             Validate.isFilled($(textarea), true, function(error){
                 if (error) {
                     errors.push(error);
-                    console.log(textarea);
                     if (errors.length === 1){
                         var departmentId = $(textarea).parents('.department-tab-pane').attr('id');
                         $('[href=#'+departmentId+']').click();
                     }
-//                    debugger;
                 }
             })
         });
-        callback(errors)
+        if (errors.length){
+            callback(errors)
+        } else {
+            callback(null)
+        }
+    },
+
+    evaluationRestaurantDetails: function(callback) {
+        var errors = {};
+        var details = RestaurantDetails.save();
+        $.each(details.employees, function(index, employee) {
+            if (!employee.not_valid) {
+                if (employee.code === 'res'){
+                    // truthy is needed for employee.gender == null
+                    if ((employee.gender == null) || (employee.name === '') || (employee.other === '')){
+                        errors[employee.code] = 'Please fill in this employees details'
+                    }
+                } else {
+                    // truthy is needed for employee.gender == null
+                    if ((employee.gender == null) || (employee.height === '') || (employee.other === '')){
+                        errors[employee.code] = 'Please fill in this employees details'
+                    }
+                }
+            }
+        });
+        if ((details.time_spots.arrival_time === '') || (details.time_spots.departure_time === '')) {
+            errors.time_spots = 'Please fill in the time of you arrival and departure.'
+        }
+        if ((details.check.check === '') || (details.check.table === '') || (details.check.checkAmount === '')) {
+            errors.check = 'Please fill in information about your check.'
+        }
+        if (Object.keys(errors).length === 0) {
+            callback(null);
+        } else {
+            callback(errors);
+        }
     },
 
     isFilled: function($input, highlighted, callback) {
@@ -186,36 +215,4 @@ var Validate = {
             callback(null);
         }
     }
-//    ,
-//    password: function (password) {
-//        return Validate.length(password, 8);
-//    },
-//    length: function (string, length) {
-//        if (string.length < length) {
-//            return 'Its not long enough';
-//        }
-//    },
-//    email: function (email) {
-//        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//        if (!re.test(email)) {
-//            return 'Not valid email';
-//        }
-//    },
-//    presence: function (data) {
-//        var error = null;
-//        if (typeof data !== 'string') {
-//            $.each(data, function (index, value) {
-//                if (!value) {
-//                    error = 'This is a required field';
-//                }
-//            });
-//        } else {
-//            if (!data) {
-//                error = 'This is a required field';
-//            }
-//        }
-//        if (error) {
-//            return error;
-//        }
-//    }
 };

@@ -12,15 +12,16 @@ var Evaluation = {
             Evaluation.refresh();
             Evaluation.removeQuestionsWithStandardsZero(response.standards);
             Evaluation.removerDepartmentsWithNoQuestions(response.standards);
-//            Evaluation.setDisableEvents();
-//            Evaluation.loadDescriptions(response.application.department_descriptions);
-//            Evaluation.loadScores(response.score);
+
+            //Set disable events before Restaurant details, for consistent formatting.
+            // registerClickAnswer for the same reason
+            RestaurantDetails.setDisableEvents();
+            Evaluation.registerClickAnswer();
+
             EvaluationScore.load(response.score);
             RestaurantDetails.load(response.application);
-            RestaurantDetails.setDisableEvents();
-            DepartmentDescriptions.load(response.application.department_descriptions);
 
-            Evaluation.registerClickAnswer();
+            DepartmentDescriptions.load(response.application.department_descriptions);
 
             $('.questionLabel').css("background-color", "white");
             $('.active.questionPassed').css("background-color", "lightgreen");
@@ -39,7 +40,7 @@ var Evaluation = {
             });
             $('.evaluationClick').on('click', function () {
                 // This is needed, or the evaluation would be saved before the class 'active' moves to the correct input.
-                setTimeout(function(){
+                setTimeout(function () {
                     Evaluation.save();
                 }, 500);
             });
@@ -86,14 +87,10 @@ var Evaluation = {
         if (window.location.pathname.indexOf('/admin') !== 0) {
             var info = {
                 id: Evaluation.applicationId,
-//                details: Evaluation.getDetails(),
-//                descriptions: Evaluation.getDescriptions()
-//                score: Evaluation.getScoreString(),
                 score: EvaluationScore.save(),
                 details: RestaurantDetails.save(),
                 descriptions: DepartmentDescriptions.save()
             };
-//            debugger;
             $.ajax({
                 type: "POST",
                 url: "application/update_score",
@@ -101,75 +98,6 @@ var Evaluation = {
             });
         }
     },
-
-//    getDescriptions: function () {
-//        var array = [];
-//        $('.departmentDescription[data-relevant=true]').each(function (index, question) {
-//            var id = $(question).attr('data-description-id');
-//            var value = $(question).val();
-//            array.push(id + 'Æχ' + value);
-//        });
-//        return array.join('|Θ')
-//    },
-//    getScoreString: function () {
-//        var array = [];
-////        $('.questionCheckboxAll:visible').each(function (index, question) {
-//        $('.questionCheckboxAll[data-relevant=true]').each(function (index, question) {
-//
-//            var id = $(question).data('question-id');
-//            if ($($(this).children()[1]).hasClass('active')) {
-//                array.push([id + ':' + 0 + ':' + $(this).parent().find('.answerExplanation').val()]);
-//            } else if ($($(this).children()[0]).hasClass('active')) {
-//                array.push([id + ':' + 2 + ':' + $(this).parent().find('.answerExplanation').val()]);
-//            } else if ($($(this).children()[3]).hasClass('active')) {
-//                array.push([id + ':' + 1]);
-//            }
-//        });
-//        return array.join('|')
-//    },
-
-//    setDisableEvents: function () {
-//        $('#no_bar').on('click', function () {
-//            Evaluation.disableEmployee(this, 'bar');
-//        });
-//        $('#no_ho1').on('click', function () {
-//            Evaluation.disableEmployee(this, 'ho1');
-//        });
-//        $('#no_ho2').on('click', function () {
-//            Evaluation.disableEmployee(this, 'ho2');
-//        });
-//        $('#no_man').on('click', function () {
-//            Evaluation.disableEmployee(this, 'man');
-//        });
-//        $('#no_ser').on('click', function () {
-//            Evaluation.disableEmployee(this, 'ser');
-//        });
-//        $('#no_res').on('click', function () {
-//            if ($(this).prop("checked")) {
-//                $('#res_name').prop('disabled', true).val('');
-//                $('#res_time').prop('disabled', true).val('');
-//                $('[name=res_gender]').prop('disabled', true).prop('checked', false);
-//            } else {
-//                $('#res_name').prop('disabled', false);
-//                $('#res_time').prop('disabled', false);
-//                $('[name=res_gender]').prop('disabled', false);
-//            }
-//        });
-//    },
-//
-//    disableEmployee: function (box, key) {
-//        if ($(box).prop("checked")) {
-//            $('#' + key + '_hair').prop('disabled', true).val('');
-//            $('#' + key + '_height').prop('disabled', true).val('');
-//            $('#' + key + '_other').prop('disabled', true).val('');
-//            $('[name=' + key + '_gender]').prop('disabled', true).prop('checked', false);
-//        } else {
-//            $('#' + key + '_hair').prop('disabled', false);
-//            $('#' + key + '_height').prop('disabled', false);
-//            $('#' + key + '_other').prop('disabled', false);
-//            $('[name=' + key + '_gender]').prop('disabled', false);
-//        }
-//    },
 
     removeQuestionsWithStandardsZero: function (standards) {
         var standardsObject = {};
@@ -217,15 +145,15 @@ var Evaluation = {
             var id = $(this).data('question-id');
             if ($(this).children().val() === '1') {
                 $('.questionPass[data-question-id=' + id + ']').click();
-                $('.answerExplanation[data-question-id=' + id + ']').hide();
+                $('.answerExplanation[data-question-id=' + id + ']').hide().attr('data-relevant', false);
                 $('.questionNil[data-question-id=' + id + ']').hide();
             } else if ($(this).children().val() === '0') {
                 $('.questionFail[data-question-id=' + id + ']').click();
-                $('.answerExplanation[data-question-id=' + id + ']').show();
+                $('.answerExplanation[data-question-id=' + id + ']').show().attr('data-relevant', true);
                 $('.questionNil[data-question-id=' + id + ']').hide();
             } else if ($(this).children().val() === '2') {
                 $('.questionNA[data-question-id=' + id + ']').click();
-                $('.answerExplanation[data-question-id=' + id + ']').show();
+                $('.answerExplanation[data-question-id=' + id + ']').show().attr('data-relevant', true);
                 $('.questionNil[data-question-id=' + id + ']').hide();
             }
 
@@ -243,53 +171,8 @@ var Evaluation = {
 
             Evaluation.addSubmit();
             Evaluation.registerClickAnswer();
-
-//            setTimeout(function () {
-//                Evaluation.save();
-//            }, 20);
         });
     },
-
-//    loadDescriptions: function (descriptions) {
-//        if (descriptions) {
-//            descriptions.split('|Θ').forEach(function (description) {
-//                if (description) {
-//                    var id = description.split('Æχ')[0];
-//                    var value = description.split('Æχ')[1];
-//                    $('.departmentDescription[data-description-id=' + id + ']').val(value);
-//                }
-//            });
-//        }
-//    },
-//    loadScores: function (score) {
-//        score.split('|').forEach(function (question) {
-//            if (question) {
-//                var id = question.split(':')[0];
-//                if (question.split(':')[1] === '1') {
-//                    $('.questionPass[data-question-id=' + id + ']').click();
-//                    $('.questionNil[data-question-id=' + id + ']').hide();
-//                } else if (question.split(':')[1] === '0') {
-//                    $('.questionFail[data-question-id=' + id + ']').click();
-//                    $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
-//                    $('.questionNil[data-question-id=' + id + ']').hide();
-//                } else if (question.split(':')[1] === '2') {
-//                    $('.questionNA[data-question-id=' + id + ']').click();
-//                    $('.answerExplanation[data-question-id=' + id + ']').show().val(question.split(':')[2]);
-//                    $('.questionNil[data-question-id=' + id + ']').hide();
-//                }
-//
-//                $('.answerExplanation[data-question-id=' + id + ']').on('keyup', function () {
-//                    $('.answerExplanation[data-question-id=' + id + ']').val($(this).val());
-//                });
-//            }
-//        });
-//
-//        $('.questionLabel').css("background-color", "white");
-//        $('.active.questionPassed').css("background-color", "lightgreen");
-//        $('.active.questionFailed').css("background-color", "tomato");
-//        $('.active.questionNA').css("background-color", "orange");
-//        Evaluation.addSubmit();
-//    },
 
     addSubmit: function () {
         if (window.location.pathname.indexOf('/admin') !== 0) {
@@ -308,45 +191,57 @@ var Evaluation = {
                 if (answeredQuestion === allQuestions.length) {
                     $('.user-evaluation-center').append('<button class="btn btn-success submitEvaluation">Submit</button>');
                     $('.submitEvaluation').on('click', function () {
-//                        Evaluation.visualRefresh();
-                        clearTimeout(Evaluation.errorTimer);
-
-                        var allExplanationsFilled = true;
-                        $('.answerExplanation').each(function (a, e) {
-                            if ((!$(e).val()) && $(e).is(":visible")) {
-                                allExplanationsFilled = false;
-                            }
-                        });
-
-                        if (allExplanationsFilled) {
-                            Validate.evaluationDepartmentDescriptions(function (errors) {
-                                if (errors) {
-                                    $('.user-evaluation-center').prepend('<div class="red-text evaluation-error">Please Fill in Descriptions About Each Department<hr></div>');
-                                    $('.modal-body').prepend('<div class="red-text evaluation-error">Please Fill in Descriptions About Each Department</div>');
-                                    Evaluation.errorTimer = setTimeout(function () {
-                                        $('.evaluation-error').fadeOut()
-                                    }, 3000);
-                                } else {
-                                    var info = {id: Evaluation.applicationId};
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "application/submit",
-                                        data: info
-                                    });
-                                    location.reload();
-                                }
-                            });
-                        } else {
-                            $('.user-evaluation-center').prepend('<div class="red-text evaluation-error">Please Fill in Explanations<hr></div>');
-                            $('.modal-body').prepend('<div class="red-text evaluation-error">Please Fill in Explanations</div>');
-                            $('#all-questions').click();
-                            setTimeout(function () {
-                                $('.evaluation-error').fadeOut()
-                            }, 3000);
-                        }
+                        Evaluation.submit();
                     });
                 }
             }
         }
+    },
+
+    submit: function () {
+        Evaluation.visualRefresh();
+        clearTimeout(Evaluation.errorTimer);
+        $('.errorMessage').remove();
+        $('.evaluation-error').remove();
+
+        Validate.evaluationsExplanationsFilled(function (errors) {
+            if (errors) {
+                Evaluation.headerFooterMessage('Please Fill in Explanations');
+                $('#all-questions').click();
+            } else {
+                Validate.evaluationDepartmentDescriptions(function (errors) {
+                    if (errors) {
+                        Evaluation.headerFooterMessage('Please Fill in Descriptions About Each Department');
+                    } else {
+                        Validate.evaluationRestaurantDetails(function (errors) {
+                            if (errors) {
+                                document.getElementById('evaluation-info').click();
+                                $.each(errors, function (key, error) {
+                                    $('[data-employee-title=' + key + '_title]').append('<div class="errorMessage margin-top-25 ' + key + '-error">' + error + '</div>')
+                                });
+                                Evaluation.headerFooterMessage('Please Fill in the Details About the Restaurant');
+                            } else {
+                                var info = {id: Evaluation.applicationId};
+                                $.ajax({
+                                    type: "POST",
+                                    url: "application/submit",
+                                    data: info
+                                });
+                                location.reload();
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+    },
+    headerFooterMessage: function (message) {
+        $('.error-footer').prepend('<div class="red-text evaluation-error ">' + message + '</div>');
+        $('.error-header').prepend('<div class="red-text evaluation-error ">' + message + '</div>');
+        Evaluation.errorTimer = setTimeout(function () {
+            $('.evaluation-error').fadeOut();
+            $('.errorInput').removeClass('errorInput');
+        }, 3000);
     }
 };

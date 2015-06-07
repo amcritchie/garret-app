@@ -1,9 +1,7 @@
 var Standards = {
     saveStandards: function (button) {
         Standards.processStandards(button, function(res) {
-            debugger;
             Ajax.createStandards(res.name, res.array.join('|'), function () {
-                debugger;
                 location.reload();
             });
         });

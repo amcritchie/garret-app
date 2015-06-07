@@ -34,12 +34,6 @@ var Form = {
                     errors.email = response.error
                 }
                 Form.respondToErrors(form, errors);
-//
-//                if ($.isEmptyObject(errors)) {
-//                    form.unbind('submit').submit();
-//                } else {
-//                    Form.prependErrorMessages(form, errors);
-//                }
             });
         });
     },
@@ -53,11 +47,6 @@ var Form = {
                     errors.email = response.error
                 }
                 Form.respondToErrors(form, errors);
-//                if ($.isEmptyObject(errors)) {
-////                form.unbind('submit').submit();
-//                } else {
-//                    Form.prependErrorMessages(form, errors);
-//                }
             });
         });
     },
@@ -75,20 +64,6 @@ var Form = {
             var errors = Validate.form(form, validations, 'question');
             Form.respondToErrors(form, errors);
         });
-//        $('.newQuestionForm').submit(function (e) {
-//            debugger;
-//            e.preventDefault();
-//            e.stopPropagation();
-//
-//            var body = $(this).parent().children('th').children('#question_body').val();
-//
-//            $('.modalError').remove();
-//            if (body.length == 0) {
-//                FlashMessage.formError($(this), 'Please add a fill in question body');
-//            } else {
-////                $('.newQuestionForm').unbind('submit').submit();
-//            }
-//        });
     },
 
     respondToErrors: function (form, errors) {
