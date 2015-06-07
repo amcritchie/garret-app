@@ -39,7 +39,7 @@ class EvaluationsController < ApplicationController
         @applicant = User.find(params[:user_id])
         @application = EvaluationApplication.where(user_id: @applicant.id, evaluation_id: @evaluation.id)[0]
         if @application && @evaluation.status == 'open'
-          @application.evaluation.update(
+          @application.update(
               status: 'closed'
           )
           UserMailer.evaluation_application_denied(@applicant, @application).deliver

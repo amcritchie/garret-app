@@ -4,20 +4,20 @@ class AdminMailer < ActionMailer::Base
   def new_evaluator_application(params, user)
     @applicant = params[:user]
     @user = user
-    mail to: "amcritchie@gmail.com", subject: "New evaluator application."
+    mail to: "admin@ironocean.io", subject: "New evaluator application."
   end
 
   def new_evaluation_application(user, application ,message)
     @user = user
     @application = application
     @message = message
-    mail to: "amcritchie@gmail.com", subject: "New evaluator application."
+    mail to: "admin@ironocean.io", subject: "New evaluator application."
   end
 
   def evaluation_submitted(user, evaluation)
     @user = user
     @evaluation = evaluation
-    mail to: "amcritchie@gmail.com", subject: "Evaluation submitted."
+    mail to: "admin@ironocean.io", subject: "Evaluation submitted."
   end
 
   def base_url

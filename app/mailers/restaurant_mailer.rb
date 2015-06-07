@@ -1,13 +1,17 @@
 class RestaurantMailer < ActionMailer::Base
   default from: "10and5hospitality@gmail.com"
 
-  # evaluator_application
+  def restaurant_created(restaurant)
+    @restaurant = restaurant
+    mail to: @restaurant.email, subject: "Your 10 and 5 account is ready.", :template_path => '/restaurant_mailer'
+  end
+
   def completed_evaluation(evaluation)
     # @user = user
     @evaluation = evaluation
     @restaurant = evaluation.evaluation.restaurant
     additional_emails = (@restaurant.additional_emails) ? @restaurant.additional_emails.split(', ') : []
-    mail to: "amcritchie@gmail.com", cc: additional_emails, subject: "10 and 5 hospitality email confirmation.", :template_path => '/restaurant_mailer'
+    mail to: @restaurant.email, cc: additional_emails, subject: "10 and 5 hospitality email confirmation.", :template_path => '/restaurant_mailer'
   end
 
   def base_url

@@ -19,6 +19,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    if current_user && (session[:user_type] == 'user') && (params[:id] == current_user.id.to_s)
+    else
+      render_404
+    end
   end
 
   def application

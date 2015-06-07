@@ -156,6 +156,35 @@ var Validate = {
             }
         });
         return deferred;
+    },
+
+    evaluationDepartmentDescriptions: function(callback) {
+        var errors = [];
+        $('.departmentDescription[data-relevant=true]').each(function(index, textarea) {
+            Validate.isFilled($(textarea), true, function(error){
+                if (error) {
+                    errors.push(error);
+                    console.log(textarea);
+                    if (errors.length === 1){
+                        var departmentId = $(textarea).parents('.department-tab-pane').attr('id');
+                        $('[href=#'+departmentId+']').click();
+                    }
+//                    debugger;
+                }
+            })
+        });
+        callback(errors)
+    },
+
+    isFilled: function($input, highlighted, callback) {
+        if ($input.val() === ''){
+           if (highlighted) {
+               $input.addClass('errorInput');
+           }
+            callback('Not Filled');
+        } else {
+            callback(null);
+        }
     }
 //    ,
 //    password: function (password) {

@@ -48,7 +48,11 @@ class RestaurantsController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @restaurant = Restaurant.find(current_user.id)
+    if current_user && (session[:user_type] == 'restaurant') && (params[:id] == current_user.id.to_s)
+      @restaurant = Restaurant.find(current_user.id)
+    else
+      render_404
+    end
   end
 
   # POST /users
@@ -66,6 +70,7 @@ class RestaurantsController < ApplicationController
     @restaurant.zip = @restaurant.zip.downcase
 
     if @restaurant.save
+      RestaurantMailer.restaurant_created(@restaurant).deliver
       redirect_to admin_path
     else
       render :new
