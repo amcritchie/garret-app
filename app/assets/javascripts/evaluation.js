@@ -32,10 +32,11 @@ var Evaluation = {
             callback();
 
             // We need to wait until after load scores so a click isn't triggered for every click in that function.
-            $('.evaluationFill').on('keyup', function () {
+            $('.evaluationFill').on('focusout', function () {
                 Evaluation.save();
             });
-            $('.departmentDescription').on('keyup', function () {
+//            $('.departmentDescription').on('keyup', function () {
+            $('.departmentDescription').on('focusout', function () {
                 Evaluation.save();
             });
             $('.evaluationClick').on('click', function () {
@@ -64,10 +65,10 @@ var Evaluation = {
     refresh: function () {
         $('.question-row').show();
         $('.department-tab').show();
-        $('.evaluationFill').prop('disabled', false).val('').off('keyup');
+        $('.evaluationFill').prop('disabled', false).val('').off('focusout');
 //        $('.departmentDescription').val('');
         $('.evaluationClick').prop('disabled', false).prop('checked', false).off('click');
-        $('.departmentDescription').attr('data-relevant', true).val('').off('keyup');
+        $('.departmentDescription').attr('data-relevant', true).val('').off('focusout');
         $('.questionCheckboxAll').attr('data-relevant', true);
         $('.answerExplanation').hide();
         $('label').removeClass('active');
@@ -158,8 +159,8 @@ var Evaluation = {
             }
 
             var answerExplanation = $('.answerExplanation[data-question-id=' + id + ']');
-            answerExplanation.off('keyup');
-            answerExplanation.on('keyup', function () {
+            answerExplanation.off('focusout');
+            answerExplanation.on('focusout', function () {
                 answerExplanation.val($(this).val());
                 Evaluation.save();
             });

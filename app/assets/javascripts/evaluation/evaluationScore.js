@@ -21,18 +21,10 @@ var EvaluationScore = {
                 });
             }
         });
-
-//        $('.questionLabel').css("background-color", "white");
-//        $('.active.questionPassed').css("background-color", "lightgreen");
-//        $('.active.questionFailed').css("background-color", "tomato");
-//        $('.active.questionNA').css("background-color", "orange");
-//        Evaluation.addSubmit();
     },
     save: function () {
         var array = [];
-//        $('.questionCheckboxAll:visible').each(function (index, question) {
         $('.questionCheckboxAll[data-relevant=true]').each(function (index, question) {
-
             var id = $(question).data('question-id');
             if ($($(this).children()[1]).hasClass('active')) {
                 array.push([id + ':' + 0 + ':' + $(this).parent().find('.answerExplanation').val()]);
