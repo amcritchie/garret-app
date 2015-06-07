@@ -23,11 +23,15 @@ class RestaurantsController < ApplicationController
   end
 
   def action_plan
+    if current_user && (session[:user_type] == 'restaurant') && (params[:id] == current_user.id.to_s) || current_user.admin
     @applications = Evaluation.find_by(restaurant_id: params[:id]).evaluation_applications
     @application = EvaluationApplication.find(params[:application_id])
     @questions = Question.all
     @restaurant = Restaurant.find(params[:id])
     @departments = Department.all
+    else
+      render_404
+    end
   end
 
   def get_info

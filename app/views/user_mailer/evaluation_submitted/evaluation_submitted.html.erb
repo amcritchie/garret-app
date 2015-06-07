@@ -1,6 +1,6 @@
 <h2>Hello <%= @user.first_name.capitalize %>,</h2>
 <p>
-  Thank you for submitting your evaluation for <%= @evaluation.evaluation.restaurant.name %>.
+  Thank you for submitting your evaluation for <%= @evaluation.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>.
   Your evaluation is under review, and we will contact you in 3 - 5 business
   days with our results.
   <br><br>

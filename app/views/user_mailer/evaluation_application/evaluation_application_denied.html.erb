@@ -1,6 +1,6 @@
 <h2>Hello <%= @user.first_name.capitalize %>,</h2>
 <p>
-  After careful consideration, we are giving the <%= @evaluation.evaluation.restaurant.name %> evaluation
+  After careful consideration, we are giving the <%= @evaluation.evaluation.restaurant.name.split.map(&:capitalize)*' ' %> evaluation
   to another evaluator.
   <br><br>
   Thank you for your time,

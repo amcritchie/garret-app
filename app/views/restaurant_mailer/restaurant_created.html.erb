@@ -1,4 +1,4 @@
-<h2>Hello Restaurant,</h2>
+<h2>Hello <%= @restaurant.name.split.map(&:capitalize)*' ' %>,</h2>
 
 <h4>
   Your <a href="<%= base_url %>" target="_blank">10&5 Hospitality</a> account has been created.

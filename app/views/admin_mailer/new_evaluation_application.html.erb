@@ -1,6 +1,6 @@
 <h2>Hello admin,</h2>
 <p>
-  An Evaluator(<%= @user.email %>) has applied for the <%= @application.evaluation.restaurant.name %> Evaluation.
+  An Evaluator(<%= @user.email %>) has applied for the <%= @application.evaluation.restaurant.name.split.map(&:capitalize)*' ' %> Evaluation.
   <br><br>
   <strong>Please tell us why you would be a good fit for this evaluation?</strong>
   <br><br>

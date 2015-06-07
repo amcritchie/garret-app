@@ -16,13 +16,13 @@
         <div class="row">
           <div class="col-xs-2" style="background-color: d">
             <h5>Reservationist</h5>
-            <% if @application.res_valid %>
+            <% if !@application.res_valid %>
                 <% if @application.res_gender == 'male' %>
                     <i class="fa fa-male"></i>
                 <% else %>
                     <i class="fa fa-female"></i>
                 <% end %>
-                <%= @application.res_hair %> -
+                <%= @application.res_name %> -
                 <%= @application.res_other %>
             <% else %>
                 N/A

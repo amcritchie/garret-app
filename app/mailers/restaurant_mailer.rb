@@ -3,7 +3,7 @@ class RestaurantMailer < ActionMailer::Base
 
   def restaurant_created(restaurant)
     @restaurant = restaurant
-    mail to: @restaurant.email, subject: "Your 10 and 5 account is ready.", :template_path => '/restaurant_mailer'
+    mail to: @restaurant.email, subject: "Your 10&5 account is ready.", :template_path => '/restaurant_mailer'
   end
 
   def completed_evaluation(evaluation)
@@ -11,7 +11,7 @@ class RestaurantMailer < ActionMailer::Base
     @evaluation = evaluation
     @restaurant = evaluation.evaluation.restaurant
     additional_emails = (@restaurant.additional_emails) ? @restaurant.additional_emails.split(', ') : []
-    mail to: @restaurant.email, cc: additional_emails, subject: "10 and 5 hospitality email confirmation.", :template_path => '/restaurant_mailer'
+    mail to: @restaurant.email, cc: additional_emails, subject: "10&5 Hospitality evaluation complete.", :template_path => '/restaurant_mailer'
   end
 
   def base_url

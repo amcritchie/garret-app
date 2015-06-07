@@ -1,6 +1,6 @@
 <div class="col-xs-2">
   <h5><%= locals[:title] %></h5>
-  <% if @application["#{locals[:code]}_valid"] %>
+  <% if !@application["#{locals[:code]}_valid"] %>
       <% if  @application["#{locals[:code]}_gender"] == 'male' %>
           <i class="fa fa-male"></i>
       <% else %>

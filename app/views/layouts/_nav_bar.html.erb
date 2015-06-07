@@ -8,7 +8,7 @@
       <span class="icon-bar"></span>
     </button>
     <% if session[:user_id] && current_user.admin == true %>
-        <%= link_to('10&5', '/admin', {class: 'navbar-brand'}) %>
+        <%= link_to('10&5', '/admin', {class: 'navbar-brand', target: '_self'}) %>
     <% else %>
         <%= link_to('10&5', root_path, {class: 'navbar-brand', target: '_self'}) %>
     <% end %>

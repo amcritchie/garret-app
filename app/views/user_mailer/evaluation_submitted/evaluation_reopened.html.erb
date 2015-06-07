@@ -1,6 +1,6 @@
 <h2>Hello <%= @user.first_name.capitalize %>,</h2>
 <p>
-  We have reviewed your evaluation for <%= @evaluation.evaluation.restaurant.name %>, and consider it
+  We have reviewed your evaluation for <%= @evaluation.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>, and consider it
   unfinished. Please read the notes below.
 <div class="border-green">
   <h4>Notes</h4>
