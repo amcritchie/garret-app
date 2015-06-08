@@ -16,7 +16,7 @@ var ActionPlan = {
         var orderedEvaluations = ActionPlan.orderEvaluations(Evaluations.allScores);
         var lastSixApps = ActionPlan.lastSixEvaluations(orderedEvaluations, applicationEvalId);
 
-        lastEvaluation = lastSixApps[lastSixApps.length - 1];
+        lastEvaluation = lastSixApps[lastSixApps.length - 1] || {scores: {}};
 
         var missedQuestions = {};
         thisEvaluation.scores.forEach(function (question) {
@@ -86,7 +86,7 @@ var ActionPlan = {
     },
 
     lastEvalScore: function (question, lastEvaluation) {
-        var responce = "Wasn't Used In Last Evaluation";
+        var responce = "Wasn't Used In Last Evaluation";debugger;
         var lastEvalQuestion = $.grep(lastEvaluation.scores, function (e) {
             return e.questionId == question.questionId;
         })[0];

@@ -262,7 +262,7 @@ var Evaluations = {
 
             totals.totalScore = userScore;
             totals.totalWeightedScore = weightedUserScore + ' / ' + totalWeightedUserScore;
-            totals.totalWeightedScorePercent = (Math.floor((weightedUserScore/totalWeightedUserScore) * 100)) + '%';
+            totals.totalWeightedScorePercent = ((Math.floor((weightedUserScore/totalWeightedUserScore) * 100)) || 0) + '%';
 
 
             arrayOfScores[application.id] = {

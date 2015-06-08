@@ -20,7 +20,7 @@ var DepartmentSummary = {
         var total =
             '<div class="background-green">' +
                 '<h4 class="margin-0 padding-15">' +
-                    'Total ' + actualScore + '/' + potentialScore + ' - ' + (Math.floor((actualScore / potentialScore) * 100)) + '%' +
+                    'Total ' + actualScore + '/' + potentialScore + ' - ' + ((Math.floor((actualScore / potentialScore) * 100)) || 0) + '%' +
                 '</h4>' +
             '</div>';
         tableHTML = tableHTML + '</tbody></table><h4>' + department.departmentDescription + '</h4>' + total +
