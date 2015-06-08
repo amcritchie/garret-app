@@ -5,7 +5,7 @@
 
           <p>
             <strong>Name:</strong>
-            <%= @restaurant.name.capitalize %>
+            <%= @restaurant.name.split.map(&:capitalize)*' ' %>
           </p>
 
           <p>

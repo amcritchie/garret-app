@@ -1,7 +1,7 @@
 <div class="container">
   <div id="metaInfo" data-restaurant-id="<%= @restaurant.id %>">
     <h1>
-      <%= @restaurant.name.capitalize %> Evaluations
+      <%= @restaurant.name.split.map(&:capitalize)*' ' %> Evaluations
     </h1>
   </div>
 
