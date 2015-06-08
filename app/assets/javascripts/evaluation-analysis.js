@@ -115,10 +115,10 @@ var Application = {
 
     loadStandards: function(standards) {
         var array = [];
-        standards.split('|').forEach(function(question){
+        standards.split('|Θ').forEach(function(question){
             array.push({
-                id: question.split(':')[0],
-                score: question.split(':')[1]
+                id: question.split('Æχ')[0],
+                score: question.split('Æχ')[1]
             });
         });
         Application.standards = array;
@@ -126,26 +126,26 @@ var Application = {
 
     loadScores: function(score) {
         var collection = [];
-        score.split('|').forEach(function(question){
+        score.split('|Θ').forEach(function(question){
             var id = parseInt(question.split(':')[0]);
             var result;
             var why = '';
             var resultt = $.grep(Application.standards, function(e){ return e.id == id; });
             var questionObj = $.grep(Application.questions, function(e){ return e.id == id; })[0];
-            if (question.split(':')[1] === '1'){
+            if (question.split('Æχ')[1] === '1'){
                 result = ['Pass','Passed'];
-            } else if(question.split(':')[1] === '0'){
+            } else if(question.split('Æχ')[1] === '0'){
                 result = ['Fail','Failed'];
-                why = question.split(':')[2]
-            } else if(question.split(':')[1] === '2'){
+                why = question.split('Æχ')[2]
+            } else if(question.split('Æχ')[1] === '2'){
                 result = ['n/a','NA'];
-                why = question.split(':')[2]
+                why = question.split('Æχ')[2]
             }
             collection.push({
                 key: questionObj.key,
                 department: questionObj.department,
                 standard: (resultt.length === 0) ? 1 : parseInt(resultt[0].score),
-                dryScore: parseInt(question.split(':')[1]),
+                dryScore: parseInt(question.split('Æχ')[1]),
                 why: why
             });
             $('.questionCheckboxAll[data-question-id=' + id + ']').prepend(

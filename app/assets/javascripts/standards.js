@@ -1,14 +1,14 @@
 var Standards = {
     saveStandards: function (button) {
         Standards.processStandards(button, function(res) {
-            Ajax.createStandards(res.name, res.array.join('|'), function () {
+            Ajax.createStandards(res.name, res.array.join('|Θ'), function () {
                 location.reload();
             });
         });
     },
     updateStandards: function (button) {
         Standards.processStandards(button, function(res) {
-            Ajax.updateStandards(res.id, res.name, res.array.join('|'), function() {
+            Ajax.updateStandards(res.id, res.name, res.array.join('|Θ'), function() {
                 location.reload();
             });
         });
@@ -49,7 +49,7 @@ var Standards = {
                 $(this).css('border-color', 'red');
                 response.error = true;
             }
-            response.array.push(questionId + ':' + value);
+            response.array.push(questionId + 'Æχ' + value);
         });
         callback(response);
     }

@@ -32,6 +32,8 @@ var Evaluations = {
                     departmentNameIndex.forEach(function (j, k) {
                         if (score.departmentsInfo[j]) {
                             htmlString += '<th>' + score.departmentsInfo[j].totalWeightedScore + '</th>';
+                        } else {
+                            htmlString += '<th></th>'
                         }
                     });
                     $('.tableBody').prepend('<tr class="tableKeys">' +

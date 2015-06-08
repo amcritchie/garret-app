@@ -19,8 +19,8 @@
           <% @standards.each do |standard| %>
               <div class="tab-pane fade in" id="standard-id-<%= standard.id %>" data-standard-id="<%= standard.id %>">
                 <% score_hash = {} %>
-                <% standard.details.split('|').each do |score| %>
-                    <% score_hash[score.split(':')[0]] = score.split(':')[1] %>
+                <% standard.details.split('|Θ').each do |score| %>
+                    <% score_hash[score.split('Æχ')[0]] = score.split('Æχ')[1] %>
                 <% end %>
                 <fieldset>
                   <div class="standardsError red-text align-center"></div>

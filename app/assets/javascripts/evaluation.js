@@ -2,7 +2,7 @@ var Evaluation = {
 
     applicationId: null,
     evaluationId: null,
-    score: '13:0|14:0|15:1|16:1',
+//    score: '13:0|14:0|15:1|16:1',
 
     errorTimer: null,
 
@@ -102,9 +102,9 @@ var Evaluation = {
 
     removeQuestionsWithStandardsZero: function (standards) {
         var standardsObject = {};
-        standards.split('|').forEach(function (questionAndStandard) {
-            var id = questionAndStandard.split(':')[0];
-            standardsObject[id] = questionAndStandard.split(':')[1];
+        standards.split('|Θ').forEach(function (questionAndStandard) {
+            var id = questionAndStandard.split('Æχ')[0];
+            standardsObject[id] = questionAndStandard.split('Æχ')[1];
         });
 
         $.each($('.question-row'), function (key, value) {
