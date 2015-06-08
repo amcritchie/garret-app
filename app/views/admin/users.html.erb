@@ -1,7 +1,6 @@
 <div class="container">
   <% if current_user.admin %>
-      <div class="container">
-        <%= render 'admin/tables/users', locals: {users: @all_users} %>
-      </div>
+      <br>
+      <%= render 'admin/tables/users', locals: {users: @all_users} %>
   <% end %>
 </div>
