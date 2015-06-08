@@ -13,7 +13,9 @@
   <% locals[:users].each do |user| %>
       <tr>
         <th>
-          <%= user.email %>
+          <a href="/users/<%= user.id %>">
+            <%= user.email %>
+          </a>
         </th>
         <th>
           <%= user.status %>

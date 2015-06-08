@@ -12,7 +12,9 @@
   <% locals[:restaurants].each do |restaurant| %>
       <tr>
         <th>
-          <%= restaurant.name.split.map(&:capitalize)*' ' %>
+          <a href=<%= "/admin/restaurant/#{restaurant.id}" %> target="_self">
+            <%= restaurant.name.split.map(&:capitalize)*' ' %>
+          </a>
         </th>
         <th>
           <a href=<%= "/restaurant/#{restaurant.id}" %> target="_self">Evaluations</a>

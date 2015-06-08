@@ -94,10 +94,10 @@ var Evaluations = {
         var arrayOfStandards = {};
         standardsAll.forEach(function (standards) {
             var array = {};
-            standards.details.split('|').forEach(function (question) {
-                array[question.split(':')[0]] = {
-                    id: question.split(':')[0],
-                    score: question.split(':')[1]
+            standards.details.split('|Θ').forEach(function (question) {
+                array[question.split('Æχ')[0]] = {
+                    id: question.split('Æχ')[0],
+                    score: question.split('Æχ')[1]
                 };
             });
             arrayOfStandards[standards.id] = {
@@ -153,13 +153,13 @@ var Evaluations = {
                 departmentDescriptions[id] = value
             });
 
-            application.score.split('|').forEach(function (question) {
+            application.score.split('|Θ').forEach(function (question) {
 
-                var questionId = parseInt(question.split(':')[0]);
-                var score = parseInt(question.split(':')[1]);
-                var explanation = (question.split(':')[2]) || '';
+                var questionId = parseInt(question.split('Æχ')[0]);
+                var score = parseInt(question.split('Æχ')[1]);
+                var explanation = (question.split('Æχ')[2]) || '';
                 score = (score === 2) ? null : score;
-                var standards = Evaluations.standards[standardsId].scores[question.split(':')[0]];
+                var standards = Evaluations.standards[standardsId].scores[question.split('Æχ')[0]];
                 var standardsScore = ((standards) ? parseInt(standards.score) : 0);
 
                 var weightedScore = score * standardsScore;
