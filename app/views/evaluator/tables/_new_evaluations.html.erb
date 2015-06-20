@@ -21,7 +21,7 @@
                   <p class="btn-danger pendingEvaluation margin-0" data-evaluation-id="<%= evaluation.id %>">Pending</p>
                 </th>
                 <th>
-                  <%= link_to 'website', "http://#{evaluation.restaurant.url}" %>
+                  <%= link_to 'website', evaluation.restaurant.url %>
                 </th>
                 <th>
                   <%= render 'helper/address_format', locals: {entity: evaluation.restaurant} %>
@@ -48,7 +48,7 @@
               <% if evaluation.restaurant.url == nil %>
                   <%= link_to 'website', "https://www.google.com/?q=#{evaluation.restaurant.name}", :target => "_blank" %>
               <% else %>
-                  <%= link_to 'website', "http://#{evaluation.restaurant.url}", :target => "_blank" %>
+                  <%= link_to 'website', evaluation.restaurant.url, :target => "_blank" %>
               <% end %>
             </th>
             <th>

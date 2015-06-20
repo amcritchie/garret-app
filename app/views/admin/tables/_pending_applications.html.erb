@@ -31,7 +31,7 @@
         </th>
 
         <th>
-          <%= link_to 'website', "http://#{restaurant.url}" %>
+          <%= link_to 'website', "#{restaurant.url}" %>
         </th>
         <th>
           <%= render 'helper/address_format', locals: {entity: application.evaluation.restaurant} %>
@@ -46,7 +46,7 @@
         <th>
           <% restaurant = application.evaluation.restaurant %>
           <h4><%= link_to restaurant.name.split.map(&:capitalize)*' ', "/admin/restaurant/#{restaurant.id}" %></h4>
-          <%= link_to 'website', "http://#{restaurant.url}" %><br>
+          <%= link_to 'website', "#{restaurant.url}" %><br>
           <%= render 'helper/address_format', locals: {entity: application.user} %>
         </th>
         <th>

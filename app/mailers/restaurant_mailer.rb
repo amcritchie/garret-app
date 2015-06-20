@@ -16,7 +16,7 @@ class RestaurantMailer < ActionMailer::Base
 
   def base_url
     if Rails.env.production?
-      'https://restaurant-anonymous.herokuapp.com'
+      'http://www.10and5hospitality.com/'
     else
       'http://localhost:3000'
     end

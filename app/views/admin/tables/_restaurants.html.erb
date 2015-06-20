@@ -21,7 +21,7 @@
         </th>
 
         <th>
-          <%= link_to 'website', "http://#{restaurant.url}" %>
+          <%= link_to 'website', "#{restaurant.url}" %>
         </th>
         <th>
           <%= render 'helper/address_format', locals: {entity: restaurant} %>

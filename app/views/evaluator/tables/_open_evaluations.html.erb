@@ -23,7 +23,7 @@
           <% if application.evaluation.restaurant.url == nil %>
               <%= link_to 'website', "https://www.google.com/?q=#{application.evaluation.restaurant.name}", :target => "_blank" %>
           <% else %>
-              <%= link_to 'website', "http://#{application.evaluation.restaurant.url}", :target => "_blank" %>
+              <%= link_to 'website', application.evaluation.restaurant.url, :target => "_blank" %>
           <% end %>
         </th>
         <th>
