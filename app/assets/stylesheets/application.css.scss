@@ -214,3 +214,13 @@ label.questionNA{
 .margin-0 {
   margin: 0;
 }
+
+@media only screen and (max-width : 740px) {
+  .font-18{
+    font-size: 18px;
+  }
+
+  .questionLabel{
+    font-size: 18px;
+  }
+}
