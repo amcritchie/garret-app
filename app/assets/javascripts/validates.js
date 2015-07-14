@@ -15,40 +15,50 @@ var Validate = {
 //    },
     form: function (form, validations, model) {
         var errors = {};
-        validations.forEach(function(input) {
-            input.validates.forEach(function(validation) {
+        validations.forEach(function (input) {
+            input.validates.forEach(function (validation) {
                 var message;
-                if (validation === 'presence'){
+                if (validation === 'presence') {
                     message = Validate.newPresence(input, form, model);
-                    if (message) { errors[input.name] = message; }
+                    if (message) {
+                        errors[input.name] = message;
+                    }
                 }
 //                if (validation === 'email'){
 //                    errors[input.name] = Validate.newPresence(input, form);
 //                }
-                if (validation === 'password'){
+                if (validation === 'password') {
                     message = Validate.newPassword(input, form, model);
-                    if (message) { errors[input.name] = message; }
+                    if (message) {
+                        errors[input.name] = message;
+                    }
                 }
-                if (validation === 'phone'){
+                if (validation === 'phone') {
                     message = Validate.phone(input, form, model);
-                    if (message) { errors[input.name] = message; }
+                    if (message) {
+                        errors[input.name] = message;
+                    }
                 }
-                if (validation === 'radio'){
+                if (validation === 'radio') {
                     message = Validate.radio(input, form, model);
-                    if (message) { errors[input.name] = message; }
+                    if (message) {
+                        errors[input.name] = message;
+                    }
                 }
-                if (validation === 'checkbox'){
+                if (validation === 'checkbox') {
                     message = Validate.checkbox(input, form, model);
-                    if (message) { errors[input.name] = message; }
+                    if (message) {
+                        errors[input.name] = message;
+                    }
                 }
             })
         });
         return errors;
     },
-    newPresence: function(input, form, model) {
+    newPresence: function (input, form, model) {
         var error = null;
         var selectors = input.inputSelector || ['#' + model + '_' + input.name];
-        selectors.forEach(function(selector) {
+        selectors.forEach(function (selector) {
             var $obj = form.find(selector);
             if ($obj.val().length === 0) {
                 $obj.addClass('errorInput');
@@ -57,7 +67,7 @@ var Validate = {
         });
         return error
     },
-    newPassword: function(input, form, model) {
+    newPassword: function (input, form, model) {
         var error = null;
         var selectors = input.inputSelector || '#' + model + '_' + input.name;
         var $obj = form.find(selectors);
@@ -72,12 +82,12 @@ var Validate = {
         }
         return error
     },
-    phone: function(input, form, model) {
+    phone: function (input, form, model) {
         var error = null;
         var selectors = input.inputSelector || '#' + model + '_' + input.name;
         var $obj = form.find(selectors);
         var string = form.find(selectors).val();
-        var rawPhoneNumber = string.replace(') ','').replace('(','').replace('-','');
+        var rawPhoneNumber = string.replace(') ', '').replace('(', '').replace('-', '');
         var containerOnlyDigits = /^\d+$/.test(rawPhoneNumber);
         if (rawPhoneNumber.length < 10) {
             $obj.addClass('errorInput');
@@ -89,20 +99,20 @@ var Validate = {
         }
         return error
     },
-    radio: function(input, form, model) {
+    radio: function (input, form, model) {
         var error = null;
         var selectors = input.inputSelector || '[name="' + model + '[' + input.name + ']"]';
         var $obj = form.find(selectors);
-        if ($(selectors+':checked').length === 0){
+        if ($(selectors + ':checked').length === 0) {
             error = 'Please select an option';
         }
         return error
     },
-    checkbox: function(input, form, model) {
+    checkbox: function (input, form, model) {
         var error = null;
         var selectors = input.inputSelector || '[name="' + model + '[' + input.name + '][]"]';
         var $obj = form.find(selectors);
-        if ($(selectors+':checked').length === 0){
+        if ($(selectors + ':checked').length === 0) {
             error = 'Please select the applicable boxes';
         }
         return error
@@ -138,55 +148,55 @@ var Validate = {
         return deferred;
     },
 
-    evaluationsExplanationsFilled: function(callback) {
+    evaluationsExplanationsFilled: function (callback) {
         var errors = {};
-        $('.allQuestionsExplanation[data-relevant=true]').each(function(index, explanation) {
-            Validate.isFilled($(explanation), true, function(error){
-                if (error){
+        $('.allQuestionsExplanation[data-relevant=true]').each(function (index, explanation) {
+            Validate.isFilled($(explanation), true, function (error) {
+                if (error) {
                     errors[$(explanation).data('question-id')] = 'explanation not filled.';
                 }
             });
         });
-        if (Object.keys(errors).length === 0){
+        if (Object.keys(errors).length === 0) {
             callback(null);
         } else {
             callback(errors);
         }
     },
 
-    evaluationDepartmentDescriptions: function(callback) {
+    evaluationDepartmentDescriptions: function (callback) {
         var errors = [];
-        $('.departmentDescription[data-relevant=true]').each(function(index, textarea) {
-            Validate.isFilled($(textarea), true, function(error){
+        $('.departmentDescription[data-relevant=true]').each(function (index, textarea) {
+            Validate.characterLength($(textarea), true, 700, function (error) {
                 if (error) {
                     errors.push(error);
-                    if (errors.length === 1){
+                    if (errors.length === 1) {
                         var departmentId = $(textarea).parents('.department-tab-pane').attr('id');
-                        $('[href=#'+departmentId+']').click();
+                        $('[href=#' + departmentId + ']').click();
                     }
                 }
             })
         });
-        if (errors.length){
+        if (errors.length) {
             callback(errors)
         } else {
             callback(null)
         }
     },
 
-    evaluationRestaurantDetails: function(callback) {
+    evaluationRestaurantDetails: function (callback) {
         var errors = {};
         var details = RestaurantDetails.save();
-        $.each(details.employees, function(index, employee) {
+        $.each(details.employees, function (index, employee) {
             if (!employee.not_valid) {
-                if (employee.code === 'res'){
+                if (employee.code === 'res') {
                     // truthy is needed for employee.gender == null
-                    if ((employee.gender == null) || (employee.name === '') || (employee.other === '')){
+                    if ((employee.gender == null) || (employee.name === '') || (employee.other === '')) {
                         errors[employee.code] = 'Please fill in this employees details'
                     }
                 } else {
                     // truthy is needed for employee.gender == null
-                    if ((employee.gender == null) || (employee.height === '') || (employee.other === '')){
+                    if ((employee.gender == null) || (employee.height === '') || (employee.other === '')) {
                         errors[employee.code] = 'Please fill in this employees details'
                     }
                 }
@@ -205,12 +215,23 @@ var Validate = {
         }
     },
 
-    isFilled: function($input, highlighted, callback) {
-        if ($input.val() === ''){
-           if (highlighted) {
-               $input.addClass('errorInput');
-           }
+    isFilled: function ($input, highlighted, callback) {
+        if ($input.val() === '') {
+            if (highlighted) {
+                $input.addClass('errorInput');
+            }
             callback('Not Filled');
+        } else {
+            callback(null);
+        }
+    },
+
+    characterLength: function ($input, highlighted, length, callback) {
+        if ($input.val().length < length) {
+            if (highlighted) {
+                $input.addClass('errorInput');
+            }
+            callback('Must have '+length+' characters.  You have ' + $input.val().length);
         } else {
             callback(null);
         }

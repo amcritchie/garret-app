@@ -214,7 +214,7 @@ var Evaluation = {
             } else {
                 Validate.evaluationDepartmentDescriptions(function (errors) {
                     if (errors) {
-                        Evaluation.headerFooterMessage('Please Fill in Descriptions About Each Department');
+                        Evaluation.headerFooterMessage('Please Fill in Descriptions of 700 Characters.');
                     } else {
                         Validate.evaluationRestaurantDetails(function (errors) {
                             if (errors) {
