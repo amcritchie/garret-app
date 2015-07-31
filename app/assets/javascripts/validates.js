@@ -202,6 +202,22 @@ var Validate = {
                 }
             }
         });
+        if (details.courses.crs1 === '') {
+            errors.first = 'Please fill information about your first course.'
+        }
+        if (details.courses.crs2 === '') {
+            errors.main = 'Please fill information about your main course.'
+        }
+        if (details.courses.crs3 === '') {
+            errors.dessert = 'Please fill information about your dessert course.'
+        }
+        if ((details.beverages.bev1 === '') || (details.beverages.bev2 === '') ) {
+            errors.drinks = 'Please fill in a description of your drinks.'
+        }
+//        if (details.courses.bev2 === '') {
+//            errors.bev2 = 'Please fill information about your second beverage.'
+//        }
+
         if ((details.time_spots.arrival_time === '') || (details.time_spots.departure_time === '')) {
             errors.time_spots = 'Please fill in the time of you arrival and departure.'
         }

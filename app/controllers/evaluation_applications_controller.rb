@@ -131,6 +131,8 @@ class EvaluationApplicationsController < ApplicationController
   end
 
   def update_score
+    courses = params[:details][:courses]
+    beverages = params[:details][:beverages]
     time_spots = params[:details][:time_spots]
     check = params[:details][:check]
     employees = params[:details][:employees]
@@ -139,6 +141,11 @@ class EvaluationApplicationsController < ApplicationController
     @application.update(
         score: params[:score],
         department_descriptions: params[:descriptions],
+        crs1: courses[:crs1],
+        crs2: courses[:crs2],
+        crs3: courses[:crs3],
+        bev1: beverages[:bev1],
+        bev2: beverages[:bev2],
         arrive_time: time_spots[:arrival_time],
         depart_time: time_spots[:departure_time],
         check_all_items_billed: check[:allItems],

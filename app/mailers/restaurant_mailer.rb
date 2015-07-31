@@ -8,10 +8,12 @@ class RestaurantMailer < ActionMailer::Base
 
   def completed_evaluation(evaluation)
     # @user = user
-    @evaluation = evaluation
-    @restaurant = evaluation.evaluation.restaurant
-    additional_emails = (@restaurant.additional_emails) ? @restaurant.additional_emails.split(', ') : []
-    mail to: @restaurant.email, cc: additional_emails, subject: "10&5 Hospitality evaluation complete.", :template_path => '/restaurant_mailer'
+    if Rails.env.production?
+      @evaluation = evaluation
+      @restaurant = evaluation.evaluation.restaurant
+      additional_emails = (@restaurant.additional_emails) ? @restaurant.additional_emails.split(', ') : []
+      mail to: @restaurant.email, cc: additional_emails, subject: "10&5 Hospitality evaluation complete.", :template_path => '/restaurant_mailer'
+    end
   end
 
   def base_url

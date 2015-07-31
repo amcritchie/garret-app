@@ -17,13 +17,27 @@ var DepartmentSummary = {
             tableHTML = tableHTML + '<tr><th>' + question.question + '</th><th>' +
                 theScore + '</th><th>' + question.explanation + '</th>';
         });
+        var courseAndBeverageHTML = '';
+        if ((department.departmentName === 'as') || (department.departmentName === 'Kitchen')) {
+            courseAndBeverageHTML =
+                '<h2>Courses</h2>' +
+                '<h4><div class="col-lg-4">First Course: <h6>' + evaluation.courses.crs1 +
+                '</h6></div><div class="col-lg-4">Main Course : <h6>' + evaluation.courses.crs2 +
+                '</h6></div><div class="col-lg-4">Dessert: <h6>' + evaluation.courses.crs3 + '</h6></div></h4>' +
+                '<br><br>' +
+                '<h2>Beverages</h2>' +
+                '<h4><div class="col-lg-2"></div><div class="col-lg-4">Drink 1: <h6>' + evaluation.beverages.bev1 +
+                '</h6></div><div class="col-lg-4">Drink 2: <h6>' + evaluation.beverages.bev2 + '</h6></div><div class="col-lg-2"></div></h4>' +
+                '<br><br><br>'
+            ;
+        }
         var total =
             '<div class="background-green">' +
-                '<h4 class="margin-0 padding-15">' +
-                    'Total ' + actualScore + '/' + potentialScore + ' - ' + ((Math.floor((actualScore / potentialScore) * 100)) || 0) + '%' +
-                '</h4>' +
+            '<h4 class="margin-0 padding-15">' +
+            'Total ' + actualScore + '/' + potentialScore + ' - ' + ((Math.floor((actualScore / potentialScore) * 100)) || 0) + '%' +
+            '</h4>' +
             '</div>';
-        tableHTML = tableHTML + '</tbody></table><h4>' + department.departmentDescription + '</h4>' + total +
+        tableHTML = tableHTML + '</tbody></table><h4>' + department.departmentDescription + '</h4>' + courseAndBeverageHTML + total +
             '</div><br>';
         return tableHTML;
     }

@@ -1,5 +1,12 @@
 var RestaurantDetails = {
     load: function (details) {
+        $(document.getElementById("first_des")).val(details.crs1);
+        $(document.getElementById("main_des")).val(details.crs2);
+        $(document.getElementById("dessert_des")).val(details.crs3);
+
+        $(document.getElementById("drink_1")).val(details.bev1);
+        $(document.getElementById("drink_2")).val(details.bev2);
+
         $(document.getElementById("arrival_time")).val(details.arrive_time);
         $(document.getElementById("departure_time")).val(details.depart_time);
 
@@ -34,6 +41,15 @@ var RestaurantDetails = {
     },
     save: function () {
         return {
+            courses: {
+                crs1: document.getElementById("first_des").value,
+                crs2: document.getElementById("main_des").value,
+                crs3: document.getElementById("dessert_des").value
+            },
+            beverages: {
+                bev1: document.getElementById("drink_1").value,
+                bev2: document.getElementById("drink_2").value
+            },
             time_spots: {
                 arrival_time: document.getElementById("arrival_time").value,
                 departure_time: document.getElementById("departure_time").value

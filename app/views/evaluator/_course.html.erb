@@ -1,0 +1,22 @@
+<div class="form-group">
+  <hr>
+  <div class="row" data-employee-title="<%= locals[:course] %>_title">
+    <h3 class="col-lg-12 inline-block">
+      <%= locals[:course].capitalize %> Course
+    </h3>
+  </div>
+
+  <!--<div class="row">-->
+    <!--<div class="col-sm-12 col-xs-12">-->
+      <!--<label style="font-weight: normal;">No <%= locals[:course] %> course.-->
+        <!--<input class="evaluationClick" type="checkbox" id="no_<%= locals[:course] %>"><br>-->
+      <!--</label>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <div class="row">
+    <label class="col-sm-12 col-xs-12"> Describe your <%= locals[:course] %> course in detail
+      <input type="text" class="form-control evaluationFill" id="<%= locals[:course] %>_des">
+    </label>
+  </div>
+</div>

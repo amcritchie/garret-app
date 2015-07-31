@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605220445) do
+ActiveRecord::Schema.define(version: 20150714025916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,11 @@ ActiveRecord::Schema.define(version: 20150605220445) do
     t.string   "ser_height"
     t.text     "ser_other"
     t.text     "department_descriptions"
+    t.text     "crs1"
+    t.text     "crs2"
+    t.text     "crs3"
+    t.text     "bev1"
+    t.text     "bev2"
   end
 
   create_table "evaluations", force: true do |t|

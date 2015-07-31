@@ -264,9 +264,17 @@ var Evaluations = {
             totals.totalWeightedScore = weightedUserScore + ' / ' + totalWeightedUserScore;
             totals.totalWeightedScorePercent = ((Math.floor((weightedUserScore/totalWeightedUserScore) * 100)) || 0) + '%';
 
-
             arrayOfScores[application.id] = {
                 id: application.id,
+                courses: {
+                    crs1: application.crs1,
+                    crs2: application.crs2,
+                    crs3: application.crs3
+                },
+                beverages: {
+                    bev1: application.bev1,
+                    bev2: application.bev2
+                },
                 completed_time: new Date(application.completed_at),
                 standardsId: standardsId,
                 scores: array,
