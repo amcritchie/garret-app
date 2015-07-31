@@ -64,6 +64,9 @@ class EvaluationApplicationsController < ApplicationController
 
   def submit
     @application = EvaluationApplication.find(params[:id])
+    p '-----submit-----' * 20
+    p @application
+    p '-----submit-----' * 20
     UserMailer.evaluation_submitted(current_user, @application).deliver
     AdminMailer.evaluation_submitted(current_user, @application).deliver
     @application.update(
@@ -177,6 +180,12 @@ class EvaluationApplicationsController < ApplicationController
         ser_height: employees[:server][:height],
         ser_other: employees[:server][:other],
     )
+    p '-----update-----' * 20
+    p @application
+    p '---'
+    p @application['crs2']
+    p @application['bev2']
+    p '-----update-----' * 20
     render nothing: true
   end
 
