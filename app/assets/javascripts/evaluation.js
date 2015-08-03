@@ -236,7 +236,8 @@ var Evaluation = {
                                     url: "application/submit",
                                     data: info
                                 });
-                                location.reload();
+                                $('[data-open-evaluation="' + Evaluation.applicationId + '"]').remove();
+//                                location.reload();
                             }
                         });
                     }

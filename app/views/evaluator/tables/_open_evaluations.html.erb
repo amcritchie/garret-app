@@ -12,7 +12,7 @@
   </thead>
   <tbody>
   <% @open_evaluations.each do |application| %>
-      <tr>
+      <tr data-open-evaluation="<%= application.id %>">
         <th>
           <%= application.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>
         </th>
