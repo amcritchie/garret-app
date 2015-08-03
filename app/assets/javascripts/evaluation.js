@@ -33,15 +33,18 @@ var Evaluation = {
 
             // We need to wait until after load scores so a click isn't triggered for every click in that function.
             $('.evaluationFill').on('focusout', function () {
+                console.log('-------6');
                 Evaluation.save();
             });
 //            $('.departmentDescription').on('keyup', function () {
             $('.departmentDescription').on('focusout', function () {
+                console.log('-------7');
                 Evaluation.save();
             });
             $('.evaluationClick').on('click', function () {
                 // This is needed, or the evaluation would be saved before the class 'active' moves to the correct input.
                 setTimeout(function () {
+                    console.log('-------8');
                     Evaluation.save();
                 }, 500);
             });
@@ -63,6 +66,7 @@ var Evaluation = {
         return deferred;
     },
     refresh: function () {
+        console.log('-------refresh');
         $('.question-row').show();
         $('.department-tab').show();
         $('.evaluationFill').prop('disabled', false).val('').off('focusout');
@@ -162,6 +166,7 @@ var Evaluation = {
             answerExplanation.off('focusout');
             answerExplanation.on('focusout', function () {
                 answerExplanation.val($(this).val());
+                console.log('-------8.4');
                 Evaluation.save();
             });
 
@@ -205,6 +210,7 @@ var Evaluation = {
         $('.errorMessage').remove();
         $('.evaluation-error').remove();
 
+        console.log('-------9');
         Evaluation.save();
 
         Validate.evaluationsExplanationsFilled(function (errors) {
