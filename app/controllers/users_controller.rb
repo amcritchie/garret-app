@@ -53,6 +53,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def request_password_reset
+
+  end
+
+  def send_password_reset
+    p 'send_password_rest' * 100
+    render :request_password_reset_sent
+  end
+
   def confirm_email
     @user = User.find(params[:id])
     @user.update(
