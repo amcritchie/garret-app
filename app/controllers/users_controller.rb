@@ -58,9 +58,36 @@ class UsersController < ApplicationController
   end
 
   def send_password_reset
-    p 'send_password_rest' * 100
-    render :request_password_reset_sent
+    email =  params[:send_password_reset][:email]
+    @user = User.where(email: email)[0]
+    if @user
+      require 'securerandom'
+      @user.update(password_reset_token: SecureRandom.hex, password_reset_sent: Time.now)
+      UserMailer.reset_password(@user).deliver
+      render :request_password_reset_sent
+    else
+      render :request_password_reset_email_not_found
+    end
   end
+
+  def reset_password
+    @user = User.where(password_reset_token: params[:hex])[0]
+    if @user
+    else
+      render_404
+    end
+  end
+
+  def update_password
+    @user = User.where(password_reset_token: params[:hex])[0]
+    if @user
+      @user.update(password: params[:reset_password][:password], password_reset_token: nil)
+      redirect_to root_path
+    else
+      render_404
+    end
+  end
+
 
   def confirm_email
     @user = User.find(params[:id])

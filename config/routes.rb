@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get "login" => "sessions#new", as: :login
   get "request_password_reset" => "users#request_password_reset"
   post "request_password_reset" => "users#send_password_reset"
+  get "reset_password/:hex" => "users#reset_password"
+  post "reset_password/:hex" => "users#update_password"
   post "login" => "sessions#create"
   post "authenticate" => "sessions#authenticate"
   post "unique_email" => "users#unique_email"

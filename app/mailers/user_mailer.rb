@@ -60,6 +60,11 @@ class UserMailer < ActionMailer::Base
     mail to: user.email, subject: "Account deactivated.", :template_path => '/user_mailer/account_activation'
   end
 
+  def reset_password(user)
+    @user = user
+    mail to: user.email, subject: "Password Reset.", :template_path => '/user_mailer/account_activation'
+  end
+
   def base_url
     if Rails.env.production?
       'http://www.10and5hospitality.com'
