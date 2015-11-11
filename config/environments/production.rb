@@ -28,7 +28,10 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { :host => 'http://www.10and5hospitality.com/' }
   ActionMailer::Base.smtp_settings = {
-      :address        => "smtp.gmail.com",
+      # :address        => "smtp.gmail.com",
+      :address              => "smtp.sendgrid.net",
+      :domain   => '10and5hospitality.com',
+
       :port           => 587,
       :authentication => :plain,
       :user_name            => ENV['gmail_username'],
