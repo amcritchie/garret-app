@@ -34,8 +34,8 @@ Rails.application.configure do
 
       :port           => 587,
       :authentication => :plain,
-      :user_name            => ENV['gmail_username'],
-      :password             => ENV['gmail_password'],
+      :user_name            => ENV['sendgrid_username'],
+      :password             => ENV['sendgrid_password'],
       :openssl_verify_mode  => 'none'
   }
 
