@@ -1,5 +1,5 @@
 class AdminMailer < ActionMailer::Base
-  default from: "10and5admin@gmail.com"
+  default from: "10and5hospitality@gmail.com"
   default to: "10and5hospitality@gmail.com"
 
   def new_evaluator_application(params, user)
