@@ -16,6 +16,11 @@ class RestaurantMailer < ActionMailer::Base
     end
   end
 
+  def reset_password(restaurant)
+    @restaurant = restaurant
+    mail to: restaurant.email, subject: "Password Reset.", :template_path => '/restaurant_mailer'
+  end
+
   def base_url
     if Rails.env.production?
       'http://www.10and5hospitality.com'

@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user['admin'] = false
     @user['email_confirmation'] = false
 
-    if @user.save
+    if !Restaurant.find_by(email: @user.email.downcase) && @user.save
       AdminMailer.new_evaluator_application(params, @user).deliver
       UserMailer.received_evaluator_application(@user).deliver
       session[:user_id] = @user.id
@@ -58,33 +58,52 @@ class UsersController < ApplicationController
   end
 
   def send_password_reset
+    require 'securerandom'
     email =  params[:send_password_reset][:email]
-    @user = User.where(email: email)[0]
+    @user = User.find_by(email: email)
     if @user
-      require 'securerandom'
       @user.update(password_reset_token: SecureRandom.hex, password_reset_sent: Time.now)
       UserMailer.reset_password(@user).deliver
       render :request_password_reset_sent
     else
-      render :request_password_reset_email_not_found
+      @restaurant = Restaurant.find_by(email: email)
+      if @restaurant
+        @restaurant.update(password_reset_token: SecureRandom.hex, password_reset_sent: Time.now)
+        RestaurantMailer.reset_password(@restaurant).deliver
+        render :request_password_reset_sent
+      else
+        render :request_password_reset_email_not_found
+      end
     end
   end
 
   def reset_password
     @user = User.where(password_reset_token: params[:hex])[0]
+    @restaurant = Restaurant.where(password_reset_token: params[:hex])[0]
+
     if @user
     else
-      render_404
+      if @restaurant
+      else
+        render_404
+      end
     end
   end
 
   def update_password
     @user = User.where(password_reset_token: params[:hex])[0]
+    @restaurant = Restaurant.where(password_reset_token: params[:hex])[0]
+
     if @user
       @user.update(password: params[:reset_password][:password], password_reset_token: nil)
       redirect_to root_path
     else
-      render_404
+      if @restaurant
+        @restaurant.update(password: params[:reset_password][:password], password_reset_token: nil)
+        redirect_to root_path
+      else
+        render_404
+      end
     end
   end
 
@@ -149,7 +168,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
     respond_to do |format|
-      if @user.update(user_params)
+      if !Restaurant.find_by(email: user_params[:email].downcase) && @user.update(user_params)
         format.html { redirect_to root_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
