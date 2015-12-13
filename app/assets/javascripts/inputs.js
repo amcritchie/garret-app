@@ -1,5 +1,5 @@
 var Inputs = {
-    question: function() {
+    question: function () {
         return [
             {name: 'body', validates: ['presence']}
         ]
