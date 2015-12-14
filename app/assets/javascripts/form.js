@@ -70,6 +70,7 @@ var Form = {
         if ($.isEmptyObject(errors)) {
             form.unbind('submit').submit();
         } else {
+            window.scrollTo(0, 0);
             Form.prependErrorMessages(form, errors);
         }
     },
