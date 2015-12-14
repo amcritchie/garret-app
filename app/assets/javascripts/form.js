@@ -85,5 +85,9 @@ var Form = {
             $(this).parents('.control-group').find('.errorMessage').remove();
             $(this).removeClass('errorInput')
         })
+        form.find('textarea').on('focus', function () {
+            $(this).parents('.control-group').find('.errorMessage').remove();
+            $(this).removeClass('errorInput')
+        })
     }
 };

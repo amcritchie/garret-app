@@ -1,353 +1,386 @@
 <div class="main-content">
-    <div class="container">
-        <%= form_for :user, as: :post, url: users_path(:user), html: {class: 'signUpForm'} do |f| %>
-        <fieldset>
-        <div class="controls col-xs-12">
-          <h1>Evaluator Application</h1>
+<div class="container">
+<%= form_for :user, as: :post, url: users_path(:user), html: {class: 'signUpForm'} do |f| %>
+    <fieldset>
+    <div class="controls col-xs-12">
+      <h1>Evaluator Application</h1>
+    </div>
+
+    <div class="control-group margin-top-8">
+      <div class="controls col-xs-12">
+        <label class="control-label" for="name">Name:</label>
+      </div>
+      <div class="controls col-xs-6">
+        <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
+      </div>
+      <div class="controls col-xs-6">
+        <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
+      </div>
+    </div>
+
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="email">Email:</label>
+
+      <div class="controls">
+        <%= f.email_field :email, :class => "form-control", :placeholder => "email@gmail.com" %>
+      </div>
+    </div>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="skype">Skype:</label>
+
+      <div class="controls">
+        <%= f.text_field :skype, :class => "form-control", :placeholder => "Skype Handle" %>
+      </div>
+    </div>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="password">Password:</label>
+
+      <div class="controls">
+        <%= f.password_field :password, :class => "form-control", :placeholder => "**********" %>
+      </div>
+    </div>
+
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="phone_number">Phone:</label>
+
+      <div class="controls">
+        <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555) 555-5555" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="address">Address:</label>
+      </div>
+      <div class="controls col-xs-5">
+        <%= f.text_field :address, :class => "form-control", :placeholder => "Address" %>
+      </div>
+      <div class="controls col-xs-3">
+        <%= f.text_field :city, :class => "form-control", :placeholder => "City" %>
+      </div>
+      <div class="controls col-xs-2">
+        <%= f.text_field :state, :class => "form-control", :placeholder => "State" %>
+      </div>
+      <div class="controls col-xs-2">
+        <%= f.text_field :zip, :class => "form-control", :placeholder => "Zip" %>
+      </div>
+    </div>
+
+    <!--<div class="control-group">-->
+    <!--<div class="controls col-xs-12 margin-top-8">-->
+    <!--<label class="control-label" for="devices">Which devices will you be using for 10&5 Hospitality</label>-->
+    <!--</div>-->
+    <!--<div class="controls col-xs-12">-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Home office">Home-->
+    <!--Office</label>-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Computer">Computer</label>-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Printer">Printer</label>-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Scanner">Scanner</label>-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Fax-machine">Fax-->
+    <!--Machine</label>-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Digital camera">Digital-->
+    <!--Camera</label>-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Digital video camera">Digital-->
+    <!--Video Camera</label>-->
+    <!--</div>-->
+    <!--</div>        -->
+    <div class="control-group">
+      <div class="controls col-xs-12 margin-top-8">
+        <hr>
+        <label class="control-label" for="devices">Warning, you need a computer/laptop to complete evaluations for 10&5
+          Hospitality</label>
+        <hr>
+      </div>
+    </div>
+
+
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="found_us_by">How did you hear about us?</label>
+
+      <div class="controls">
+        <%= f.text_field :found_us_by, :class => "form-control", :placeholder => "Friend, Google, Facebook?" %>
+      </div>
+    </div>
+
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="qualifications">Why would you be a valuable evaluator?</label>
+
+      <div class="controls">
+        <%= f.text_field :qualifications, :class => "form-control", :placeholder => "Qualifications" %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="availability">How often can you service evaluations in your home area?</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline"><input type="radio" name="user[availability]" value="Any Time">Any Time</label>
+        <label class="radio-inline"><input type="radio" name="user[availability]" value="Often">Often</label>
+        <label class="radio-inline"><input type="radio" name="user[availability]" value="Sometimes">Sometimes</label>
+        <label class="radio-inline"><input type="radio" name="user[availability]" value="Rarely">Rarely</label>
+      </div>
+    </div>
+
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="other_locations">List the cities you frequent for dining.</label>
+
+      <div class="controls">
+        <%= f.text_area :other_locations, :class => "form-control", :placeholder => "Colorado Springs, CO" %>
+      </div>
+    </div>
+
+    <!--<div class="control-group">-->
+    <!--<div class="controls col-xs-12 margin-top-8">-->
+    <!--<label class="control-label" for="interested_in">What opportunities are you interested in evaluating?</label>-->
+    <!--</div>-->
+    <!--<div class="controls col-xs-12">-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Restaurants(lunch)">Restaurants-->
+    <!--(Lunch)</label>-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Restaurants(dinner)">Restaurants-->
+    <!--(Dinner)</label>-->
+    <!--<label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Bars">Bars</label>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <div class="control-group">
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="work_with_other_companies">Do you currently perform evaluations for
+          any other companies?</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline"><input type="radio" name="user[work_with_other_companies]" value="Yes">Yes</label>
+        <label class="radio-inline"><input type="radio" name="user[work_with_other_companies]" value="No">No</label>
+      </div>
+    </div>
+
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="certification">Do you have an evaluation certification?</label>
+
+      <div class="controls">
+        <%= f.text_field :certification, :class => "form-control", :placeholder => "MSPA Silver, MSPA Gold, NARMS, PI License, ..." %>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="writing">Please describe in 80 characters as to why you would be a good
+          evaluator.</label>
+
+        <div class="controls">
+          <%= f.text_area :writing, :class => "form-control", :placeholder => "I have managed restaurants in the past and love writing about them." %>
         </div>
+      </div>
+      <!--<div class="controls col-xs-12">-->
+      <!--<label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a great-->
+      <!--writer, and love writing.">I am a great writer, and love writing.</label>-->
+      <!--</div>-->
+      <!--<div class="controls col-xs-12">-->
+      <!--<label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a capable-->
+      <!--writer, and like writing.">I am a capable writer, and like writing.</label>-->
+      <!--</div>-->
+      <!--<div class="controls col-xs-12">-->
+      <!--<label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a competent-->
+      <!--writer, and dont mind writing.">I am a competent writer, and dont mind writing.</label>-->
+      <!--</div>-->
+      <!--<div class="controls col-xs-12">-->
+      <!--<label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I can write when-->
+      <!--I have to.">I can write when I have to.</label>-->
+      <!--</div>-->
+      <!--<div class="controls col-xs-12">-->
+      <!--<label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I don't like-->
+      <!--writing">I don't like writing</label>-->
+      <!--</div>-->
+    </div>
 
-        <div class="control-group margin-top-8">
-          <div class="controls col-xs-12">
-            <label class="control-label" for="name">Name:</label>
-          </div>
-          <div class="controls col-xs-6">
-            <%= f.text_field :first_name, :class => "form-control", :placeholder => "First name" %>
-          </div>
-          <div class="controls col-xs-6">
-            <%= f.text_field :last_name, :class => "form-control", :placeholder => "Last name" %>
-          </div>
-        </div>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="good_time">Where would you take a friend, if they where visiting your home
+        town?</label>
 
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="email">Email:</label>
+      <div class="controls">
+        <%= f.text_field :good_time, :class => "form-control", :placeholder => "I really enjoy Dulce Vida on Speer and 11th." %>
+      </div>
+    </div>
 
-          <div class="controls">
-            <%= f.email_field :email, :class => "form-control", :placeholder => "email@gmail.com" %>
-          </div>
-        </div>
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="skype">Skype:</label>
+    <!--<div class="control-group col-xs-12 margin-top-8">-->
+    <!--<label class="control-label" for="trends">What food trends do you see catching on in the next few years?</label>-->
 
-          <div class="controls">
-            <%= f.text_field :skype, :class => "form-control", :placeholder => "Skype Handle" %>
-          </div>
-        </div>
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="password">Password:</label>
+    <!--<div class="controls">-->
+    <!--<%= f.text_field :trends, :class => "form-control", :placeholder => "Baked Alaska is coming back!" %>-->
+    <!--</div>-->
+    <!--</div>-->
 
-          <div class="controls">
-            <%= f.password_field :password, :class => "form-control", :placeholder => "**********" %>
-          </div>
-        </div>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="favorite_restaurant">What is your favorite all time restaurant?</label>
 
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="phone_number">Phone:</label>
+      <div class="controls">
+        <%= f.text_field :favorite_restaurant, :class => "form-control", :placeholder => "Chipotle Mexican Grill" %>
+      </div>
+    </div>
 
-          <div class="controls">
-            <%= f.telephone_field :phone_number, :class => "form-control", :placeholder => "(555) 555-5555" %>
-          </div>
-        </div>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="favorite_restaurant_why">Why is it your favorite restaurant?</label>
 
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="address">Address:</label>
-          </div>
-          <div class="controls col-xs-5">
-            <%= f.text_field :address, :class => "form-control", :placeholder => "Address" %>
-          </div>
-          <div class="controls col-xs-3">
-            <%= f.text_field :city, :class => "form-control", :placeholder => "City" %>
-          </div>
-          <div class="controls col-xs-2">
-            <%= f.text_field :state, :class => "form-control", :placeholder => "State" %>
-          </div>
-          <div class="controls col-xs-2">
-            <%= f.text_field :zip, :class => "form-control", :placeholder => "Zip" %>
-          </div>
-        </div>
+      <div class="controls">
+        <%= f.text_area :favorite_restaurant_why, :class => "form-control height-100", :placeholder => "The food is fresh and the atmosphere is great!" %>
+      </div>
+    </div>
 
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="devices">Which devices will you be using for 10&5 Hospitality</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Home office">Home
-              Office</label>
-            <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Computer">Computer</label>
-            <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Printer">Printer</label>
-            <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Scanner">Scanner</label>
-            <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Fax-machine">Fax
-              Machine</label>
-            <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Digital camera">Digital
-              Camera</label>
-            <label class="checkbox-inline"><input type="checkbox" name="user[devices][]" value="Digital video camera">Digital
-              Video Camera</label>
-          </div>
-        </div>
+    <!--<div class="control-group col-xs-12 margin-top-8">-->
+    <!--<label class="control-label" for="ten_and_five">Please describe the '10 & 5' rule?</label>-->
 
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="found_us_by">How did you hear about us?</label>
+    <!--<div class="controls">-->
+    <!--</div>-->
+    <!--</div>        -->
 
-          <div class="controls">
-            <%= f.text_field :found_us_by, :class => "form-control", :placeholder => "Friend, Google, Facebook?" %>
-          </div>
-        </div>
+    <div class="control-group col-xs-12 margin-top-8">
+      <hr>
+      <label class="control-label" for="ten_and_five">
+        Simply explained, the 10 and 5 Rule suggests that anytime a guest is within ten feet of a
+        staff member, the staff member should make eye contact and warmly smile to acknowledge the
+        oncoming guests.
+      </label>
+      <hr>
+    </div>
 
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="occupation">What is your current occupation?</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="restaurant_experience">
+        Have you worked in a restaurant, and if so please explain what position(s) you held.
+      </label>
 
-          <div class="controls">
-            <%= f.text_field :occupation, :class => "form-control", :placeholder => "Occupation" %>
-          </div>
-        </div>
+      <div class="controls">
+        <%= f.text_area :restaurant_experience, :class => "form-control height-100", :placeholder => "Yes, I was a manager at Elway's" %>
+      </div>
+    </div>
 
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="qualifications">Why would you be a valuable evaluator?</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="literacy">Please list the following words in reverse alphabetical order:
+        'alligator', 'orange', 'label', 'yams', 'orangutan'?</label>
 
-          <div class="controls">
-            <%= f.text_field :qualifications, :class => "form-control", :placeholder => "Qualifications" %>
-          </div>
-        </div>
+      <div class="controls">
+        <%= f.text_field :literacy, :class => "form-control", :placeholder => "You got this." %>
+      </div>
+    </div>
 
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="availability">How often can you service evaluations in your home area?</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline"><input type="radio" name="user[availability]" value="Any Time">Any Time</label>
-            <label class="radio-inline"><input type="radio" name="user[availability]" value="Often">Often</label>
-            <label class="radio-inline"><input type="radio" name="user[availability]" value="Sometimes">Sometimes</label>
-            <label class="radio-inline"><input type="radio" name="user[availability]" value="Rarely">Rarely</label>
-          </div>
-        </div>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="no_name_scenario">Lets say you just finished dinner at a restaurant you are
+        evaluating. You
+        get home and can't remember the concierge's name. What do you do?</label>
 
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="other_locations">Are there any other metropolitan areas you frequent?</label>
+      <div class="controls">
+        <%= f.text_field :no_name_scenario, :class => "form-control", :placeholder => "How would you solve this?" %>
+      </div>
+    </div>
 
-          <div class="controls">
-            <%= f.text_field :other_locations, :class => "form-control", :placeholder => "Colorado Springs, CO" %>
-          </div>
-        </div>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="birthday">What is your birthday?</label>
 
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="interested_in">What opportunities are you interested in evaluating?</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Restaurants(lunch)">Restaurants
-              (Lunch)</label>
-            <label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Restaurants(dinner)">Restaurants
-              (Dinner)</label>
-            <label class="checkbox-inline"><input type="checkbox" name="user[interested_in][]" value="Bars">Bars</label>
-          </div>
-        </div>
+      <div class="controls">
+        <%= f.text_field :birthday, :class => "form-control", :placeholder => "05/15/1990" %>
+      </div>
+    </div>
 
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="work_with_other_companies">Do you currently perform evaluations for
-              any other companies?</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline"><input type="radio" name="user[work_with_other_companies]" value="Yes">Yes</label>
-            <label class="radio-inline"><input type="radio" name="user[work_with_other_companies]" value="No">No</label>
-          </div>
-        </div>
+    <div class="control-group">
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="gender">What is your gender?</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline"><input type="radio" name="user[gender]" value="Male">Male</label>
+        <label class="radio-inline"><input type="radio" name="user[gender]" value="Female">Female</label>
+      </div>
+    </div>
 
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="certification">Do you have an evaluation certification?</label>
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="occupation">What is your current occupation?</label>
 
-          <div class="controls">
-            <%= f.text_field :certification, :class => "form-control", :placeholder => "MSPA Silver, MSPA Gold, NARMS, PI License, ..." %>
-          </div>
-        </div>
+      <div class="controls">
+        <%= f.text_field :occupation, :class => "form-control", :placeholder => "Occupation" %>
+      </div>
+    </div>
 
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="writing">Which best describes you?</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a great
-              writer, and love writing.">I am a great writer, and love writing.</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a capable
-              writer, and like writing.">I am a capable writer, and like writing.</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I am a competent
-              writer, and dont mind writing.">I am a competent writer, and dont mind writing.</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I can write when
-              I have to.">I can write when I have to.</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[writing]" value="I don't like
-              writing">I don't like writing</label>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="good_time">Where would you take a friend, if they where visiting your home
-            town?</label>
-
-          <div class="controls">
-            <%= f.text_field :good_time, :class => "form-control", :placeholder => "I really enjoy Dulce Vida on Speer and 11th." %>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="trends">What food trends do you see catching on in the next few years?</label>
-
-          <div class="controls">
-            <%= f.text_field :trends, :class => "form-control", :placeholder => "Baked Alaska is coming back!" %>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="favorite_restaurant">What is your favorite all time restaurant?</label>
-
-          <div class="controls">
-            <%= f.text_field :favorite_restaurant, :class => "form-control", :placeholder => "Chipotle Mexican Grill" %>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="favorite_restaurant_why">Why is it your favorite?</label>
-
-          <div class="controls">
-            <%= f.text_field :favorite_restaurant_why, :class => "form-control", :placeholder => "The food is fresh and the atmosphere is great!" %>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="ten_and_five">Please describe the '10 & 5' rule?</label>
-
-          <div class="controls">
-            <%= f.text_field :ten_and_five, :class => "form-control", :placeholder => "Feel free to use google." %>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="literacy">Please list the following words in reverse alphabetical order:
-            'alligator', 'orange', 'label', 'yams', 'orangutan'?</label>
-
-          <div class="controls">
-            <%= f.text_field :literacy, :class => "form-control", :placeholder => "You got this." %>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="no_name_scenario">Lets say you just finished dinner at a restaurant you are
-            evaluating. You
-            get home and can't remember the concierge's name. What do you do?</label>
-
-          <div class="controls">
-            <%= f.text_field :no_name_scenario, :class => "form-control", :placeholder => "How would you solve this?" %>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="birthday">What is your birthday?</label>
-
-          <div class="controls">
-            <%= f.text_field :birthday, :class => "form-control", :placeholder => "05/15/1990" %>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="gender">What is your gender?</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline"><input type="radio" name="user[gender]" value="Male">Male</label>
-            <label class="radio-inline"><input type="radio" name="user[gender]" value="Female">Female</label>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="employment">Are you currently?</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Employed for
+    <div class="control-group">
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="employment">Are you currently?</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Employed for
               wages">Employed for
-              wages</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Self-employed">Self-employed</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Out of
+          wages</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Self-employed">Self-employed</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Out of
               work for
               more than 1 year">Out of
-              work for
-              more than 1 year</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Out
+          work for
+          more than 1 year</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Out
               of
               work for less than 1 year">Out
-              of
-              work for less than 1 year</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Homemaker">A
-              Homemaker</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Student">A
-              Student</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Retired">Retired</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Unable to work">Unable
-              to
-              work</label>
-          </div>
-        </div>
-
-        <div class="control-group">
-          <div class="controls col-xs-12 margin-top-8">
-            <label class="control-label" for="education">What is your highest level of education?</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="None">Never attended
-              school or
-              only attended Kindergarten</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Elementary">Elementary
-              School</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="High school">High
-              School</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Some college">Some
-              College</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="College graduate">College
-              Graduate</label>
-          </div>
-          <div class="controls col-xs-12">
-            <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Graduate school">Graduate
-              School</label>
-          </div>
-        </div>
-
-        <div class="control-group col-xs-12 margin-top-8">
-          <label class="control-label" for="signup"></label>
-
-          <div class="controls">
-            <%= f.submit "Register", :class => "btn btn-primary signUp width-100-percent margin-bottom-20" %>
-          </div>
-        </div>
-        </fieldset>
-    <% end %>
+          of
+          work for less than 1 year</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Homemaker">A
+          Homemaker</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Student">A
+          Student</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Retired">Retired</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[employment]" value="Unable to work">Unable
+          to
+          work</label>
+      </div>
     </div>
+
+    <div class="control-group">
+      <div class="controls col-xs-12 margin-top-8">
+        <label class="control-label" for="education">What is your highest level of education?</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="None">Never attended
+          school or
+          only attended Kindergarten</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Elementary">Elementary
+          School</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="High school">High
+          School</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Some college">Some
+          College</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="College graduate">College
+          Graduate</label>
+      </div>
+      <div class="controls col-xs-12">
+        <label class="radio-inline col-xs-12"><input type="radio" name="user[education]" value="Graduate school">Graduate
+          School</label>
+      </div>
+    </div>
+
+    <div class="control-group col-xs-12 margin-top-8">
+      <label class="control-label" for="signup"></label>
+
+      <div class="controls">
+        <%= f.submit "Register", :class => "btn btn-primary signUp width-100-percent margin-bottom-20" %>
+      </div>
+    </div>
+    </fieldset>
+<% end %>
+</div>
 </div>

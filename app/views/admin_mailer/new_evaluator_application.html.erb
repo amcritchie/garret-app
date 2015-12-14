@@ -16,21 +16,17 @@
   <br>Qualifications: <%= @applicant[:qualifications] %>
   <br>Where they found us: <%= @applicant[:found_us_by] %>
   <br>Do they work with any other secret shopper companies: <%= @applicant[:work_with_other_companies] %>
-  <br>
-  <br>Interested in: <% if @applicant[:interested_in]%><%= @applicant[:interested_in].join(', ')%><% end %>
-  <br>Devices: <% if @applicant[:interested_in]%><%= @applicant[:devices].join(', ') %><% end %>
 </p>
 <br>
 <h4>Questions</h4>
 <p>
-  <i>Please describe the '10 & 5' rule?</i> - <strong><%= @applicant[:ten_and_five] %></strong>
-  <br><br><i>How is your writing?</i> - <strong><%= @applicant[:writing] %></strong>
+  <br><br><i>Please describe in 80 characters as to why you would be a good evaluator.</i> - <strong><%= @applicant[:writing] %></strong>
+  <br><br><i>Have you worked in a restaurant, and if so please explain what position(s) you held.</i> - <strong><%= @applicant[:restaurant_experience] %></strong>
   <br><br><i>How often can you service evaluations in your home area?</i> - <strong><%= @applicant[:availability] %></strong>
-  <br><br><i>Are there any other metropolitan areas you frequent?</i> - <strong><%= @applicant[:other_locations] %></strong>
+  <br><br><i>List the cities you frequent for dining.</i> - <strong><%= @applicant[:other_locations] %></strong>
   <br><br><i>Please list the following words in reverse alphabetical order: 'alligator', 'orange', 'label', 'yams', 'orangutan'?</i> - <strong><%= @applicant[:literacy] %></strong>
   <br><br><i>Lets say you just finished dinner at a restaurant you are evaluating. You get home and can't remember the concierge's name. What do you do?</i> - <strong><%= @applicant[:no_name_scenario] %></strong>
   <br><br><i>Where would you take a friend, if they where visiting your home town?</i> - <strong><%= @applicant[:good_time] %></strong>
-  <br><br><i>What food trends do you see catching on in the next few years?</i> - <strong><%= @applicant[:trends] %></strong>
   <br><br><i>What is your favorite all time restaurant?</i> - <strong><%= @applicant[:favorite_restaurant] %></strong>
   <br><br><i>Why is it your favorite?</i> - <strong><%= @applicant[:favorite_restaurant_why] %></strong>
 </p>
