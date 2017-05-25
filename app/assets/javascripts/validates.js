@@ -167,7 +167,7 @@ var Validate = {
     evaluationDepartmentDescriptions: function (callback) {
         var errors = [];
         $('.departmentDescription[data-relevant=true]').each(function (index, textarea) {
-            Validate.characterLength($(textarea), true, 400, function (error) {
+            Validate.characterLength($(textarea), true, 1, function (error) {
                 if (error) {
                     errors.push(error);
                     if (errors.length === 1) {

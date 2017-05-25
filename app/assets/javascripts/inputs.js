@@ -24,7 +24,7 @@ var Inputs = {
         return [
             {name: 'name', validates: ['presence'], inputSelector: ['#user_first_name', '#user_last_name']},
             {name: 'email', validates: ['email', 'presence']},
-            {name: 'skype', validates: ['presence']},
+            // {name: 'skype', validates: ['presence']},
             {name: 'password', validates: ['password', 'presence']},
             {name: 'phone_number', validates: ['phone', 'presence']},
             {name: 'address', validates: ['presence'], inputSelector: ['#user_address', '#user_city', '#user_state', '#user_zip']},

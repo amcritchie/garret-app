@@ -197,14 +197,14 @@ var Evaluation = {
                 if (answeredQuestion === allQuestions.length) {
                     $('.user-evaluation-center').append('<button class="btn btn-success submitEvaluation">Submit</button>');
                     $('.submitEvaluation').on('click', function () {
-                        Evaluation.submit();
+                        Evaluation.submit(this);
                     });
                 }
             }
         }
     },
 
-    submit: function () {
+    submit: function (html_button) {
         Evaluation.visualRefresh();
         clearTimeout(Evaluation.errorTimer);
         $('.errorMessage').remove();
@@ -220,7 +220,8 @@ var Evaluation = {
             } else {
                 Validate.evaluationDepartmentDescriptions(function (errors) {
                     if (errors) {
-                        Evaluation.headerFooterMessage('Please fill in descriptions with at least 400 characters.');
+                        // Evaluation.headerFooterMessage('Please fill in descriptions with at least 400 characters.');
+                        Evaluation.headerFooterMessage('Please do not leave descriptions blank.');
                     } else {
                         Validate.evaluationRestaurantDetails(function (errors) {
                             if (errors) {
@@ -231,13 +232,17 @@ var Evaluation = {
                                 Evaluation.headerFooterMessage('Please Fill in the Details About the Restaurant');
                             } else {
                                 var info = {id: Evaluation.applicationId};
+                                $(html_button).html('<i class="fa fa-spinner fa-spin"></i>');
+                                $('.startEvaluation[data-application-id=' + Evaluation.applicationId  + ']').html('<i class="fa fa-spinner fa-spin"></i>')
+                                $('.evaluation-modal').modal('hide')
                                 $.ajax({
                                     type: "POST",
                                     url: "application/submit",
-                                    data: info
+                                    data: info,
+                                    success: function (response) {
+                                      $('.startEvaluation[data-application-id=' + Evaluation.applicationId  + ']').parent().html('Evaluation Submitted')
+                                    }
                                 });
-                                $('[data-open-evaluation="' + Evaluation.applicationId + '"]').remove();
-//                                location.reload();
                             }
                         });
                     }

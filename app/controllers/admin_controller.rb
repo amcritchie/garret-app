@@ -2,6 +2,7 @@ class AdminController < ApplicationController
   skip_before_filter :ensure_authenticated_user
 
   def home
+    return redirect_to :root if current_user.nil?
     if current_user && current_user.admin
       @all_questions = Question.all
 
@@ -31,6 +32,7 @@ class AdminController < ApplicationController
   end
 
   def restaurants
+    return redirect_to :root if current_user.nil?
     if current_user && current_user.admin
       @restaurants = Restaurant.all
     else
@@ -39,6 +41,7 @@ class AdminController < ApplicationController
   end
 
   def evaluations
+    return redirect_to :root if current_user.nil?
     if current_user && current_user.admin
       @departments = Department.all
       @all_questions = Question.all
@@ -53,6 +56,7 @@ class AdminController < ApplicationController
   end
 
   def users
+    return redirect_to :root if current_user.nil?
     if current_user && current_user.admin
       @all_users = User.all
     else

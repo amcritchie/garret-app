@@ -23,7 +23,8 @@ class RestaurantsController < ApplicationController
   end
 
   def action_plan
-    if current_user && (session[:user_type] == 'restaurant') && (params[:id] == current_user.id.to_s) || current_user.admin
+    return redirect_to :root if current_user.nil?
+    if (session[:user_type] == 'restaurant') && (params[:id] == current_user.id.to_s) || current_user.admin
     @applications = Evaluation.find_by(restaurant_id: params[:id]).evaluation_applications
     @application = EvaluationApplication.find(params[:application_id])
     @questions = Question.all
@@ -52,6 +53,7 @@ class RestaurantsController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    return redirect_to :root if current_user.nil?
     if current_user && (session[:user_type] == 'restaurant') && (params[:id] == current_user.id.to_s)
       @restaurant = Restaurant.find(current_user.id)
     else

@@ -1,6 +1,6 @@
 <h2>Hello <%= @user.first_name.capitalize %>,</h2>
 <p>
-  Congratulations, we have chosen you do conduct the evaluation of <%= @evaluation.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>,
+  Congratulations, we have chosen you to conduct the evaluation of <%= @evaluation.evaluation.restaurant.name.split.map(&:capitalize)*' ' %>,
   You will be able to access the evaluation on your
   <a href="<%= base_url %>/?load_evaluation=<%= @evaluation.id %>" target="_blank">Dashboard</a>.
   <br><br>
